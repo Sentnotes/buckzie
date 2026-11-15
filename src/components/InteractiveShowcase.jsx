@@ -160,8 +160,122 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
 
       {/* ── UNIFIED ILLUSTRATED BOOKSHELF (Open Directly on Section Background) ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="overflow-x-auto lg:overflow-visible no-scrollbar pt-12 pb-10">
-          <div className="min-w-[820px] sm:min-w-[940px] lg:min-w-0">
+        {/* Mobile & Tablet (< lg): Visible Standing Books Strip + Clean Active Book Spread Below */}
+        <div className="lg:hidden space-y-6 pt-4 pb-6">
+          {/* Standing Books Spine Selector (All Books Visible) */}
+          <div className="flex items-end justify-center gap-2 sm:gap-3 pt-4 pb-6 overflow-x-auto no-scrollbar">
+            {programs.map((item, idx) => {
+              const isOpen = idx === activeIndex;
+              const spec = BOOK_STYLES[idx % BOOK_STYLES.length];
+              const MotifIcon = spec.Icon;
+              return (
+                <button
+                  key={item.title}
+                  type="button"
+                  onClick={() => selectBook(idx)}
+                  style={{
+                    backgroundColor: spec.bg,
+                    color: spec.text,
+                    transform: isOpen ? 'translateY(-8px) rotate(0deg)' : `rotate(${spec.tilt})`,
+                  }}
+                  className={`relative shrink-0 w-9 sm:w-11 ${
+                    idx % 2 === 0 ? 'h-32 sm:h-40' : 'h-28 sm:h-36'
+                  } rounded-[2px] flex flex-col items-center justify-between py-2.5 px-1 transition-all duration-300 cursor-pointer select-none ${
+                    isOpen ? 'ring-2 ring-[#0267CE] ring-offset-2 shadow-md' : 'opacity-85 hover:opacity-100'
+                  }`}
+                  aria-label={`Open ${item.title}`}
+                  aria-pressed={isOpen}
+                >
+                  <MotifIcon className="w-3.5 h-3.5 opacity-85 stroke-[1.75] shrink-0" />
+                  <span
+                    className="font-inktrap text-[10px] sm:text-[11px] font-medium tracking-tight whitespace-nowrap overflow-hidden max-h-[72px]"
+                    style={{
+                      fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif',
+                      writingMode: 'vertical-rl',
+                      transform: 'rotate(180deg)',
+                    }}
+                  >
+                    {item.shortTag}
+                  </span>
+                  <span className="text-[9px] font-bold opacity-75">
+                    {idx + 1}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active Open Book Spread (Fitted to Small Screen) */}
+          {(() => {
+            const activeItem = programs[activeIndex];
+            const activeSpec = BOOK_STYLES[activeIndex % BOOK_STYLES.length];
+            const activeNum = String(activeIndex + 1).padStart(2, '0');
+            return (
+              <div className="relative rounded-[4px] border border-slate-200 bg-[#FCFBF7] shadow-[0_18px_40px_-14px_rgba(15,23,42,0.14)] overflow-hidden">
+                <div style={{ backgroundColor: activeSpec.bg }} className="h-1.5 w-full" />
+                <div className="grid grid-cols-1 sm:grid-cols-2">
+                  <div className="p-5 flex flex-col justify-between gap-4 border-b sm:border-b-0 sm:border-r border-slate-200/70">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                        Ch. {activeNum}
+                      </span>
+                      <span className="text-[10px] text-brand-600 font-bold bg-brand-50 px-2 py-0.5 rounded-full">
+                        {activeItem.tag}
+                      </span>
+                    </div>
+                    <div className="text-center py-2">
+                      <h3
+                        style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
+                        className="font-inktrap text-lg font-medium text-black tracking-tight leading-snug mb-2"
+                      >
+                        {activeItem.title}
+                      </h3>
+                      <p className="text-xs text-slate-600 font-medium leading-relaxed">
+                        {activeItem.description}
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between pt-3 border-t border-slate-200/70">
+                      <span className="text-[10px] text-slate-400">
+                        p. {activeIndex * 2 + 1}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (onOpenFullSchools) onOpenFullSchools();
+                        }}
+                        className="inline-flex items-center gap-1 text-xs font-bold text-black hover:text-brand-600 transition-colors cursor-pointer"
+                      >
+                        <span>Details</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-4 flex flex-col justify-between gap-3">
+                    <div className="w-full h-48 sm:h-56 rounded-lg overflow-hidden bg-slate-100 border border-slate-200/80">
+                      <img
+                        src={activeItem.image}
+                        alt={activeItem.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="flex items-center justify-between pt-2 border-t border-slate-200/70">
+                      <span className="text-[10px] text-slate-400 truncate pr-2">
+                        FIG. {activeNum} — {activeItem.title}
+                      </span>
+                      <span className="text-[10px] text-slate-400 shrink-0">
+                        p. {activeIndex * 2 + 2}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
+        </div>
+
+        {/* Desktop (lg+): Original Unified 3D Illustrated Bookshelf */}
+        <div className="hidden lg:block overflow-visible no-scrollbar pt-12 pb-10">
+          <div className="min-w-0">
             <div className="flex items-end gap-2 sm:gap-2.5">
               {programs.map((item, idx) => {
                 const isOpen = idx === activeIndex;
@@ -205,7 +319,7 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
                     {/* Floating Micro-Tag Outside Top or Bottom (When Closed) */}
                     {!isOpen && (
                       <span
-                        className={`pointer-events-none absolute left-1/2 -translate-x-1/2 text-[10px] font-mono font-medium text-slate-500 whitespace-nowrap ${
+                        className={`pointer-events-none absolute left-1/2 -translate-x-1/2 text-[10px] font-medium text-slate-500 whitespace-nowrap ${
                           spec.labelPos === 'top' ? '-top-6' : '-bottom-6'
                         }`}
                       >
@@ -250,10 +364,10 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
                         className="flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 pt-5 sm:pt-7 pr-4 sm:pr-6 lg:pr-7 border-r border-slate-200/70 bg-[#FCFBF7]"
                       >
                         <div className="flex items-center justify-between gap-1.5 sm:gap-2">
-                          <span className="text-[10px] sm:text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">
+                          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400">
                             Ch. {bookNum}
                           </span>
-                          <span className="text-[9px] sm:text-[10px] font-mono text-brand-600 font-bold bg-brand-50 px-1.5 sm:px-2 py-0.5 rounded-full truncate">
+                          <span className="text-[9px] sm:text-[10px] text-brand-600 font-bold bg-brand-50 px-1.5 sm:px-2 py-0.5 rounded-full truncate">
                             {item.tag}
                           </span>
                         </div>
@@ -271,7 +385,7 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
                         </div>
 
                         <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-slate-200/70">
-                          <span className="text-[9px] sm:text-[10px] font-mono text-slate-400">
+                          <span className="text-[9px] sm:text-[10px] text-slate-400">
                             p. {idx * 2 + 1}
                           </span>
                           <button
@@ -319,10 +433,10 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
                         </div>
 
                         <div className="flex items-center justify-between pt-2.5 sm:pt-3 mt-2.5 sm:mt-3 border-t border-slate-200/70">
-                          <span className="text-[9px] sm:text-[10px] font-mono text-slate-400 truncate pr-2">
+                          <span className="text-[9px] sm:text-[10px] text-slate-400 truncate pr-2">
                             FIG. {bookNum} — {item.title}
                           </span>
-                          <span className="text-[9px] sm:text-[10px] font-mono text-slate-400 shrink-0">
+                          <span className="text-[9px] sm:text-[10px] text-slate-400 shrink-0">
                             p. {idx * 2 + 2}
                           </span>
                         </div>
@@ -369,7 +483,7 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
                         </span>
                       </div>
 
-                      <span className="text-[10px] font-mono font-bold opacity-75">
+                      <span className="text-[10px] font-bold opacity-75">
                         {idx + 1}
                       </span>
                     </div>

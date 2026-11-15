@@ -141,8 +141,7 @@ const heroPillars = [
 export default function FamiliesPage({ onBackToHome }) {
   const [openFaq, setOpenFaq] = useState(null);
   const [activeHeroPillar, setActiveHeroPillar] = useState(0);
-  const carouselRef = useRef(null);
-  const [expandedCard, setExpandedCard] = useState(null);
+  const [activeProgramStep, setActiveProgramStep] = useState(0);
   const showcaseContainerRef = useRef(null);
   const [showcaseScale, setShowcaseScale] = useState(1);
 
@@ -173,20 +172,13 @@ export default function FamiliesPage({ onBackToHome }) {
     };
   }, []);
 
-  const scrollCarousel = (direction) => {
-    if (!carouselRef.current) return;
-    const scrollAmount = direction === 'left' ? -360 : 360;
-    carouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-white text-black pt-36 sm:pt-40 pb-24">
-
       {/* ── Architectural Geometric Hero Header (Light Editorial Palette) ── */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 lg:mb-32">
         <div className="relative min-h-[540px] lg:min-h-[580px] flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-0 py-6 lg:py-10 overflow-hidden">
           {/* Top-Left / Top-Right Micro Architectural Labels */}
-          <div className="hidden lg:flex absolute top-2 left-0 right-0 justify-between items-center text-[11px] font-mono uppercase tracking-[0.2em] text-slate-500 pointer-events-none">
+          <div className="hidden lg:flex absolute top-2 left-0 right-0 justify-between items-center text-[11px] uppercase tracking-[0.2em] text-slate-500 pointer-events-none">
             <span>FAMILY TRANSIT</span>
             <div className="flex items-center gap-8">
               <span className="text-[#0267CE] font-semibold">DOOR-TO-DOOR</span>
@@ -231,7 +223,7 @@ export default function FamiliesPage({ onBackToHome }) {
                 <div className="absolute top-[47%] left-0 w-[24%] h-[27%] bg-slate-50 flex flex-col justify-between overflow-hidden select-none">
                   {/* Full-Bleed Calendar Header */}
                   <div className="bg-[#121316] text-white pl-4 sm:pl-5 pr-2 sm:pr-2.5 py-1.5 flex items-center justify-between">
-                    <span className="text-[8px] sm:text-[10px] font-mono font-bold uppercase tracking-wider">
+                    <span className="text-[8px] sm:text-[10px] font-bold uppercase tracking-wider">
                       MON–FRI
                     </span>
                     <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#FFCC00]" />
@@ -239,14 +231,14 @@ export default function FamiliesPage({ onBackToHome }) {
 
                   {/* Mini Week Grid Filling the Cell */}
                   <div className="flex-1 flex flex-col justify-center pl-3.5 sm:pl-5 pr-1.5 sm:pr-2.5 py-1.5 gap-1">
-                    <div className="grid grid-cols-5 gap-0.5 sm:gap-1 text-center text-[7px] sm:text-[9px] font-mono font-semibold text-slate-400">
+                    <div className="grid grid-cols-5 gap-0.5 sm:gap-1 text-center text-[7px] sm:text-[9px] font-semibold text-slate-400">
                       <span>M</span>
                       <span>T</span>
                       <span>W</span>
                       <span>T</span>
                       <span>F</span>
                     </div>
-                    <div className="grid grid-cols-5 gap-0.5 sm:gap-1 text-center text-[8px] sm:text-[10px] font-mono font-bold">
+                    <div className="grid grid-cols-5 gap-0.5 sm:gap-1 text-center text-[8px] sm:text-[10px] font-bold">
                       <span className="rounded bg-white border border-slate-200 text-[#121316] py-0.5 sm:py-1">12</span>
                       <span className="rounded bg-[#0267CE] text-white py-0.5 sm:py-1">13</span>
                       <span className="rounded bg-white border border-slate-200 text-[#121316] py-0.5 sm:py-1">14</span>
@@ -257,7 +249,7 @@ export default function FamiliesPage({ onBackToHome }) {
 
                   {/* Footer Strip */}
                   <div className="pl-4 sm:pl-5 pr-2 sm:pr-2.5 py-1 border-t border-slate-200/80 bg-white/80 flex items-center justify-between">
-                    <span className="text-[7px] sm:text-[9px] font-mono font-medium text-slate-500 uppercase">
+                    <span className="text-[7px] sm:text-[9px] font-medium text-slate-500 uppercase">
                       AM / PM
                     </span>
                     <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#0267CE]" />
@@ -303,7 +295,7 @@ export default function FamiliesPage({ onBackToHome }) {
               </div>
 
               {/* Small Stacked Editorial Note Inside Top-Center Grid Cell */}
-              <div className="absolute top-[7%] left-[52%] text-[10px] sm:text-xs font-mono leading-tight text-[#121316]/85">
+              <div className="absolute top-[7%] left-[52%] text-[10px] sm:text-xs leading-tight text-[#121316]/85">
                 dedicated
                 <br />
                 student
@@ -414,14 +406,12 @@ export default function FamiliesPage({ onBackToHome }) {
                 </svg>
               </div>
             </div>
-            {/* Vertical Stem Extending Down From Center Spine */}
-            <div className="hidden lg:block absolute left-1/2 bottom-[-48px] w-[1.5px] h-12 bg-[#121316]/85 pointer-events-none" />
           </div>
 
           {/* Right Interactive Pillar Switcher & Description (Next to Traffic Signal) */}
           <div className="relative z-20 w-full lg:w-[30%] lg:pl-8 lg:pr-16 lg:pt-16 flex flex-col justify-center space-y-5">
             {/* Tab Labels (DOORSTEP | DEDICATED | LIVE GPS) */}
-            <div className="flex items-center gap-4 text-xs sm:text-sm font-mono tracking-wider uppercase">
+            <div className="flex items-center gap-4 text-xs sm:text-sm tracking-wider uppercase">
               {heroPillars.map((pillar, idx) => {
                 const isActive = idx === activeHeroPillar;
                 return (
@@ -480,10 +470,10 @@ export default function FamiliesPage({ onBackToHome }) {
         </div>
       </section>
 
-      {/* Apple-Style "How Our Program Works" Section - Full Width Spread */}
-      <section className="w-full px-4 sm:px-6 lg:px-10 2xl:px-16 mb-28">
+      {/* Horizontal Transit Route Stepper + Single Feature Stage: "How Our Program Works" */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-28">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 lg:mb-12">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">
               Simple, Reliable, Transparent
@@ -496,120 +486,167 @@ export default function FamiliesPage({ onBackToHome }) {
             </h2>
           </div>
 
-          {/* Carousel navigation controls (for mobile & tablet) */}
-          <div className="flex lg:hidden items-center space-x-2.5">
+          <div className="flex items-center gap-3 self-start sm:self-end">
+            <span className="text-xs font-semibold text-slate-500 mr-1">
+              STEP 0{activeProgramStep + 1} / 0{programSteps.length}
+            </span>
             <button
-              onClick={() => scrollCarousel('left')}
+              type="button"
+              onClick={() =>
+                setActiveProgramStep((prev) =>
+                  prev === 0 ? programSteps.length - 1 : prev - 1
+                )
+              }
               aria-label="Previous step"
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-black hover:text-white hover:border-black flex items-center justify-center transition-colors cursor-pointer"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
             <button
-              onClick={() => scrollCarousel('right')}
+              type="button"
+              onClick={() =>
+                setActiveProgramStep((prev) =>
+                  prev === programSteps.length - 1 ? 0 : prev + 1
+                )
+              }
               aria-label="Next step"
-              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer"
+              className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-700 hover:bg-black hover:text-white hover:border-black flex items-center justify-center transition-colors cursor-pointer"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Full-Width Cards: 4-Column Grid on Desktop, Smooth Touch Carousel on Mobile */}
-        <div
-          ref={carouselRef}
-          className="w-full overflow-x-auto no-scrollbar pb-6 pt-2 snap-x snap-mandatory lg:overflow-visible"
-        >
-          <div className="flex lg:grid lg:grid-cols-4 gap-5 sm:gap-6 w-max lg:w-full">
+        {/* Horizontal 4-Stop Transit Route Bar */}
+        <div className="relative mb-8">
+          {/* Desktop Route Progress Track */}
+          <div
+            aria-hidden="true"
+            className="hidden lg:block absolute left-[12.5%] right-[12.5%] top-5 h-[2px] bg-slate-200"
+          >
+            <div
+              className="h-full bg-[#0267CE] transition-all duration-500 ease-out"
+              style={{ width: `${(activeProgramStep / (programSteps.length - 1)) * 100}%` }}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 relative z-10">
             {programSteps.map((stepItem, index) => {
-              const isExpanded = expandedCard === index;
-              const BadgeIcon = stepItem.imageBadgeIcon;
+              const isActive = activeProgramStep === index;
+              const isPassed = index < activeProgramStep;
 
               return (
-                <div
+                <button
                   key={stepItem.step}
-                  className="w-[320px] sm:w-[360px] lg:w-full min-h-[540px] shrink-0 lg:shrink rounded-[2.5rem] bg-white p-6 sm:p-7 xl:p-8 flex flex-col justify-between border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative group snap-start"
+                  type="button"
+                  onClick={() => setActiveProgramStep(index)}
+                  className={`group flex flex-col items-start lg:items-center text-left lg:text-center p-3.5 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'bg-white border-slate-300 shadow-[0_8px_24px_rgba(2,103,206,0.08)] lg:bg-transparent lg:border-transparent lg:shadow-none'
+                      : 'bg-slate-50/70 border-slate-200/60 hover:bg-white lg:bg-transparent lg:border-transparent lg:hover:bg-transparent'
+                  }`}
                 >
-                  {/* Top: Category + Title + Exact Step Description */}
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">
-                        {stepItem.step}. {stepItem.category}
-                      </span>
-                      <span className="text-[11px] font-medium text-brand-600 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-100">
-                        {stepItem.tag}
-                      </span>
-                    </div>
+                  {/* Route Stop Node */}
+                  <span
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold border-2 transition-all duration-300 mb-3 ${
+                      isActive
+                        ? 'bg-[#0267CE] text-white border-[#0267CE] shadow-md scale-110'
+                        : isPassed
+                          ? 'bg-white text-[#0267CE] border-[#0267CE]'
+                          : 'bg-white text-slate-400 border-slate-200 group-hover:border-slate-400 group-hover:text-slate-700'
+                    }`}
+                  >
+                    0{stepItem.step}
+                  </span>
 
-                    <h4 className="text-xl sm:text-2xl font-bold text-black tracking-tight leading-snug">
-                      {stepItem.title}
-                    </h4>
+                  <span
+                    className={`text-[11px] font-semibold uppercase tracking-wider mb-1 transition-colors ${
+                      isActive ? 'text-[#0267CE]' : 'text-slate-400'
+                    }`}
+                  >
+                    {stepItem.category}
+                  </span>
 
-                    <p className="text-sm text-slate-600 font-normal leading-relaxed">
-                      {stepItem.description}
-                    </p>
-                  </div>
-
-                  {/* Middle / Bottom: Dedicated Image Section */}
-                  <div className="my-auto pt-4 pb-2">
-                    <div className="h-44 sm:h-48 xl:h-52 w-full rounded-2xl overflow-hidden relative border border-slate-100 shadow-sm group-hover:shadow-md transition-shadow">
-                      <img
-                        src={stepItem.image}
-                        alt={stepItem.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                      />
-                      {/* Gradient overlay for contrast */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-
-                      {/* Floating Badge on image */}
-                      <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between">
-                        <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-black text-[10px] sm:text-[11px] font-bold shadow-md max-w-full">
-                          <BadgeIcon className="w-3.5 h-3.5 text-brand-600 shrink-0" />
-                          <span className="truncate">{stepItem.imageBadge}</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Bottom: Step Indicator + Plus Button */}
-                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-400">
-                      Step 0{stepItem.step} of 04
-                    </span>
-
-                    <button
-                      onClick={() => setExpandedCard(isExpanded ? null : index)}
-                      aria-label="More details"
-                      className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-black text-slate-600 group-hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-                    >
-                      <Plus className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-45' : ''}`} />
-                    </button>
-                  </div>
-
-                  {/* Expanded Detail Drawer */}
-                  {isExpanded && (
-                    <div className="absolute inset-x-0 bottom-0 bg-white/98 backdrop-blur-md p-6 rounded-b-[2.5rem] border-t border-slate-200 shadow-2xl transition-all animate-in fade-in slide-in-from-bottom-2 z-20">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">
-                          Key Safeguard
-                        </span>
-                        <button
-                          onClick={() => setExpandedCard(null)}
-                          className="text-slate-400 hover:text-black text-xs font-normal cursor-pointer"
-                        >
-                          Close
-                        </button>
-                      </div>
-                      <p className="text-xs text-slate-700 leading-relaxed font-medium">
-                        {stepItem.details}
-                      </p>
-                    </div>
-                  )}
-                </div>
+                  <span
+                    className={`text-sm sm:text-base font-bold tracking-tight leading-snug transition-colors ${
+                      isActive ? 'text-black' : 'text-slate-600 group-hover:text-black'
+                    }`}
+                  >
+                    {stepItem.title}
+                  </span>
+                </button>
               );
             })}
           </div>
         </div>
+
+        {/* Single Featured Stage Card */}
+        {(() => {
+          const current = programSteps[activeProgramStep] || programSteps[0];
+          const ActiveBadgeIcon = current.imageBadgeIcon;
+
+          return (
+            <div className="rounded-[2rem] bg-[#F8FAFC] border border-slate-200/80 p-5 sm:p-8 lg:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.04)]">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                {/* Left: Step Copy + Key Safeguard */}
+                <div className="lg:col-span-6 flex flex-col justify-between space-y-6">
+                  <div className="space-y-4">
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <span className="px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-bold text-[#121316]">
+                        STEP 0{current.step}
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-brand-50 border border-brand-200 text-xs font-semibold text-brand-600">
+                        {current.tag}
+                      </span>
+                    </div>
+
+                    <h3
+                      style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
+                      className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black tracking-tight leading-tight"
+                    >
+                      {current.title}
+                    </h3>
+
+                    <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                      {current.description}
+                    </p>
+                  </div>
+
+                  {/* Highlighted Key Safeguard Callout */}
+                  <div className="rounded-2xl bg-white border border-slate-200/80 p-4 sm:p-5 shadow-xs">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-600 mb-1.5">
+                      <ShieldCheck className="w-4 h-4 shrink-0" />
+                      <span>Key Safeguard</span>
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
+                      {current.details}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Right: Featured Photo + Floating Badge */}
+                <div className="lg:col-span-6">
+                  <div className="relative h-64 sm:h-80 lg:h-[380px] w-full rounded-[1.5rem] overflow-hidden border border-slate-200/80 bg-slate-100 shadow-sm">
+                    <img
+                      key={current.step}
+                      src={current.image}
+                      alt={current.title}
+                      className="w-full h-full object-cover transition-opacity duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                      <span className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md text-[#121316] text-xs font-bold shadow-md">
+                        <ActiveBadgeIcon className="w-4 h-4 text-brand-600 shrink-0" />
+                        <span>{current.imageBadge}</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
       </section>
 
       {/* Guardian App Spotlight & iPhone 16 Live GPS Tracking Experience */}

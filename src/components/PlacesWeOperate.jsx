@@ -224,14 +224,14 @@ export default function PlacesWeOperate() {
             >
               {activeRegion.name}
             </h4>
-            <span className="text-xs font-mono font-bold text-[#0063ce] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
+            <span className="text-xs font-bold text-[#0063ce] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-md">
               {activeRegion.code}
             </span>
           </div>
 
           {/* Right: Operating Hubs & Depots Pills */}
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-1.5 sm:gap-2">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400 mr-1 hidden md:inline">
+            <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mr-1 hidden md:inline">
               Active Hubs:
             </span>
             {activeRegion.markets.map((city, idx) => (
