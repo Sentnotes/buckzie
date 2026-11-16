@@ -45,7 +45,7 @@ const driverOpenings = [
     stateName: 'Pennsylvania',
     metro: 'Harrisburg',
     vehicleFit: ['sedan', 'suv', 'minivan', 'ev'],
-    description: 'Provide consistent, calming door-to-door transportation for assigned students. Same route and familiar faces every school day.',
+    description: 'Provide consistent, calming student transportation for assigned routes. Familiar routines and dependable care every school day.',
     perks: ['Predictable weekday schedule', 'No weekend or late-night routes', 'Child safety equipment provided']
   },
   {
@@ -65,7 +65,7 @@ const driverOpenings = [
     stateName: 'Pennsylvania',
     metro: 'Pittsburgh',
     vehicleFit: ['sedan', 'suv', 'minivan'],
-    description: 'Transport Pittsburgh area students to and from school safely with door-to-door care.',
+    description: 'Transport Pittsburgh area students to and from school safely with attentive, consistent care.',
     perks: ['Consistent student route pairing', 'Clean and peaceful rides', 'Comprehensive onboarding']
   },
   {
@@ -175,7 +175,7 @@ const driverOpenings = [
     stateName: 'Ohio',
     metro: 'Columbus',
     vehicleFit: ['sedan', 'suv', 'minivan', 'ev'],
-    description: 'Door-to-door morning pickups and afternoon drop-offs for Columbus area schools.',
+    description: 'Coordinated morning pickups and afternoon drop-offs for Columbus area schools.',
     perks: ['Fixed recurring route assignment', 'Calm student passenger base', 'Weekly direct deposit']
   },
   {

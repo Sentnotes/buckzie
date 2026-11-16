@@ -34,7 +34,6 @@ export default function Hero({ onStartBooking }) {
       if (window.innerWidth < 1024) {
         copy.style.opacity = '';
         copy.style.transform = '';
-        copy.style.filter = '';
         copy.style.pointerEvents = '';
         videoCard.style.transform = '';
         return;
@@ -46,15 +45,13 @@ export default function Hero({ onStartBooking }) {
       const raw = Math.min(1, Math.max(0, -stageRect.top / scrubDistance));
       const eased = 1 - Math.pow(1 - raw, 1.8);
 
-      // Headline + CTAs recede into depth (shrink, fade, blur) as video rises
+      // Headline + CTAs recede into depth (shrink & fade) using pure GPU-composited properties
       const copyOpacity = Math.max(0, 1 - raw * 1.45);
       const copyScale = 1 - eased * 0.14;
-      const copyBlur = eased * 6;
-      const copyShiftY = -eased * 20;
+      const copyShiftY = -eased * 22;
 
       copy.style.opacity = copyOpacity.toFixed(3);
       copy.style.transform = `translate3d(0, ${copyShiftY.toFixed(1)}px, 0) scale(${copyScale.toFixed(4)})`;
-      copy.style.filter = copyBlur > 0.05 ? `blur(${copyBlur.toFixed(2)}px)` : 'none';
       copy.style.pointerEvents = copyOpacity < 0.2 ? 'none' : 'auto';
 
       // Use offsetTop/offsetHeight inside the sticky container so liftDistance stays constant across pin/unpin
@@ -121,7 +118,7 @@ export default function Hero({ onStartBooking }) {
             ref={heroCopyRef}
             style={{
               transformOrigin: '50% 45%',
-              willChange: 'transform, opacity, filter',
+              willChange: 'transform, opacity',
             }}
             className="relative z-10 max-w-4xl mx-auto px-4 text-center"
           >

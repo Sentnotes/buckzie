@@ -84,7 +84,7 @@ const programSteps = [
     tag: 'On-Time Commitment',
     image:
       'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80',
-    imageBadge: 'Door-to-Door Escort Verified',
+    imageBadge: 'Verified Pickup & Drop-Off',
     imageBadgeIcon: ShieldCheck,
     details:
       'Drivers wait until the student is safely inside school doors or handed over to a designated guardian.'
@@ -119,7 +119,7 @@ const heroPillars = [
     id: 'doorstep',
     label: 'DOORSTEP',
     description:
-      'Certified door-to-door morning pickups and verified afternoon handoffs so every child starts and ends the school day safely.',
+      'Consistent morning pickups and verified afternoon drop-offs so every child starts and ends the school day safely.',
     image: '/family/Mother-Son.png',
   },
   {
@@ -173,15 +173,16 @@ export default function FamiliesPage({ onBackToHome }) {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-black pt-36 sm:pt-40 pb-24">
+    <div className="min-h-screen bg-white text-black pb-24">
       {/* ── Architectural Geometric Hero Header (Light Editorial Palette) ── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 lg:mb-32">
+      <section className="w-full home-dot-grid pt-36 sm:pt-40 pb-12 lg:pb-16 mb-12 lg:mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative min-h-[540px] lg:min-h-[580px] flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-0 py-6 lg:py-10 overflow-hidden">
           {/* Top-Left / Top-Right Micro Architectural Labels */}
           <div className="hidden lg:flex absolute top-2 left-0 right-0 justify-between items-center text-[11px] uppercase tracking-[0.2em] text-slate-500 pointer-events-none">
-            <span>FAMILY TRANSIT</span>
+            <span>FOR ALL KIDS</span>
             <div className="flex items-center gap-8">
-              <span className="text-[#0267CE] font-semibold">DOOR-TO-DOOR</span>
+              <span className="text-[#0267CE] font-semibold">DEDICATED DRIVERS</span>
               <span>GUARDIAN APP</span>
             </div>
           </div>
@@ -190,24 +191,20 @@ export default function FamiliesPage({ onBackToHome }) {
           <div className="relative z-20 w-full lg:w-[42%] text-left lg:pr-6">
             <h1
               style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-              className="font-inktrap text-3xl sm:text-4xl xl:text-[3.1rem] font-medium text-[#121316] tracking-tight leading-[1.04]"
+              className="font-inktrap text-4xl sm:text-5xl lg:text-6xl xl:text-[4.25rem] font-medium text-[#121316] tracking-tight leading-[1.02]"
             >
-              Dedicated
+              Smiles on
               <br />
-              Children&apos;s
-              <br />
-              Transportation
-              <br />
-              Services
+              Every Mile.
             </h1>
             <p className="mt-4 text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-md">
-              We provide safe, specialized children&apos;s transportation and dedicated student transit for families and school districts. From certified door-to-door morning pickups to verified afternoon drop-offs, our background-checked drivers ensure every child receives a secure, supportive, and predictable ride to school.
+              Every school day starts with peace of mind. From coordinated morning pickups to verified afternoon drop-offs, our background-checked drivers help give your child a safe, supportive, and predictable ride to school.
             </p>
           </div>
 
           {/* Center Architectural Circle + Blueprint Grid + Curved Photo Window */}
           <div className="relative z-10 flex items-center justify-center shrink-0">
-            <div className="relative w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] lg:w-[460px] lg:h-[460px] rounded-full border-[1.5px] border-[#121316]/85 overflow-hidden bg-white">
+            <div className="relative w-[300px] h-[300px] sm:w-[420px] sm:h-[420px] lg:w-[460px] lg:h-[460px] rounded-full border-[1.5px] border-[#121316]/85 ring-[10px] ring-white shadow-[0_0_52px_22px_rgba(255,255,255,0.96)] overflow-hidden bg-white">
               {/* Orthogonal Architectural Grid Lines + Template Color Blocks */}
               <div className="absolute inset-0 pointer-events-none">
                 {/* Two Template Color Grid Cells (Brand Blue & Safety Amber) */}
@@ -306,9 +303,9 @@ export default function FamiliesPage({ onBackToHome }) {
               {/* Curved Quarter-Circle Photo Window (Bottom-Right Quadrant) */}
               <div className="absolute right-0 bottom-0 w-[50.5%] h-[68%] rounded-tl-[160px] sm:rounded-tl-[220px] border-t-[1.5px] border-l-[1.5px] border-[#121316]/85 overflow-hidden bg-slate-100 z-10">
                 <img
-                  src={heroPillars[activeHeroPillar].image}
-                  alt={heroPillars[activeHeroPillar].label}
-                  className="w-full h-full object-cover transition-all duration-500"
+                  src="/family/Mother-Son.png"
+                  alt="Mother and son smiling for school commute"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
@@ -467,6 +464,7 @@ export default function FamiliesPage({ onBackToHome }) {
               </button>
             </div>
           </div>
+        </div>
         </div>
       </section>
 

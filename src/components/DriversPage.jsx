@@ -30,7 +30,7 @@ import MorphingPillButton from './MorphingPillButton';
 const driverBenefits = [
   {
     title: 'Predictable School Hours',
-    description: 'Consistent morning drop-offs and afternoon pickups during school hours. Your middays, evenings, and weekends remain completely your own.',
+    description: 'Consistent morning drop-offs and afternoon pickups built around weekday school bell schedules, with optional midday or off-hour ride requests as needed.',
     icon: Clock
   },
   {
@@ -40,12 +40,12 @@ const driverBenefits = [
   },
   {
     title: 'Safe Student Commutes',
-    description: 'Transport verified K-12 students under official school district authorization manifests, escorted safely door-to-door.',
+    description: 'Transport verified K-12 students under official school district authorization manifests, following established pickup and drop-off protocols.',
     icon: ShieldCheck
   },
   {
     title: 'Competitive Route Pay',
-    description: 'Competitive, reliable route compensation with protected minimums even if a student is absent or traffic causes delays.',
+    description: 'Competitive route compensation with clear earnings visibility before you accept a trip.',
     icon: DollarSign
   },
   {
@@ -120,7 +120,7 @@ const driverTestimonials = [
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80'
   },
   {
-    quote: "As a retired educator, I missed working with students. BuckledIn allows me to earn great income without working nights or weekends. The dispatch team is supportive, attentive, and treats drivers like true partners.",
+    quote: "As a retired educator, I missed working with students. BuckledIn lets me earn great income around a steady weekday school schedule. The dispatch team is supportive, attentive, and treats drivers like true partners.",
     name: 'Deborah Miller',
     location: 'Seattle, WA',
     tenure: '2 Years with BuckledIn',
@@ -138,11 +138,11 @@ const driverTestimonials = [
 const driverFaqs = [
   {
     q: 'How and when do BuckledIn drivers get paid?',
-    a: 'Drivers receive direct deposit payments every Friday for all completed routes during that week. Routes have competitive hourly minimums, meaning you are paid fairly even if traffic causes delays or if a student cancels last minute.'
+    a: 'Drivers receive weekly direct deposit every Friday for completed routes during that period, with transparent route pay details shared upfront.'
   },
   {
     q: 'What are the typical working hours?',
-    a: 'Our routes align directly with school bell schedules, typically running between 6:30 AM – 9:00 AM for morning pick-ups and 2:00 PM – 4:30 PM for afternoon dismissals. You have your middays, evenings, and weekends completely free.'
+    a: 'Primary routes align with weekday school bell schedules, typically running between 6:30 AM – 9:00 AM for morning pick-ups and 2:00 PM – 4:30 PM for afternoon dismissals, with occasional midday or evening ride requests available.'
   },
   {
     q: 'Do I need to buy my own child safety seats?',
@@ -431,10 +431,11 @@ export default function DriversPage({ onBackToHome }) {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black pt-40 pb-20 selection:bg-brand-500 selection:text-white">
+    <div className="min-h-screen bg-white text-black pb-20 selection:bg-brand-500 selection:text-white">
 
       {/* Hero Header */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-20">
+      <section className="w-full home-dot-grid pt-40 pb-16 mb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
           {/* Left Hero Text */}
@@ -513,7 +514,7 @@ export default function DriversPage({ onBackToHome }) {
                     <Sparkles className="w-4 h-4 text-white/90 mb-1.5" />
                     <div className="text-lg sm:text-xl font-bold leading-tight">Mon–Fri</div>
                     <p className="text-xs font-medium text-[#2E1A47]/80 leading-snug mt-1">
-                      School hours only. Weekends stay yours.
+                      Weekday school bell schedules.
                     </p>
                   </div>
                 </div>
@@ -589,7 +590,7 @@ export default function DriversPage({ onBackToHome }) {
                       Free Boosters
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-white text-[10px] font-semibold shadow-2xs -rotate-2">
-                      Zero Weekends
+                      Weekday Routes
                     </span>
                   </div>
                 </div>
@@ -768,6 +769,7 @@ export default function DriversPage({ onBackToHome }) {
           </div>
 
         </div>
+        </div>
       </section>
 
       {/* Section 1: Why Drive for BuckledIn (Full-Bleed Node Circuit Network — Homepage Driver Cream #F6F6EC) */}
@@ -905,7 +907,7 @@ export default function DriversPage({ onBackToHome }) {
           <div className="absolute left-[38%] top-[9.5%] max-w-[300px]">
             <h4 className="text-base font-bold text-black tracking-tight">Predictable School Hours</h4>
             <p className="mt-0.5 text-xs text-slate-600 leading-relaxed">
-              Morning & afternoon bell schedules. Middays, evenings, and weekends stay completely yours.
+              Centered on weekday morning & afternoon bell schedules, with optional midday or evening requests.
             </p>
           </div>
 
@@ -921,7 +923,7 @@ export default function DriversPage({ onBackToHome }) {
           <div className="absolute left-[13.2%] top-[72.5%] max-w-[260px]">
             <h4 className="text-base font-bold text-black tracking-tight">Safe Student Commutes</h4>
             <p className="mt-0.5 text-xs text-slate-600 leading-relaxed">
-              100% verified K-12 students under district-authorized manifests, escorted door-to-door.
+              Verified K-12 students under district-authorized manifests, following clear pickup and drop-off protocols.
             </p>
           </div>
 
@@ -929,7 +931,7 @@ export default function DriversPage({ onBackToHome }) {
           <div className="absolute left-[38%] top-[84%] max-w-[320px]">
             <h4 className="text-base font-bold text-black tracking-tight">Competitive Route Pay</h4>
             <p className="mt-0.5 text-xs text-slate-600 leading-relaxed">
-              Reliable compensation with protected minimums even if traffic or student absences occur.
+              Competitive, transparent route compensation with weekly direct deposit.
             </p>
           </div>
 
@@ -960,7 +962,7 @@ export default function DriversPage({ onBackToHome }) {
               <span className="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-600" />
               <h4 className="text-lg font-bold text-black">Predictable School Hours</h4>
               <p className="mt-1 text-sm text-slate-600 leading-relaxed">
-                Morning & afternoon bell schedules. Middays, evenings, and weekends stay completely yours.
+                Centered on weekday morning & afternoon bell schedules, with optional midday or evening requests.
               </p>
             </div>
             <div className="relative">
@@ -974,14 +976,14 @@ export default function DriversPage({ onBackToHome }) {
               <span className="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-600" />
               <h4 className="text-lg font-bold text-black">Safe Student Commutes</h4>
               <p className="mt-1 text-sm text-slate-600 leading-relaxed">
-                100% verified K-12 students under district-authorized manifests, escorted door-to-door.
+                Verified K-12 students under district-authorized manifests, following clear pickup and drop-off protocols.
               </p>
             </div>
             <div className="relative">
               <span className="absolute -left-[29px] top-1.5 w-2.5 h-2.5 rounded-full bg-brand-600" />
               <h4 className="text-lg font-bold text-black">Competitive Route Pay</h4>
               <p className="mt-1 text-sm text-slate-600 leading-relaxed">
-                Reliable compensation with protected minimums even if traffic or student absences occur.
+                Competitive, transparent route compensation with weekly direct deposit.
               </p>
             </div>
             <div className="relative">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { X, ArrowRight, ChevronRight, GraduationCap, Car, ShieldCheck, Compass } from 'lucide-react';
 
 export default function Navbar({
@@ -13,7 +13,11 @@ export default function Navbar({
   const [isDesktopHovered, setIsDesktopHovered] = useState(false);
   const [isLockedCollapsed, setIsLockedCollapsed] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hoveredNavId, setHoveredNavId] = useState(null);
+  const [liquidPill, setLiquidPill] = useState({ left: 0, width: 0, visible: false });
   const lastScrollY = useRef(0);
+  const innerPillRef = useRef(null);
+  const navTabRefs = useRef({});
 
   useEffect(() => {
     const handleLock = () => {
@@ -41,15 +45,16 @@ export default function Navbar({
       // Always keep expanded near the top of the page
       if (currentY < 60) {
         setIsCollapsed(false);
-      } else if (delta > 8 && currentY > 90) {
+        lastScrollY.current = currentY;
+      } else if (delta > 12 && currentY > 95) {
         // Scrolling down -> smoothly collapse into centered squircle
         setIsCollapsed(true);
-      } else if (delta < -6) {
+        lastScrollY.current = currentY;
+      } else if (delta < -12) {
         // Scrolling up -> smoothly zoom out into full pill
         setIsCollapsed(false);
+        lastScrollY.current = currentY;
       }
-
-      lastScrollY.current = currentY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -99,6 +104,28 @@ export default function Navbar({
       ? activeSection
       : currentView;
 
+  const targetFocusId = hoveredNavId || currentActiveId;
+
+  useLayoutEffect(() => {
+    const updateLiquidPill = () => {
+      const container = innerPillRef.current;
+      const targetEl = targetFocusId ? navTabRefs.current[targetFocusId] : null;
+      if (!container || !targetEl || showDesktopCollapsed) {
+        setLiquidPill((prev) => (prev.visible ? { ...prev, visible: false } : prev));
+        return;
+      }
+      setLiquidPill({
+        left: targetEl.offsetLeft,
+        width: targetEl.offsetWidth,
+        visible: true,
+      });
+    };
+
+    updateLiquidPill();
+    window.addEventListener('resize', updateLiquidPill, { passive: true });
+    return () => window.removeEventListener('resize', updateLiquidPill);
+  }, [targetFocusId, showDesktopCollapsed]);
+
   return (
     <>
       {/* Mobile Backdrop Overlay when Menu is Open */}
@@ -128,7 +155,9 @@ export default function Navbar({
           style={{
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
             backdropFilter: 'blur(20px) saturate(180%)',
-            transition: 'all 780ms cubic-bezier(0.4, 0, 0.2, 1)',
+            transform: 'translateZ(0)',
+            willChange: 'transform, max-width',
+            transition: 'all 620ms cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         >
           {/* Brand Logo - Always Returns Home & Centers Smoothly When Collapsed */}
@@ -150,9 +179,11 @@ export default function Navbar({
             />
           </button>
 
-          {/* Desktop Navigation Tabs - Glassmorphic inner pill */}
+          {/* Desktop Navigation Tabs - Glassmorphic inner pill with sliding Liquid Glass focus */}
           <div
-            className={`hidden md:flex items-center space-x-1 bg-black/[0.04] rounded-full border border-black/[0.04] shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)] whitespace-nowrap overflow-hidden flex-shrink-0 ${
+            ref={innerPillRef}
+            onMouseLeave={() => setHoveredNavId(null)}
+            className={`relative hidden md:flex items-center space-x-1 bg-black/[0.04] rounded-full border border-black/[0.04] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] whitespace-nowrap overflow-hidden flex-shrink-0 ${
               showDesktopCollapsed
                 ? 'max-w-0 opacity-0 scale-90 p-0 border-0 pointer-events-none'
                 : 'max-w-[440px] opacity-100 scale-100 p-1.5'
@@ -163,16 +194,47 @@ export default function Navbar({
               transition: 'all 750ms cubic-bezier(0.4, 0, 0.2, 1)',
             }}
           >
+            {/* Sliding Liquid Glass Focus Pill */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1.5 bottom-1.5 left-0 rounded-full border border-white/95"
+              style={{
+                width: `${liquidPill.width}px`,
+                transform: `translate3d(${liquidPill.left}px, 0, 0) scale(${liquidPill.visible ? 1 : 0.92})`,
+                opacity: liquidPill.visible ? 1 : 0,
+                background:
+                  'linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.72) 55%, rgba(241,245,249,0.88) 100%)',
+                WebkitBackdropFilter: 'blur(14px) saturate(190%)',
+                backdropFilter: 'blur(14px) saturate(190%)',
+                boxShadow:
+                  '0 4px 14px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.05), inset 0 1.5px 1px rgba(255, 255, 255, 0.98), inset 0 -1px 2px rgba(15, 23, 42, 0.05)',
+                transition:
+                  'transform 460ms cubic-bezier(0.22, 1.28, 0.36, 1), width 420ms cubic-bezier(0.22, 1.28, 0.36, 1), opacity 200ms ease',
+                willChange: 'transform, width, opacity',
+              }}
+            >
+              <span className="absolute inset-x-3 top-[1px] h-[1px] bg-white/95 rounded-full" />
+            </span>
+
             {navItems.map((item) => {
               const isActive = currentActiveId === item.id;
+              const isFocused = targetFocusId === item.id;
               return (
                 <button
                   key={item.id}
+                  ref={(el) => {
+                    navTabRefs.current[item.id] = el;
+                  }}
+                  onMouseEnter={() => setHoveredNavId(item.id)}
+                  onFocus={() => setHoveredNavId(item.id)}
+                  onBlur={() => setHoveredNavId(null)}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-4 py-1.5 text-sm font-normal rounded-full transition-all duration-200 cursor-pointer whitespace-nowrap ${
+                  className={`relative z-10 px-4 py-1.5 text-sm font-normal rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
                     isActive
-                      ? 'bg-white/90 text-brand-600 shadow-sm border border-white/80'
-                      : 'text-slate-800 hover:text-black hover:bg-white/50'
+                      ? 'text-brand-600'
+                      : isFocused
+                        ? 'text-black'
+                        : 'text-slate-800 hover:text-black'
                   }`}
                 >
                   {item.label}

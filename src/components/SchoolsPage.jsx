@@ -487,9 +487,10 @@ export default function SchoolsPage({ onBackToHome }) {
   };
 
   return (
-    <div className="min-h-screen bg-white text-black pt-36 sm:pt-40 pb-24">
+    <div className="min-h-screen bg-white text-black pb-24">
       {/* ── 1. Hero Header Section ────────────────────────────────────────── */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 lg:mb-32">
+      <section className="w-full home-dot-grid pt-36 sm:pt-40 pb-12 lg:pb-16 mb-12 lg:mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Hero Copy */}
           <div className="lg:col-span-7 space-y-7">
@@ -567,6 +568,7 @@ export default function SchoolsPage({ onBackToHome }) {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
 

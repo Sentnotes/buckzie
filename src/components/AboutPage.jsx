@@ -68,7 +68,7 @@ const NEWSLETTER_ISSUES = [
     featured: true,
     title: 'Solving Specialized & McKinney-Vento Transit Bottlenecks Across 500+ School Districts',
     excerpt:
-      'How public school superintendents and transportation directors are pairing traditional yellow bus fleets with vetted, door-to-door small-capacity vehicles to achieve 99.4% morning bell punctuality.',
+      'How public school superintendents and transportation directors are pairing traditional yellow bus fleets with vetted small-capacity vehicles for reliable morning bell arrivals.',
     image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80',
     author: 'Sarah Chen, M.Ed. — VP of District Partnerships',
     highlights: [
@@ -141,13 +141,13 @@ const NEWSLETTER_ISSUES = [
     image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
     author: 'David Vance — Chief Executive Officer',
     highlights: [
-      'Predictable morning and afternoon school bell hours with middays and weekends off',
+      'Predictable morning and afternoon weekday school bell hours',
       'Consistent student pairings that build lasting family trust',
       'Dedicated local dispatch support on every single trip',
     ],
     content: [
       'Since our founding in Beaverton, Oregon in 1997, our drivers have been the heart of everything we do. This month we honor 42 driver partners who recently crossed their 10-year milestone of safe student service.',
-      'Many of our drivers are retired teachers, healthcare workers, and parents who love the predictability of morning and afternoon school routes—without late-night driving or weekend shifts.',
+      'Many of our drivers are retired teachers, healthcare workers, and parents who value the predictability of morning and afternoon weekday school routes.',
       'Because drivers are matched with the same students throughout the school year, they become a reassuring, familiar part of each family’s daily routine.',
     ],
   },
