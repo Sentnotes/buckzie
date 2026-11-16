@@ -59,7 +59,7 @@ const safetyStandards = [
   {
     number: '01',
     title: 'Multi-Jurisdictional Background Check',
-    description: 'Comprehensive FBI fingerprinting, state criminal registry audit, and national sex offender registry checks.',
+    description: 'Thorough background checks, state criminal registry audit, and national sex offender registry checks.',
     tag: 'Federal & State Vetting'
   },
   {

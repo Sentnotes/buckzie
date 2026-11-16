@@ -34,7 +34,7 @@ export default function AboutSection({ onOpenFullAbout }) {
     },
     {
       q: 'What happens if there is unexpected traffic or weather delays?',
-      a: 'Our 24/7 telematics operations center monitors all active routes continuously. Parents and school liaisons receive automatic arrival time adjustments and proactive notifications well before scheduled drop-offs.',
+      a: 'Our telematics operations center monitors all active routes throughout school hours (6 AM – 6 PM). Parents and school liaisons receive automatic arrival time adjustments and proactive notifications well before scheduled drop-offs.',
     },
   ];
 

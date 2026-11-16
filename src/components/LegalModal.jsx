@@ -78,7 +78,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
             Every BuckledIn vehicle must pass a 150-point annual mechanical inspection. Every driver undergoes continuous DMV license monitoring and multi-jurisdictional background screening.
           </p>
           <p>
-            In-app SOS connects directly to both local 911 dispatchers and our 24/7 dedicated crisis response team with GPS coordinates shared instantly.
+            In-app SOS connects directly to both local 911 dispatchers and our dedicated crisis response team during active school hours with GPS coordinates shared instantly.
           </p>
         </div>
       ),

@@ -239,7 +239,7 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
                 <li className="flex items-start space-x-2.5">
                   <Phone className="w-4 h-4 text-blue-200 shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-xs text-blue-200/80">24/7 Priority Hotline</div>
+                    <div className="text-xs text-blue-200/80">School-Hours Priority Line (6 AM – 6 PM)</div>
                     <a href="tel:18002825334" className="hover:text-amber-300 transition-colors font-medium">
                       +1 (800) 282-5334
                     </a>

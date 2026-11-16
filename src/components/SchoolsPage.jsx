@@ -107,8 +107,8 @@ const pillarDeepDives = {
       {
         step: '01',
         title: 'Multi-Jurisdictional Clearances',
-        desc: 'FBI & state DOJ fingerprint live-scans, Child Abuse Central Index registry checks, and 10-year motor vehicle records review.',
-        tag: 'FBI & DOJ Cleared',
+        desc: 'Thorough criminal background checks, Child Abuse Central Index registry checks, and 10-year motor vehicle records review.',
+        tag: 'Background Cleared',
         icon: ShieldCheck
       },
       {
@@ -137,7 +137,7 @@ const pillarDeepDives = {
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       name: 'Marcus Ramirez',
       role: 'Assigned Dedicated Chauffeur • Route #402 (Pinecrest District)',
-      details: 'FBI Cleared • First Aid & CPR Certified • 5.0 Star Rating',
+      details: 'Background Cleared • First Aid & CPR Certified • 5.0 Star Rating',
       badgeText: 'W-2 FLEET BADGE #0492'
     }
   },
@@ -192,13 +192,13 @@ const pillarDeepDives = {
     icon: HeartHandshake,
     heroImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
     heroImageAlt: 'Dedicated operations team coordinating in command center',
-    heroBadge: 'Live Human Support 24/7',
+    heroBadge: 'Live Support During School Hours',
     title: 'A Dedicated Extension Of Your District Transportation Office.',
     subtitle: 'Transportation directors have direct phone lines and Slack channels to assigned regional coordinators who know your schools, staff, and bell times by name.',
     metrics: [
       { value: '< 25s', label: 'Average Call Answer', desc: 'Direct live human response', color: 'text-brand-600' },
       { value: '1:1', label: 'Assigned Coordinator', desc: 'Knows your district routes by name', color: 'text-black' },
-      { value: '24/7', label: 'Safety Operations Center', desc: 'Always staffed during student transit', color: 'text-emerald-600' }
+      { value: '6AM–6PM', label: 'Safety Operations Center', desc: 'Staffed throughout active school hours', color: 'text-emerald-600' }
     ],
     sectionTitle: 'Dedicated District Operations Pod Structure',
     sectionSubtitle: 'How our operational support integrates seamlessly with district transportation staff.',
@@ -212,7 +212,7 @@ const pillarDeepDives = {
       },
       {
         step: '02',
-        title: '24/7 Live Human Dispatch Routing',
+        title: 'School-Hours Live Human Dispatch',
         desc: 'Live dispatchers actively monitoring every vehicle. Calls answered in under 25 seconds by US-based coordinators with immediate radio links to drivers.',
         tag: 'Instant Phone Line',
         icon: PhoneCall
@@ -291,12 +291,12 @@ const pillarDeepDives = {
     icon: ShieldCheck,
     heroImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
     heroImageAlt: 'Compliance auditor reviewing certified safety reports',
-    heroBadge: 'Continuous 24/7 Audits',
-    title: 'Safety Does Not Stop At Hiring: Continuous 24/7 Multi-Audit Protocol.',
-    subtitle: 'Safety requires ongoing vigilance. Buckled In connects directly to state DMV databases, FBI continuous monitoring, and periodic mechanical vehicle audits to maintain rigorous regulatory compliance.',
+    heroBadge: 'Ongoing Compliance Audits',
+    title: 'Safety Does Not Stop At Hiring: Continuous Multi-Audit Protocol.',
+    subtitle: 'Safety requires ongoing vigilance. Buckled In performs thorough background checks, DMV license monitoring, and periodic mechanical vehicle audits to maintain rigorous regulatory compliance.',
     metrics: [
-      { value: '24/7', label: 'Continuous MVR Audits', desc: 'Automated DMV license monitoring', color: 'text-brand-600' },
-      { value: 'FBI & DOJ', label: 'Live-Scan Fingerprinted', desc: 'Multi-jurisdictional background check', color: 'text-black' },
+      { value: '6AM–6PM', label: 'Active Route Oversight', desc: 'Live safety monitoring during school hours', color: 'text-brand-600' },
+      { value: 'Vetted', label: 'Thorough Background Checks', desc: 'Multi-jurisdictional screening', color: 'text-black' },
       { value: '150-Pt', label: 'Mechanical Inspection', desc: 'Annual & quarterly vehicle audits', color: 'text-emerald-600' }
     ],
     sectionTitle: 'Continuous Safety Oversight & Audit Checklist',
@@ -326,7 +326,7 @@ const pillarDeepDives = {
       {
         step: '04',
         title: 'Annual Criminal & Child Welfare Re-Checks',
-        desc: 'Annual recertification through FBI databases and state child abuse registries to ensure uninterrupted eligibility for pupil transit.',
+        desc: 'Annual recertification through thorough background checks and state child abuse registries to ensure uninterrupted eligibility for pupil transit.',
         tag: 'Annual Re-Check',
         icon: FileCheck2
       }
@@ -335,7 +335,7 @@ const pillarDeepDives = {
       image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=200&q=80',
       name: 'David Sterling',
       role: 'Pupil Transit Safety Board • Compliance Verification Officer',
-      details: 'FBI Live-Scan Cleared • Child Abuse Registry Cleared • DOT Zero-Tolerance',
+      details: 'Background Check Cleared • Child Abuse Registry Cleared • DOT Zero-Tolerance',
       badgeText: 'COMPLIANCE AUDIT #2026-OK'
     }
   }
@@ -366,10 +366,10 @@ const implementationSteps = [
     tag: 'Multi-Level Vetted',
     image:
       'https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&w=900&q=80',
-    imageBadge: 'FBI / DOJ / Child Welfare Cleared',
+    imageBadge: 'Thoroughly Background Checked',
     imageBadgeIcon: ShieldCheck,
     details:
-      'Every driver undergoes multi-jurisdictional FBI/DOJ fingerprinting, continuous MVR monitoring, drug screening, and specialized student care certification.'
+      'Every driver undergoes a thorough background check, continuous MVR monitoring, drug screening, and specialized student care certification.'
   },
   {
     step: '3',
@@ -408,7 +408,7 @@ const districtFaqs = [
   },
   {
     q: 'How does Buckled In ensure full compliance with state and federal pupil transit laws?',
-    a: 'Our compliance framework is purpose-built for K–12 public school districts. Every driver completes state-mandated criminal background checks (FBI/DOJ fingerprinting), Child Abuse Index clearances, pre-employment and random drug/alcohol testing, TB testing where required, and continuous Motor Vehicle Record (MVR) monitoring.'
+    a: 'Our compliance framework is purpose-built for K–12 public school districts. Every driver completes thorough state-mandated criminal background checks, Child Abuse Index clearances, pre-employment and random drug/alcohol testing, TB testing where required, and continuous Motor Vehicle Record (MVR) monitoring.'
   },
   {
     q: 'Can our district purchase through an existing cooperative contract?',
@@ -562,7 +562,7 @@ export default function SchoolsPage({ onBackToHome }) {
                     Built for High-Need &amp; Specialized Routes
                   </h3>
                   <p className="text-xs sm:text-sm text-white/85 leading-relaxed">
-                    Every route is paired with a consistent, background-cleared driver and monitored live by our 24/7 dispatch command center.
+                    Every route is paired with a consistent, background-cleared driver and monitored live by our dispatch command center during school hours.
                   </p>
                 </div>
               </div>
@@ -816,7 +816,7 @@ export default function SchoolsPage({ onBackToHome }) {
                   <span>Multi-Jurisdictional Vetting</span>
                 </div>
                 <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-                  FBI &amp; DOJ fingerprint clearances, Child Abuse Index checks, continuous MVR monitoring, and random drug/alcohol testing.
+                  Thorough background checks, Child Abuse Index checks, continuous MVR monitoring, and random drug/alcohol testing.
                 </p>
               </div>
 
@@ -843,7 +843,7 @@ export default function SchoolsPage({ onBackToHome }) {
               <div className="bg-white/10 rounded-2xl p-5 border border-white/15">
                 <div className="text-white font-semibold text-base sm:text-lg flex items-center space-x-2">
                   <PhoneCall className="w-5 h-5 text-sky-400 shrink-0" />
-                  <span>24/7 Live Human Dispatch</span>
+                  <span>Live Dispatch During School Hours</span>
                 </div>
                 <p className="text-xs text-slate-300 mt-2 leading-relaxed">
                   Direct phone and portal access to our regional dispatch commanders whenever your staff or families need immediate schedule adjustments.

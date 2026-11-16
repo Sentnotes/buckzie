@@ -178,7 +178,7 @@ export default function Hero({ onStartBooking }) {
                   playsInline
                   className="w-full h-full object-cover"
                 >
-                  <source src="/hero-video.mp4" type="video/mp4" />
+                  <source src="/kid-on-board-gps-navigation-rev26-1920x1080-30fps.mp4" type="video/mp4" />
                   <source
                     src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
                     type="video/mp4"

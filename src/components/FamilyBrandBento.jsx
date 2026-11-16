@@ -270,95 +270,29 @@ export default function FamilyBrandBento({ onExplore }) {
         <div className="relative bg-black min-h-[200px] sm:min-h-[230px] overflow-hidden border-t md:border-t-0 md:border-r border-neutral-800">
           {/* 3x3 Photo & Color Swatches */}
           <div className="grid grid-cols-3 grid-rows-3 h-full w-full gap-[1px] bg-neutral-900">
-            {/* Swatch 1: Strawberry Red */}
-            <div className="relative bg-[#E63946] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-white/90">Strawberry</span>
-              <img
-                src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=300&q=80"
-                alt="Student"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 2: Sunlight Amber */}
-            <div className="relative bg-[#FFB703] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-black/80 font-bold">Sunlight</span>
-              <img
-                src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=300&q=80"
-                alt="Smiling child"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 3: Blueberry Royal */}
-            <div className="relative bg-[#1D4ED8] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-white/90">Blueberry</span>
-              <img
-                src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=300&q=80"
-                alt="Child"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 4: Sky Cyan */}
-            <div className="relative bg-[#38BDF8] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-black/80 font-bold">Sky</span>
-              <img
-                src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=300&q=80"
-                alt="Parent and child"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 5: Latte Warm */}
-            <div className="relative bg-[#D4A373] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-black/80 font-bold">Latte</span>
-              <img
-                src="https://images.unsplash.com/photo-1587654780291-39c9404d7dd0?auto=format&fit=crop&w=300&q=80"
-                alt="Child secured"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 6: Leaf Green */}
-            <div className="relative bg-[#00D563] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-black/90 font-bold">Leaf</span>
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80"
-                alt="Driver"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 7: Perfume Violet */}
-            <div className="relative bg-[#9333EA] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-white/90">Perfume</span>
-              <img
-                src="https://images.unsplash.com/photo-1596464716127-f2a829822301?auto=format&fit=crop&w=300&q=80"
-                alt="Happy student"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 8: Tangerine Coral */}
-            <div className="relative bg-[#F97316] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-white/90">Tangerine</span>
-              <img
-                src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=300&q=80"
-                alt="Student smiling"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
-
-            {/* Swatch 9: Gumball Mint */}
-            <div className="relative bg-[#2DD4BF] overflow-hidden flex flex-col justify-between p-1">
-              <span className="text-[8px] font-medium text-black/80 font-bold">Gumball</span>
-              <img
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=300&q=80"
-                alt="Friends"
-                className="w-full h-9 sm:h-10 object-cover rounded-sm mt-0.5 mix-blend-luminosity opacity-85"
-              />
-            </div>
+            {[
+              { bg: '#E63946', src: '/librarybooks/EarlyChildhood.jpg', alt: 'Early childhood student' },
+              { bg: '#FFB703', src: '/librarybooks/Mckinnet-Vento.jpg', alt: 'Student commute' },
+              { bg: '#1D4ED8', src: '/librarybooks/extracurricular.jpg', alt: 'Student activities' },
+              { bg: '#38BDF8', src: '/family/Mother-Son.png', alt: 'Parent and child' },
+              { bg: '#D4A373', src: '/schools/(IEP).png', alt: 'Specialized student support' },
+              { bg: '#00D563', src: '/driverssection/pic1.jpg', alt: 'Dedicated driver' },
+              { bg: '#9333EA', src: '/librarybooks/out-of-district.jpg', alt: 'Out-of-district commute' },
+              { bg: '#F97316', src: '/librarybooks/CharterandPrivate.jpg', alt: 'Charter and private school ride' },
+              { bg: '#2DD4BF', src: '/librarybooks/Summerschool.jpg', alt: 'Summer school ride' },
+            ].map((tile) => (
+              <div
+                key={tile.src}
+                style={{ backgroundColor: tile.bg }}
+                className="relative overflow-hidden p-1"
+              >
+                <img
+                  src={tile.src}
+                  alt={tile.alt}
+                  className="w-full h-full object-cover rounded-sm mix-blend-luminosity opacity-90"
+                />
+              </div>
+            ))}
           </div>
 
           {/* Floating Pill Button (like "↗ Visit site" in reference) */}

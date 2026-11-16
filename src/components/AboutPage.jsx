@@ -96,7 +96,7 @@ const NEWSLETTER_ISSUES = [
     author: 'Elena Rostova — Head of Telematics & Dispatch Operations',
     highlights: [
       'Instant push notifications at approach, verified pickup, and school check-in',
-      '24/7 live human monitoring from our safety operations center',
+      'Live human monitoring from our safety operations center during school hours',
       'Encrypted chain-of-custody verification for elementary and special needs handoffs',
     ],
     content: [
@@ -114,11 +114,11 @@ const NEWSLETTER_ISSUES = [
     featured: false,
     title: 'Our 19-Point Back-to-School Vehicle & Multi-Jurisdiction Driver Vetting Protocol',
     excerpt:
-      'How Buckled In drivers complete fingerprint FBI background checks, child safety restraint certifications, and recurring mechanical inspections before their first route.',
+      'How Buckled In drivers complete thorough background checks, child safety restraint certifications, and recurring mechanical inspections before their first route.',
     image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80',
     author: 'Marcus Ramirez — Director of Driver Safety & Vetting',
     highlights: [
-      'FBI fingerprint, state child abuse registry, and continuous MVR monitoring',
+      'Thorough background checks, state child abuse registry, and continuous MVR monitoring',
       'Certified booster, 5-point harness, and ADA wheelchair securement checks',
       'Trauma-informed student de-escalation training for every chauffeur',
     ],

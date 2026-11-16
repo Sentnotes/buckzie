@@ -110,7 +110,7 @@ const familyFaqs = [
   },
   {
     q: 'What if I need to cancel or modify a ride due to an appointment or illness?',
-    a: 'You can easily notify dispatch and update your schedule directly within the Buckled In Guardian App or by calling our dedicated 24/7 Family Dispatch line.'
+    a: 'You can easily notify dispatch and update your schedule directly within the Buckled In Guardian App or by calling our Family Dispatch line during school hours (6 AM – 6 PM).'
   }
 ];
 

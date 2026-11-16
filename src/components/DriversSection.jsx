@@ -40,9 +40,9 @@ export default function DriversSection({ onOpenFullDrivers }) {
           <div className="lg:col-span-6 flex justify-center lg:justify-end">
             <div className="w-full max-w-lg lg:max-w-xl">
               <img
-                src="/drivershome.png"
+                src="/driverhomenologo.jpg"
                 alt="Our Drivers - Empowering Safe & Predictable Student Commutes"
-                className="w-full h-auto object-contain block select-none pointer-events-none"
+                className="w-full h-auto object-contain rounded-3xl block select-none pointer-events-none"
               />
             </div>
           </div>
