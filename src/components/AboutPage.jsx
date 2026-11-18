@@ -120,7 +120,7 @@ const NEWSLETTER_ISSUES = [
     highlights: [
       'Thorough background checks, state child abuse registry, and continuous MVR monitoring',
       'Certified booster, 5-point harness, and ADA wheelchair securement checks',
-      'Trauma-informed student de-escalation training for every chauffeur',
+      'Trauma-informed student de-escalation training for every driver',
     ],
     content: [
       'Before the first school bell rings each fall, every Buckled In driver and vehicle undergoes our comprehensive annual recertification audit.',
@@ -1136,7 +1136,7 @@ export default function AboutPage({ onBackToHome, initialTab = 'who-we-are' }) {
                     Our Vision
                   </h3>
                   <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                    To set the national benchmark for modern pupil transit through dedicated professional chauffeurs, real-time safety telemetry, and compassionate human-first coordination across every school district in America.
+                    To set the national benchmark for modern pupil transit through dedicated professional drivers, real-time safety telemetry, and compassionate human-first coordination across every school district in America.
                   </p>
                 </div>
                 <div className="pt-6 border-t border-slate-200/80 mt-6 flex items-center space-x-2 text-xs font-semibold text-slate-700">

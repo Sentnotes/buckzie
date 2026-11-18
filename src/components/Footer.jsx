@@ -257,10 +257,15 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
                 <li className="flex items-start space-x-2.5">
                   <MapPin className="w-4 h-4 text-blue-200 shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-xs text-blue-200/80">Headquarters</div>
-                    <span className="text-xs text-white/85 leading-snug block">
-                      500 Mobility Way, Suite 1200<br />New York, NY 10001
-                    </span>
+                    <div className="text-xs text-blue-200/80">Location • Beaverton, OR</div>
+                    <a
+                      href="https://www.bing.com/maps?where=Beaverton+OR+US&trk=org-locations_url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-white/85 hover:text-amber-300 transition-colors leading-snug block"
+                    >
+                      9450 SW Gemini Dr, #63721<br />Beaverton, Oregon 97008, US
+                    </a>
                   </div>
                 </li>
               </ul>

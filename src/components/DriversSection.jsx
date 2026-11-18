@@ -26,10 +26,10 @@ export default function DriversSection({ onOpenFullDrivers }) {
           {/* Left Column: Narrative Copy */}
           <div className="lg:col-span-6 space-y-6 text-left">
             <p className="text-lg sm:text-xl text-slate-800 font-semibold leading-relaxed">
-              Every child deserves a ride they can look forward to. Our dedicated chauffeurs provide the consistency, compassion, and vigilance needed to make daily school transportation calming, reliable, and secure.
+              Every child deserves a ride they can look forward to. Our dedicated drivers provide the consistency, compassion, and vigilance needed to make daily school transportation calming, reliable, and secure.
             </p>
             <p className="text-base sm:text-lg text-slate-700 font-medium leading-relaxed">
-              By matching consistent drivers to recurring routes, students build comforting familiarity with the trusted chauffeur who greets them at their doorstep every morning and afternoon.
+              By matching consistent drivers to recurring routes, students build comforting familiarity with the trusted driver who greets them at their doorstep every morning and afternoon.
             </p>
             <p className="text-base sm:text-lg text-slate-700 font-medium leading-relaxed">
               From thorough background audits to hand-to-hand school handoffs, our drivers are passionate partners in every student's educational journey.

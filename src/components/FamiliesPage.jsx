@@ -40,8 +40,7 @@ const programSteps = [
     description:
       "We partner with your child's school/district, and they send us everything we need to schedule your transportation.",
     tag: 'Seamless Integration',
-    image:
-      'https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=900&q=80',
+    image: '/howweworkFamilies/partnership.jpg',
     imageBadge: 'School & District Direct Sync',
     imageBadgeIcon: School,
     details:
@@ -54,12 +53,11 @@ const programSteps = [
     description:
       'Our routing team works to match your child with a safe, reliable driver who can meet their unique needs and that will commit to their ride for as long as they ride with us.',
     tag: 'Same Familiar Face',
-    image:
-      'https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&w=900&q=80',
+    image: '/howweworkFamilies/Drivermatch.jpg',
     imageBadge: 'Dedicated Driver • Safety Certified',
     imageBadgeIcon: UserCheck,
     details:
-      'Consistency is critical. We prioritize driver continuity so your child always sees a warm, familiar chauffeur.'
+      'Consistency is critical. We prioritize driver continuity so your child always sees a warm, familiar driver.'
   },
   {
     step: '3',
@@ -68,12 +66,11 @@ const programSteps = [
     description:
       "Once your child is matched with a driver, our team will reach out to you and your child's school/district with the details about the driver and vehicle and how to access our parent portal, so you can watch your family's rides in real-time.",
     tag: 'Live Telematics',
-    image:
-      'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=900&q=80',
+    image: '/howweworkFamilies/GuardianPortalAccess.jpg',
     imageBadge: 'Live GPS • Real-Time ETA',
     imageBadgeIcon: Smartphone,
     details:
-      'Track vehicle speed, route progress, driver photo, car license, and boarding security PIN in real time.'
+      'Follow live vehicle tracking, route progress, and stay updated on your assigned driver or substitute driver details in real time.'
   },
   {
     step: '4',
@@ -82,8 +79,7 @@ const programSteps = [
     description:
       "Your child's assigned driver will pick up and drop off your child according to the schedule that is communicated to you, providing you with safe and reliable transportation for your family.",
     tag: 'On-Time Commitment',
-    image:
-      'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80',
+    image: '/howweworkFamilies/ReliablePickDrop-offs.jpg',
     imageBadge: 'Verified Pickup & Drop-Off',
     imageBadgeIcon: ShieldCheck,
     details:
@@ -852,7 +848,7 @@ export default function FamiliesPage({ onBackToHome }) {
               <div className="w-full h-[230px] rounded-[22px] overflow-hidden relative shadow-[0_8px_26px_rgba(0,0,0,0.08)] border border-slate-200/80 flex flex-col justify-end bg-slate-900">
                 <img
                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
-                  alt="Certified Chauffeur navigating dedicated route"
+                  alt="Certified Driver navigating dedicated route"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />

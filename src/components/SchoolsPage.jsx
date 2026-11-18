@@ -16,6 +16,7 @@ import {
   ChevronRight,
   Plus,
   Building2,
+  ArrowLeft,
   ArrowRight,
   HeartHandshake,
   Lock,
@@ -37,7 +38,7 @@ const consistencyPillars = [
     icon: Users,
     hasDeepDive: true,
     actionText: 'Explore W-2 Model Breakdown',
-    image: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80',
+    image: '/schools/employment.jpg',
     description:
       'Buckled In drivers are W-2 employees – not subcontractors. We pair students with a consistent driver, helping build familiarity, trust, and routine.'
   },
@@ -48,7 +49,7 @@ const consistencyPillars = [
     icon: Clock,
     hasDeepDive: true,
     actionText: 'Explore Reliability Standards',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    image: '/schools/reliableservice.jpg',
     description:
       'Dependable fulfillment and on-time performance to help districts get students where they need to go – safely and on time.'
   },
@@ -59,20 +60,20 @@ const consistencyPillars = [
     icon: HeartHandshake,
     hasDeepDive: true,
     actionText: 'Explore Support Network',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+    image: '/schools/home-office-coordinator.jpg',
     description:
       'From daily coordination to issue resolution, our dedicated operations team works as an extension of your district – providing proactive support and a single point of contact when you need it most.'
   },
   {
     num: '04',
-    title: 'Technology + AI-powered platform',
-    tag: 'Connected Telemetry & AI',
+    title: 'Connected Technology & Live Tracking',
+    tag: 'Tracking & Efficiency',
     icon: Activity,
     hasDeepDive: true,
-    actionText: 'Inspect AI & Telematics',
-    image: '/family/tripfamilyview.png',
+    actionText: 'Inspect Tracking & Telematics',
+    image: '/howweworkFamilies/GuardianPortalAccess.jpg',
     description:
-      'Our connected technology experience combines mobile apps, web-based portals and AI cameras that keep districts, families, and drivers informed every step of the way.'
+      'Our connected technology experience combines mobile apps, web-based portals, and live GPS tracking that keep districts, families, and drivers informed every step of the way.'
   },
   {
     num: '05',
@@ -81,7 +82,7 @@ const consistencyPillars = [
     icon: ShieldCheck,
     hasDeepDive: true,
     actionText: 'Review Compliance Protocol',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+    image: '/schools/compliance-monitoring.jpg',
     description:
       'Safety doesn’t stop after hiring. We continuously monitor the background checks and motor vehicle records to maintain ongoing compliance of every driver.'
   }
@@ -91,17 +92,17 @@ const pillarDeepDives = {
   '01': {
     badge: 'Pillar 01 • Dedicated Driver Model',
     icon: Users,
-    heroImage: 'https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80',
-    heroImageAlt: 'Dedicated School Chauffeur greeting student',
+    heroImage: '/schools/employment.jpg',
+    heroImageAlt: 'Dedicated School Driver greeting student',
     heroBadge: 'W-2 Dedicated Fleet',
     title: 'Why Direct W-2 Employment Changes Everything for K–12 Districts.',
-    subtitle: 'Students with special needs, autism, trauma, or McKinney-Vento circumstances rely on routine and familiar faces. Here is our rigorous 4-stage chauffeur qualification and route pairing pipeline.',
+    subtitle: 'Students with special needs, autism, trauma, or McKinney-Vento circumstances rely on routine and familiar faces. Here is our rigorous 4-stage driver qualification and route pairing pipeline.',
     metrics: [
-      { value: '98.4%', label: 'Daily Driver Consistency', desc: 'Same trusted chauffeur each day', color: 'text-brand-600' },
+      { value: '98.4%', label: 'Daily Driver Consistency', desc: 'Same trusted driver each day', color: 'text-brand-600' },
       { value: 'W-2', label: 'Direct Employees', desc: 'Payroll staff, zero subcontractors', color: 'text-black' },
       { value: '-42%', label: 'Morning Anxiety Drop', desc: 'Students arrive calm & ready to learn', color: 'text-emerald-600' }
     ],
-    sectionTitle: '4-Stage Chauffeur Vetting & Route Pairing Pipeline',
+    sectionTitle: '4-Stage Driver Vetting & Route Pairing Pipeline',
     sectionSubtitle: 'How we recruit, screen, and certify dedicated transportation professionals for student routes.',
     capabilities: [
       {
@@ -128,15 +129,15 @@ const pillarDeepDives = {
       {
         step: '04',
         title: 'Permanent Route & Family Pairing',
-        desc: 'Chauffeurs are assigned to the same child every morning and afternoon, building predictable routines that parents and students trust.',
-        tag: 'Consistent Chauffeur',
+        desc: 'Drivers are assigned to the same child every morning and afternoon, building predictable routines that parents and students trust.',
+        tag: 'Consistent Driver',
         icon: Users
       }
     ],
     verificationCard: {
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
       name: 'Marcus Ramirez',
-      role: 'Assigned Dedicated Chauffeur • Route #402 (Pinecrest District)',
+      role: 'Assigned Dedicated Driver • Route #402 (Pinecrest District)',
       details: 'Background Cleared • First Aid & CPR Certified • 5.0 Star Rating',
       badgeText: 'W-2 FLEET BADGE #0492'
     }
@@ -144,7 +145,7 @@ const pillarDeepDives = {
   '02': {
     badge: 'Pillar 02 • Reliable Service Experience',
     icon: Clock,
-    heroImage: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1200&q=80',
+    heroImage: '/schools/reliableservice.jpg',
     heroImageAlt: 'Students arriving safely at school entrance on time',
     heroBadge: 'High-Reliability Fleet',
     title: 'Dependable On-Time Bell Fulfillment With Standby Backup Fleets.',
@@ -160,14 +161,14 @@ const pillarDeepDives = {
       {
         step: '01',
         title: '45-Minute Pre-Trip Telemetry Ping',
-        desc: 'Chauffeurs initiate pre-route system check-ins 45 minutes prior to first pickup. Algorithms analyze live traffic corridors and weather disruptions.',
+        desc: 'Drivers initiate pre-route system check-ins 45 minutes prior to first pickup. Algorithms analyze live traffic corridors and weather disruptions.',
         tag: 'Early Verification',
         icon: Clock
       },
       {
         step: '02',
-        title: 'Pre-Staged Regional Standby Chauffeurs',
-        desc: 'Dedicated reserve drivers staged in every regional zone, ready to roll promptly if an assigned chauffeur experiences a vehicle flat or sudden illness.',
+        title: 'Pre-Staged Regional Standby Drivers',
+        desc: 'Dedicated reserve drivers staged in every regional zone, ready to roll promptly if an assigned driver experiences a vehicle flat or sudden illness.',
         tag: 'Standby Reserve',
         icon: Car
       },
@@ -190,11 +191,11 @@ const pillarDeepDives = {
   '03': {
     badge: 'Pillar 03 • People-First Support',
     icon: HeartHandshake,
-    heroImage: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
-    heroImageAlt: 'Dedicated operations team coordinating in command center',
+    heroImage: '/schools/home-office-coordinator.jpg',
+    heroImageAlt: 'Regional transportation coordinator working from a home office',
     heroBadge: 'Live Support During School Hours',
     title: 'A Dedicated Extension Of Your District Transportation Office.',
-    subtitle: 'Transportation directors have direct phone lines and Slack channels to assigned regional coordinators who know your schools, staff, and bell times by name.',
+    subtitle: 'Transportation directors have direct phone lines and communication channels to assigned regional coordinators who know your schools, staff, and bell times by name.',
     metrics: [
       { value: '< 25s', label: 'Average Call Answer', desc: 'Direct live human response', color: 'text-brand-600' },
       { value: '1:1', label: 'Assigned Coordinator', desc: 'Knows your district routes by name', color: 'text-black' },
@@ -234,20 +235,20 @@ const pillarDeepDives = {
     }
   },
   '04': {
-    badge: 'Pillar 04 • Technology + AI-Powered Platform',
+    badge: 'Pillar 04 • Connected Technology & Tracking',
     icon: Activity,
-    heroImage: '/family/tripfamilyview.png',
+    heroImage: '/howweworkFamilies/GuardianPortalAccess.jpg',
     heroImageAlt: 'Buckled In Real-Time GPS Tracking Dashboard and Telematics',
-    heroBadge: 'Live GPS Telemetry & Dual AI Vision',
+    heroBadge: 'Live GPS Telemetry & Route Tracking',
     title: 'Enterprise Visibility & Real-Time Telemetry Built For Schools.',
-    subtitle: 'Our connected technology suite provides turn-by-turn telemetry, dual-facing AI cabin vision sensors, and automated parent arrival notifications to deliver complete operational transparency.',
+    subtitle: 'Our connected technology suite provides turn-by-turn GPS telemetry, in-vehicle cameras, and automated parent arrival notifications to deliver complete operational transparency and route efficiency.',
     metrics: [
       { value: '1-Sec', label: 'Live GPS Polling', desc: 'Smooth turn-by-turn tracking', color: 'text-brand-600' },
-      { value: 'Equipped', label: 'Dual-AI Dashcams', desc: 'Interior & road telematics', color: 'text-black' },
-      { value: '0', label: 'Cellular Blindspots', desc: 'Multi-carrier automatic SIM failover', color: 'text-emerald-600' }
+      { value: 'Equipped', label: 'In-Vehicle Cameras', desc: 'Video & audio trip visibility', color: 'text-black' },
+      { value: 'Live', label: 'Route Updates', desc: 'Pickup & arrival visibility', color: 'text-emerald-600' }
     ],
     sectionTitle: 'Connected Safety Tech & Telematics Architecture',
-    sectionSubtitle: 'Hardware, algorithms, and software built specifically for district transit standards.',
+    sectionSubtitle: 'Hardware, routing efficiency, and software built specifically for district transit standards.',
     capabilities: [
       {
         step: '01',
@@ -258,15 +259,15 @@ const pillarDeepDives = {
       },
       {
         step: '02',
-        title: 'Dual-Facing In-Cabin AI Safety Vision',
-        desc: 'Automated sensors detect harsh braking, sudden acceleration, driver drowsiness, and cell phone usage, alerting safety commanders in real time.',
-        tag: 'AI Safety Sensors',
+        title: 'In-Vehicle Safety Cameras & Telemetry',
+        desc: 'Connected dashcams and GPS telematics provide clear trip visibility, route efficiency insights, and real-time safety alerts.',
+        tag: 'Connected Dashcams',
         icon: Sparkles
       },
       {
         step: '03',
         title: 'Guardian Live Mobile Tracking App',
-        desc: 'Parents watch their child’s vehicle navigate in real time, see chauffeur photo credentials, and receive automated notifications at pickup and drop-off.',
+        desc: 'Parents watch their child’s vehicle navigate in real time, see driver photo credentials, and receive automated notifications at pickup and drop-off.',
         tag: 'Guardian Visibility',
         icon: Activity
       },
@@ -289,8 +290,8 @@ const pillarDeepDives = {
   '05': {
     badge: 'Pillar 05 • Ongoing Compliance Monitoring',
     icon: ShieldCheck,
-    heroImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80',
-    heroImageAlt: 'Compliance auditor reviewing certified safety reports',
+    heroImage: '/schools/compliance-monitoring.jpg',
+    heroImageAlt: 'Compliance specialist reviewing safety and driver records on a desktop PC',
     heroBadge: 'Ongoing Compliance Audits',
     title: 'Safety Does Not Stop At Hiring: Continuous Multi-Audit Protocol.',
     subtitle: 'Safety requires ongoing vigilance. Buckled In performs thorough background checks, DMV license monitoring, and periodic mechanical vehicle audits to maintain rigorous regulatory compliance.',
@@ -403,34 +404,49 @@ const implementationSteps = [
 
 const districtFaqs = [
   {
-    q: 'How quickly can Buckled In launch routes for our school district?',
-    a: 'Once a service agreement is in place, standard district onboarding takes 5–10 business days, and individual McKinney-Vento, foster care, or new IEP student routes can typically be activated within 48 to 72 hours.'
+    q: 'How many students can ride per vehicle?',
+    a: 'We can typically accommodate between 3 – 7 students in a vehicle, depending on the size of the vehicle, any special equipment needs, and rider size and age.'
   },
   {
-    q: 'How does Buckled In ensure full compliance with state and federal pupil transit laws?',
-    a: 'Our compliance framework is purpose-built for K–12 public school districts. Every driver completes thorough state-mandated criminal background checks, Child Abuse Index clearances, pre-employment and random drug/alcohol testing, TB testing where required, and continuous Motor Vehicle Record (MVR) monitoring.'
+    q: 'Can you provide transportation for special needs students?',
+    a: 'We do provide transportation for students with special needs including but not limited to: visual or hearing impairments, special medical requirements, autism, and behavioral disorders.'
   },
   {
-    q: 'Can our district purchase through an existing cooperative contract?',
-    a: 'Yes. Buckled In partners with major educational purchasing cooperatives and state intermediate units (including Sourcewell, Mohave Educational Services, and Pennsylvania Intermediate Units), allowing districts to onboard without lengthy RFP cycles.'
+    q: 'Do you require that districts share the IEP for students we work with?',
+    a: 'No, we do not require the school to send us the entire document, but we do ask about it and make sure we are doing everything we can to meet the student’s transportation needs.'
   },
   {
-    q: 'How does pricing work compared to running a full-size school bus?',
-    a: 'Districts only pay for active routes utilized, with transparent per-trip and per-mile rates. For out-of-district placements, IEP accommodations, and low-density routes, districts typically save 30% to 45% compared to dispatching an under-occupied yellow bus or contracting unvetted taxi services.'
+    q: 'Do you provide safety equipment?',
+    a: 'We ensure that any required equipment, including car seats, booster seats, or safety vests are in place prior to each ride. Our drivers keep the safety equipment in the car with them, so it doesn’t need to be brought into the schools each day.'
   },
   {
-    q: 'Do you provide documentation for Medicaid and McKinney-Vento reimbursement?',
-    a: 'Yes. Our platform automatically logs GPS-verified pickup/drop-off timestamps, student attendance, mileage splits for shared inter-district routes, and driver credentials required for federal IDEA, Medicaid, and McKinney-Vento reimbursement filings.'
+    q: 'Are there cameras in the vehicles?',
+    a: 'Yes, we have cameras in every vehicle, on every ride, for no additional cost. Cameras record both video and in-car audio adding another layer of safety and visibility to every ride.'
+  },
+  {
+    q: 'How do you monitor your drivers?',
+    a: 'Driver location is monitored through our Driver app. Our dashcam and GPS telematics platform provides insights on safety events, tracking efficiency, and driver behavior in real time. In addition we continuously monitor background and motor vehicle records throughout a driver’s employment – not just at time of hiring. This allows us to identify changes that may affect a driver’s eligibility and address compliance concerns as they occur.'
+  },
+  {
+    q: 'Can I know in real-time what arrival and pick-up times are?',
+    a: 'Yes, all rides can be seen in real-time on our District Portal. From a single dashboard, staff can quickly access trip details, student information, ride status, and reporting – all in one place. Parents and guardians can access the same information for their students through our Parent App.'
+  },
+  {
+    q: 'Do you have substitute drivers available to fill in when needed?',
+    a: 'We maintain a pool of drivers that are on-call to fill in for driver absences or other unforeseen events. This allows us to maintain consistent service for students without delays. If we need to use a substitute driver, we’ll send an automatic communication to the district and to the family. Substitute drivers meet the same hiring, training, and compliance standards as primary drivers.'
+  },
+  {
+    q: 'Do you require a minimum number of guaranteed rides?',
+    a: 'We do not have a requirement for a minimum number of rides. We serve student populations where the need for support often changes, and we are flexible to support the needs of our school partners and their families.'
   }
 ];
 
 export default function SchoolsPage({ onBackToHome }) {
   const [openFaq, setOpenFaq] = useState(null);
-  const [expandedStep, setExpandedStep] = useState(null);
+  const [activePartnershipStep, setActivePartnershipStep] = useState(0);
   const [activePillarModal, setActivePillarModal] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [consultationSubmitted, setConsultationSubmitted] = useState(false);
-  const stepsCarouselRef = useRef(null);
   const modalTimerRef = useRef(null);
 
   const handleOpenModal = (pillar) => {
@@ -665,126 +681,122 @@ export default function SchoolsPage({ onBackToHome }) {
         </div>
       </section>
 
-      {/* ── 3. How District Implementation Works (4-Step Cards) ───────────── */}
-      <section className="w-full px-4 sm:px-6 lg:px-10 2xl:px-16 mb-28">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">
-                Turnkey Operations
-              </p>
+      {/* ── 3. How District Partnerships Work (Drivers Onboarding Design: Frosted Step Cards + Yellow Road Ribbon) ── */}
+      <section className="relative pt-24 sm:pt-28 pb-28 sm:pb-36 bg-[#F4F4F4] overflow-hidden mb-24">
+        {/* Background Sweeping Yellow Road Ribbon with Dashed Centerline & Minimalist Car */}
+        <svg
+          className="absolute inset-x-0 bottom-0 w-full h-[320px] sm:h-[360px] pointer-events-none z-0"
+          viewBox="0 0 1440 360"
+          fill="none"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          {/* Yellow Road Band */}
+          <path
+            d="M -60 280 C 140 130, 420 110, 740 248 S 1260 365, 1500 175"
+            stroke="#FFCC00"
+            strokeWidth="44"
+            strokeLinecap="round"
+          />
+          {/* Dashed Centerline */}
+          <path
+            d="M -60 280 C 140 130, 420 110, 740 248 S 1260 365, 1500 175"
+            stroke="#1E293B"
+            strokeWidth="1.75"
+            strokeDasharray="5 5"
+            opacity="0.7"
+          />
+          {/* Minimalist Top-Down Car on Road */}
+          <g transform="translate(740, 248) rotate(23)">
+            <rect x="-15" y="-8.5" width="30" height="17" rx="5" fill="#111827" />
+            <rect x="-8" y="-6.5" width="14" height="13" rx="3" fill="#FFCC00" opacity="0.85" />
+            <rect x="-4" y="-5" width="7" height="10" rx="1.5" fill="#111827" />
+          </g>
+        </svg>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Editorial Asymmetric Header */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-12 sm:mb-14">
+            <div className="lg:col-span-3">
+              <span className="text-xs font-bold uppercase tracking-widest text-[#E5A800]">
+                (Turnkey Operations)
+              </span>
+            </div>
+            <div className="lg:col-span-9 max-w-2xl">
               <h2
                 style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                className="text-3xl sm:text-4xl md:text-5xl font-medium text-black tracking-tight"
+                className="text-3xl sm:text-4xl md:text-5xl font-medium text-black tracking-tight leading-tight"
               >
                 How District Partnerships Work
               </h2>
-            </div>
-
-            <div className="flex lg:hidden items-center space-x-2.5">
-              <button
-                onClick={() => scrollSteps('left')}
-                aria-label="Previous step"
-                className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => scrollSteps('right')}
-                aria-label="Next step"
-                className="w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-800 hover:bg-slate-100 flex items-center justify-center shadow-xs active:scale-95 transition-all cursor-pointer"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
+              <p className="mt-3 text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
+                We guide your transportation team every step of the way, from cooperative onboarding to live daily route coordination.
+              </p>
             </div>
           </div>
 
-          <div
-            ref={stepsCarouselRef}
-            className="w-full overflow-x-auto no-scrollbar pb-6 pt-2 snap-x snap-mandatory lg:overflow-visible"
-          >
-            <div className="flex lg:grid lg:grid-cols-4 gap-5 sm:gap-6 w-max lg:w-full">
-              {implementationSteps.map((stepItem, index) => {
-                const isExpanded = expandedStep === index;
-                const BadgeIcon = stepItem.imageBadgeIcon;
+          {/* Pill Arrow Controls */}
+          <div className="flex items-center space-x-2 mb-6">
+            <button
+              type="button"
+              onClick={() =>
+                setActivePartnershipStep((prev) =>
+                  prev === 0 ? implementationSteps.length - 1 : prev - 1
+                )
+              }
+              aria-label="Previous partnership phase"
+              className="w-11 h-7 rounded-full bg-white hover:bg-neutral-50 border border-black/5 shadow-xs flex items-center justify-center text-[#E5A800] transition-all cursor-pointer active:scale-95"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                setActivePartnershipStep((prev) =>
+                  prev === implementationSteps.length - 1 ? 0 : prev + 1
+                )
+              }
+              aria-label="Next partnership phase"
+              className="w-11 h-7 rounded-full bg-black hover:bg-neutral-900 shadow-xs flex items-center justify-center text-[#FFCC00] transition-all cursor-pointer active:scale-95"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+            </button>
+          </div>
 
-                return (
-                  <div
-                    key={stepItem.step}
-                    className="w-[310px] sm:w-[350px] lg:w-full min-h-[520px] shrink-0 lg:shrink rounded-[2.5rem] bg-white p-6 sm:p-7 flex flex-col justify-between border border-slate-200/80 shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-xl transition-all duration-300 relative group snap-start"
-                  >
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-semibold uppercase tracking-wider text-slate-400 font-mono">
-                          0{stepItem.step}. {stepItem.category}
-                        </span>
-                        <span className="text-[11px] font-medium text-brand-600 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-100">
-                          {stepItem.tag}
-                        </span>
-                      </div>
-
-                      <h4 className="text-xl font-bold text-black tracking-tight leading-snug">
-                        {stepItem.title}
-                      </h4>
-
-                      <p className="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-                        {stepItem.description}
-                      </p>
-                    </div>
-
-                    <div className="my-auto pt-4 pb-2">
-                      <div className="h-44 w-full rounded-2xl overflow-hidden relative border border-slate-100 shadow-xs">
-                        <img
-                          src={stepItem.image}
-                          alt={stepItem.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                          loading="lazy"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                        <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center">
-                          <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md text-black text-[10px] sm:text-[11px] font-bold shadow-md max-w-full">
-                            <BadgeIcon className="w-3.5 h-3.5 text-brand-600 shrink-0" />
-                            <span className="truncate">{stepItem.imageBadge}</span>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                      <span className="text-xs font-semibold text-slate-400">
-                        Phase 0{stepItem.step} of 04
-                      </span>
-                      <button
-                        onClick={() => setExpandedStep(isExpanded ? null : index)}
-                        aria-label="More details"
-                        className="w-8 h-8 rounded-full bg-slate-100 group-hover:bg-black text-slate-600 group-hover:text-white flex items-center justify-center transition-colors cursor-pointer"
-                      >
-                        <Plus className={`w-4 h-4 transition-transform duration-300 ${isExpanded ? 'rotate-45' : ''}`} />
-                      </button>
-                    </div>
-
-                    {isExpanded && (
-                      <div className="absolute inset-x-0 bottom-0 bg-white/98 backdrop-blur-md p-6 rounded-b-[2.5rem] border-t border-slate-200 shadow-2xl transition-all z-20">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">
-                            District Advantage
-                          </span>
-                          <button
-                            onClick={() => setExpandedStep(null)}
-                            className="text-slate-400 hover:text-black text-xs font-medium cursor-pointer"
-                          >
-                            Close
-                          </button>
-                        </div>
-                        <p className="text-xs text-slate-700 leading-relaxed font-medium">
-                          {stepItem.details}
-                        </p>
-                      </div>
-                    )}
+          {/* 4 Frosted / Highlighted Phase Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {implementationSteps.map((stepItem, idx) => {
+              const isActive = idx === activePartnershipStep;
+              return (
+                <div
+                  key={stepItem.step}
+                  onClick={() => setActivePartnershipStep(idx)}
+                  className={`min-h-[260px] sm:min-h-[280px] rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
+                    isActive
+                      ? 'bg-[#FFCC00] border border-[#F0C000] shadow-md text-black'
+                      : 'bg-white/80 backdrop-blur-md border border-white/90 hover:bg-white/90 shadow-xs text-black'
+                  }`}
+                >
+                  <div>
+                    <h3 className="text-base sm:text-lg font-medium uppercase tracking-tight leading-snug text-black">
+                      {stepItem.title}
+                    </h3>
+                    <p
+                      className={`mt-3 text-xs sm:text-sm leading-relaxed ${
+                        isActive ? 'text-black/80' : 'text-slate-600'
+                      }`}
+                    >
+                      {stepItem.description}
+                    </p>
                   </div>
-                );
-              })}
-            </div>
+
+                  <div className="pt-6 flex items-center space-x-2 text-[11px] font-bold uppercase tracking-wider text-black/80">
+                    <span>Phase 0{stepItem.step}</span>
+                    <span>+</span>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

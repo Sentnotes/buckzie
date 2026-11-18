@@ -80,7 +80,7 @@ const driverOpenings = [
   },
   {
     id: 'drv-2',
-    title: 'Specialized Student Transit Chauffeur',
+    title: 'Specialized Student Transit Driver',
     stateCode: 'MO',
     stateName: 'Missouri',
     metro: 'Kansas City',
@@ -130,7 +130,7 @@ const driverOpenings = [
   },
   {
     id: 'drv-4b',
-    title: 'Salem District Student Route Chauffeur',
+    title: 'Salem District Student Route Driver',
     stateCode: 'OR',
     stateName: 'Oregon',
     metro: 'Salem',
@@ -200,7 +200,7 @@ const driverOpenings = [
   },
   {
     id: 'drv-7b',
-    title: 'Tucson District Route Chauffeur',
+    title: 'Tucson District Route Driver',
     stateCode: 'AZ',
     stateName: 'Arizona',
     metro: 'Tucson',
@@ -210,7 +210,7 @@ const driverOpenings = [
   },
   {
     id: 'drv-8',
-    title: 'Out-of-District Placement Route Chauffeur',
+    title: 'Out-of-District Placement Route Driver',
     stateCode: 'KS',
     stateName: 'Kansas',
     metro: 'Kansas City',
@@ -230,7 +230,7 @@ const driverOpenings = [
   },
   {
     id: 'drv-10',
-    title: 'Consistent Student Transit Chauffeur',
+    title: 'Consistent Student Transit Driver',
     stateCode: 'KY',
     stateName: 'Kentucky',
     metro: 'Covington',
@@ -271,7 +271,7 @@ const staffOpenings = [
     description: 'Coordinate daily driver manifests, schedule changes, and substitute driver coverages across school districts. Act as the central communication center for morning and afternoon routes.',
     responsibilities: [
       'Build and optimize recurring route manifests aligned with school bell schedules',
-      'Handle urgent morning driver callouts by rapidly dispatching vetted reserve chauffeurs',
+      'Handle urgent morning driver callouts by rapidly dispatching vetted reserve drivers',
       'Directly interface with district special education supervisors on student transit plans',
       'Maintain high on-time delivery rates across all operating territories'
     ],
@@ -306,7 +306,7 @@ const staffOpenings = [
     location: 'Remote (US)',
     type: 'Full-Time',
     badge: 'Open Position',
-    description: 'Oversee the comprehensive background screening, motor vehicle record audits, vehicle safety inspections, and child welfare training of every BuckledIn chauffeur applicant.',
+    description: 'Oversee the comprehensive background screening, motor vehicle record audits, vehicle safety inspections, and child welfare training of every BuckledIn driver applicant.',
     responsibilities: [
       'Conduct multi-jurisdictional background and motor vehicle record checks',
       'Audit 19-point vehicle inspection records and verify child restraint certifications',

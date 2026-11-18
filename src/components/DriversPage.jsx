@@ -1086,7 +1086,7 @@ export default function DriversPage({ onBackToHome }) {
               <div className="space-y-4">
                 <div className="flex items-center space-x-2 text-sm font-extrabold uppercase tracking-wider text-black pb-2 border-b border-slate-200">
                   <User className="w-4 h-4 text-brand-600" />
-                  <span>Chauffeur Qualifications</span>
+                  <span>Driver Qualifications</span>
                 </div>
 
                 <ul className="space-y-3">
@@ -1265,7 +1265,7 @@ export default function DriversPage({ onBackToHome }) {
               style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
               className="text-3xl sm:text-4xl md:text-5xl font-medium text-black tracking-tight"
             >
-              Hear From Our Chauffeurs
+              Hear From Our Drivers
             </h2>
             <p className="mt-4 text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
               Read how everyday drivers found meaningful work, stable schedules, and strong community connections.
@@ -1418,7 +1418,7 @@ export default function DriversPage({ onBackToHome }) {
                 <div className="mb-6">
                   <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">Fast 5-Minute Application</span>
                   <h3 className="text-2xl font-bold text-black tracking-tight mt-1">
-                    Apply to Become a Chauffeur
+                    Apply to Become a Driver
                   </h3>
                   <p className="text-xs text-slate-500 mt-1">
                     Fill out your basic details below to begin the route matching process.

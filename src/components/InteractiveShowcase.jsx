@@ -33,7 +33,7 @@ const programs = [
     shortTag: 'IEP / IDEA',
     tag: '[IEP & IDEA]',
     image: '/schools/(IEP).png',
-    description: 'Special education, Individualized Education Plans (IEP), and students requiring additional support with certified, consistent chauffeurs.',
+    description: 'Special education, Individualized Education Plans (IEP), and students requiring additional support with certified, consistent drivers.',
   },
   {
     title: 'McKinney-Vento Stability',
