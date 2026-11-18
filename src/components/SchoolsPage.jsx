@@ -40,7 +40,7 @@ const consistencyPillars = [
     actionText: 'Explore W-2 Model Breakdown',
     image: '/schools/employment.jpg',
     description:
-      'Buckled In drivers are W-2 employees – not subcontractors. We pair students with a consistent driver, helping build familiarity, trust, and routine.'
+      'BuckledIn drivers are W-2 employees – not subcontractors. We pair students with a consistent driver, helping build familiarity, trust, and routine.'
   },
   {
     num: '02',
@@ -149,7 +149,7 @@ const pillarDeepDives = {
     heroImageAlt: 'Students arriving safely at school entrance on time',
     heroBadge: 'High-Reliability Fleet',
     title: 'Dependable On-Time Bell Fulfillment With Standby Backup Fleets.',
-    subtitle: 'A single missed ride disrupts an entire instructional day. Buckled In delivers multi-tiered route redundancy, traffic predictive dispatch, and regional reserve fleets to safeguard route fulfillment.',
+    subtitle: 'A single missed ride disrupts an entire instructional day. BuckledIn delivers multi-tiered route redundancy, traffic predictive dispatch, and regional reserve fleets to safeguard route fulfillment.',
     metrics: [
       { value: '99.2%', label: 'On-Time Bell Arrival', desc: 'Across all high-need routes', color: 'text-brand-600' },
       { value: '< 12m', label: 'Proactive Alert Window', desc: 'Advance ETA notice to staff & parents', color: 'text-black' },
@@ -238,7 +238,7 @@ const pillarDeepDives = {
     badge: 'Pillar 04 • Connected Technology & Tracking',
     icon: Activity,
     heroImage: '/howweworkFamilies/GuardianPortalAccess.jpg',
-    heroImageAlt: 'Buckled In Real-Time GPS Tracking Dashboard and Telematics',
+    heroImageAlt: 'BuckledIn Real-Time GPS Tracking Dashboard and Telematics',
     heroBadge: 'Live GPS Telemetry & Route Tracking',
     title: 'Enterprise Visibility & Real-Time Telemetry Built For Schools.',
     subtitle: 'Our connected technology suite provides turn-by-turn GPS telemetry, in-vehicle cameras, and automated parent arrival notifications to deliver complete operational transparency and route efficiency.',
@@ -294,7 +294,7 @@ const pillarDeepDives = {
     heroImageAlt: 'Compliance specialist reviewing safety and driver records on a desktop PC',
     heroBadge: 'Ongoing Compliance Audits',
     title: 'Safety Does Not Stop At Hiring: Continuous Multi-Audit Protocol.',
-    subtitle: 'Safety requires ongoing vigilance. Buckled In performs thorough background checks, DMV license monitoring, and periodic mechanical vehicle audits to maintain rigorous regulatory compliance.',
+    subtitle: 'Safety requires ongoing vigilance. BuckledIn performs thorough background checks, DMV license monitoring, and periodic mechanical vehicle audits to maintain rigorous regulatory compliance.',
     metrics: [
       { value: '6AM–6PM', label: 'Active Route Oversight', desc: 'Live safety monitoring during school hours', color: 'text-brand-600' },
       { value: 'Vetted', label: 'Thorough Background Checks', desc: 'Multi-jurisdictional screening', color: 'text-black' },
@@ -565,7 +565,7 @@ export default function SchoolsPage({ onBackToHome }) {
             <div className="relative w-full max-w-lg rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-xl bg-slate-100">
               <img
                 src="/schools/(IEP).png"
-                alt="Buckled In specialized student transportation for school districts"
+                alt="BuckledIn specialized student transportation for school districts"
                 className="w-full h-[420px] sm:h-[480px] object-cover block select-none"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent flex items-end p-6 sm:p-8">
@@ -818,7 +818,7 @@ export default function SchoolsPage({ onBackToHome }) {
             </h2>
 
             <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
-              Unlike consumer rideshare platforms, Buckled In operates as a dedicated extension of your school district&apos;s transportation office with strict regulatory accountability.
+              Unlike consumer rideshare platforms, BuckledIn operates as a dedicated extension of your school district&apos;s transportation office with strict regulatory accountability.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
@@ -876,7 +876,7 @@ export default function SchoolsPage({ onBackToHome }) {
             style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
             className="text-3xl sm:text-4xl font-medium text-black tracking-tight"
           >
-            Common Questions From Superintendents &amp; Directors
+            Common Questions From Schools &amp; School Districts
           </h2>
         </div>
 
@@ -919,7 +919,7 @@ export default function SchoolsPage({ onBackToHome }) {
             <div className="lg:col-span-6 space-y-4">
               <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white border border-slate-200 text-xs font-bold text-brand-600 uppercase tracking-wider">
                 <Building2 className="w-3.5 h-3.5" />
-                <span>Partner With Buckled In</span>
+                <span>Partner With BuckledIn</span>
               </div>
               <h3
                 style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}

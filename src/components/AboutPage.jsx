@@ -78,7 +78,7 @@ const NEWSLETTER_ISSUES = [
     ],
     content: [
       'Across the country, school districts face an acute shortage of traditional commercial bus drivers while specialized student transportation needs continue to grow. Students with Individualized Education Programs (IEPs), out-of-district placements, and protections under the McKinney-Vento Homeless Assistance Act often require flexible, lower-sensory routes that fixed bus loops were never designed to serve.',
-      'In our latest multi-district benchmark study covering 500+ partner schools from Pennsylvania to Oregon, districts that integrated Buckled In for specialized routes reduced average student ride durations by 27 minutes while freeing up commercial buses for high-density corridors.',
+      'In our latest multi-district benchmark study covering 500+ partner schools from Pennsylvania to Oregon, districts that integrated BuckledIn for specialized routes reduced average student ride durations by 27 minutes while freeing up commercial buses for high-density corridors.',
       'Every route is paired with a consistent, background-cleared driver so students see the same trusted face every morning and afternoon—transforming the daily school commute into a calm extension of the classroom.',
     ],
   },
@@ -114,7 +114,7 @@ const NEWSLETTER_ISSUES = [
     featured: false,
     title: 'Our 19-Point Back-to-School Vehicle & Multi-Jurisdiction Driver Vetting Protocol',
     excerpt:
-      'How Buckled In drivers complete thorough background checks, child safety restraint certifications, and recurring mechanical inspections before their first route.',
+      'How BuckledIn drivers complete thorough background checks, child safety restraint certifications, and recurring mechanical inspections before their first route.',
     image: '/briefings/issue-26-vehicle-vetting.jpg',
     author: 'Marcus Ramirez — Director of Driver Safety & Vetting',
     highlights: [
@@ -123,7 +123,7 @@ const NEWSLETTER_ISSUES = [
       'Trauma-informed student de-escalation training for every driver',
     ],
     content: [
-      'Before the first school bell rings each fall, every Buckled In driver and vehicle undergoes our comprehensive annual recertification audit.',
+      'Before the first school bell rings each fall, every BuckledIn driver and vehicle undergoes our comprehensive annual recertification audit.',
       'Unlike standard rideshare platforms, our compliance framework is purpose-built for K-12 pupil transportation. Every driver completes multi-jurisdictional criminal and child welfare clearances, continuous motor vehicle record (MVR) tracking, drug screening, and specialized student care orientation.',
       'Each vehicle is inspected across 19 mechanical and safety checkpoints and outfitted with age-appropriate child safety restraints tailored to the assigned route.',
     ],
@@ -137,7 +137,7 @@ const NEWSLETTER_ISSUES = [
     featured: false,
     title: 'From Beaverton to the Lehigh Valley: Celebrating Our 10-Year Driver Partners',
     excerpt:
-      'Meet the retirees, former educators, and community champions who have found rewarding weekday routines driving consistent student routes with Buckled In.',
+      'Meet the retirees, former educators, and community champions who have found rewarding weekday routines driving consistent student routes with BuckledIn.',
     image: '/briefings/issue-25-driver-spotlights.jpg',
     author: 'David Vance — Chief Executive Officer',
     highlights: [
@@ -171,7 +171,7 @@ const NEWSLETTER_ISSUES = [
     content: [
       'For many neurodivergent students, a noisy 60-passenger school bus can cause sensory overload before the school day even begins. A stressful morning commute directly impacts classroom readiness and emotional regulation.',
       'Through our Family & IEP Intake Protocol, guardians can specify sensory accommodations—from preferred cabin temperature and quiet-ride settings to step-by-step curb handoff routines.',
-      'School psychologists across our partner districts report measurable improvements in morning attendance and first-period engagement when students transition to calm, consistent Buckled In routes.',
+      'School psychologists across our partner districts report measurable improvements in morning attendance and first-period engagement when students transition to calm, consistent BuckledIn routes.',
     ],
   },
   {
@@ -181,7 +181,7 @@ const NEWSLETTER_ISSUES = [
     readTime: '3 min read',
     category: 'District Partnerships',
     featured: false,
-    title: 'Assist Services to Buckled In: 29 Years of Heritage Entering a New Era of Safety',
+    title: 'Assist Services to BuckledIn: 29 Years of Heritage Entering a New Era of Safety',
     excerpt:
       'Reflecting on our evolution from a single Oregon school district initiative in 1997 to a nationwide student mobility network delivering 2,000+ safe daily rides.',
     image: '/briefings/issue-23-heritage-rebrand.jpg',
@@ -192,7 +192,7 @@ const NEWSLETTER_ISSUES = [
       'Same foundational promise: keeping people first and every child safely buckled in',
     ],
     content: [
-      'When we rebranded from Assist Services LLC to Buckled In, our goal was simple: align our name directly with the uncompromising safety and compliance standards that have guided us since 1997.',
+      'When we rebranded from Assist Services LLC to BuckledIn, our goal was simple: align our name directly with the uncompromising safety and compliance standards that have guided us since 1997.',
       'Today, as we serve over 500 schools, state child welfare agencies, and special education cooperatives nationwide, our mission remains unchanged—ensuring transportation is never a barrier to a child’s education.',
     ],
   },
@@ -489,7 +489,7 @@ function LeadershipCarousel() {
               style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
               className="font-inktrap text-3xl sm:text-4xl md:text-5xl font-medium text-black tracking-tight"
             >
-              Leadership &amp; Safety Operations Team.
+              Leadership Team.
             </h2>
             <p className="mt-3 text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
               Experienced pupil transit directors, dispatch commanders, and student welfare specialists dedicated to keeping every child safely buckled in.
@@ -917,7 +917,7 @@ function NewslettersTabView({ onBackToHome }) {
                     <span>{activeIssueModal.readTime}</span>
                   </span>
                   <span>•</span>
-                  <span className="text-slate-400">Buckled In Press &amp; Research</span>
+                  <span className="text-slate-400">BuckledIn Press &amp; Research</span>
                 </div>
               </div>
 
@@ -994,7 +994,7 @@ export default function AboutPage({ onBackToHome, initialTab = 'who-we-are' }) {
 
   const heroTabContent = {
     'who-we-are': {
-      badge: 'About Buckled In',
+      badge: 'About BuckledIn',
       title: (
         <>
           Our Ride: <span className="text-brand-600">29+ Years</span> of Safe Student Transit.
@@ -1184,7 +1184,7 @@ export default function AboutPage({ onBackToHome, initialTab = 'who-we-are' }) {
                   style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
                   className="font-inktrap text-2xl sm:text-3xl font-medium tracking-tight"
                 >
-                  Ready to collaborate with Buckled In?
+                  Ready to collaborate with BuckledIn?
                 </h3>
                 <p className="text-sm text-slate-300 font-medium max-w-xl">
                   Explore open driver and operations roles, read our monthly district dispatches, or return to the homepage.

@@ -17,11 +17,11 @@ export default function AboutSection({ onOpenFullAbout }) {
 
   const faqs = [
     {
-      q: 'How does Buckled In differ from standard rideshare and traditional school buses?',
-      a: 'Buckled In bridges the critical gap between yellow buses and private rides. We provide dedicated, recurring vetted drivers with pre-installed sanitized child seats, live telematics for parents and district supervisors, and McKinney-Vento / IDEA compliant routing.',
+      q: 'How does BuckledIn differ from standard rideshare and traditional school buses?',
+      a: 'BuckledIn bridges the critical gap between yellow buses and private rides. We provide dedicated, recurring vetted drivers with pre-installed sanitized child seats, live telematics for parents and district supervisors, and McKinney-Vento / IDEA compliant routing.',
     },
     {
-      q: 'Are all Buckled In drivers background checked and certified?',
+      q: 'Are all BuckledIn drivers background checked and certified?',
       a: 'Yes. Every driver undergoes a rigorous multi-jurisdiction criminal background check, motor vehicle history audit, and regular vehicle inspections. Drivers also complete child safety and authorized student escort certifications.',
     },
     {
@@ -30,7 +30,7 @@ export default function AboutSection({ onOpenFullAbout }) {
     },
     {
       q: 'How are recurring school carpools and IEP transit schedules handled?',
-      a: 'With Buckled In, consistent drivers are matched to each route so students see the same familiar face every morning and afternoon, establishing calming predictability for students with IEPs or specialized needs.',
+      a: 'With BuckledIn, consistent drivers are matched to each route so students see the same familiar face every morning and afternoon, establishing calming predictability for students with IEPs or specialized needs.',
     },
     {
       q: 'What happens if there is unexpected traffic or weather delays?',

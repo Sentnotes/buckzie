@@ -20,7 +20,7 @@ export default function FamiliesSection({ onBookFamilyRide, onOpenFullProgram })
             <span>BuckledIn for Families</span>
           </div>
           <h2 style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }} className="font-inktrap text-3xl sm:text-4xl md:text-5xl font-medium text-black tracking-tight leading-tight">
-            At Buckled In, every seatbelt clicks into place <span className="text-brand-600">with purpose.</span>
+            At BuckledIn, every seatbelt clicks into place <span className="text-brand-600">with purpose.</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-slate-700 font-medium leading-relaxed">
             Download our Guardian App to see real time transportation updates.

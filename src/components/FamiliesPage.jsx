@@ -89,8 +89,8 @@ const programSteps = [
 
 const familyFaqs = [
   {
-    q: 'How does my family get enrolled in the Buckled In program?',
-    a: 'Enrollment is initiated directly through your school district’s transportation or special education department. If your child qualifies for alternative transportation (e.g. IEP accommodations, McKinney-Vento, out-of-district placement), the district requests services with Buckled In and we will reach out to you directly with driver details and app access.'
+    q: 'How does my family get enrolled in the BuckledIn program?',
+    a: 'Enrollment is initiated directly through your school district’s transportation or special education department. If your child qualifies for alternative transportation (e.g. IEP accommodations, McKinney-Vento, out-of-district placement), the district requests services with BuckledIn and we will reach out to you directly with driver details and app access.'
   },
   {
     q: 'Will my child have the same driver every day?',
@@ -102,11 +102,11 @@ const familyFaqs = [
   },
   {
     q: 'Are child safety seats, boosters, or harnesses provided?',
-    a: 'Yes. All Buckled In vehicles come equipped with properly rated, certified child safety seats and boosters matched to your student’s age, height, and weight as specified by safety regulations and district requirements.'
+    a: 'Yes. All BuckledIn vehicles come equipped with properly rated, certified child safety seats and boosters matched to your student’s age, height, and weight as specified by safety regulations and district requirements.'
   },
   {
     q: 'What if I need to cancel or modify a ride due to an appointment or illness?',
-    a: 'You can easily notify dispatch and update your schedule directly within the Buckled In Guardian App or by calling our Family Dispatch line during school hours (6 AM – 6 PM).'
+    a: 'You can easily notify dispatch and update your schedule directly within the BuckledIn Guardian App or by calling our Family Dispatch line during school hours (6 AM – 6 PM).'
   }
 ];
 
@@ -1024,7 +1024,7 @@ export default function FamiliesPage({ onBackToHome }) {
               Have questions about your child's ride?
             </h3>
             <p className="text-sm text-slate-300 font-medium max-w-xl">
-              Connect with your school district's transportation coordinator or reach out directly to the Buckled In support desk.
+              Connect with your school district's transportation coordinator or reach out directly to the BuckledIn support desk.
             </p>
           </div>
           <div className="flex flex-col sm:flex-row items-center gap-3">

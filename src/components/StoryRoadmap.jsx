@@ -159,7 +159,7 @@ export default function StoryRoadmap() {
           From a Single Beaverton Van to a Nationwide Fleet.
         </h2>
         <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
-          Follow the road that shaped alternative student transportation. Scroll down to guide the Buckled In vehicle through three defining eras of safety and growth.
+          Follow the road that shaped alternative student transportation. Scroll down to guide the BuckledIn vehicle through three defining eras of safety and growth.
         </p>
 
         {/* Milestone Quick Jump Buttons */}
@@ -167,7 +167,7 @@ export default function StoryRoadmap() {
           {[
             { id: 0, label: '1997 Beaverton', era: 1 },
             { id: 1, label: '2010s Expansion', era: 2 },
-            { id: 2, label: '2025 Buckled In', era: 3 },
+            { id: 2, label: '2025 BuckledIn', era: 3 },
           ].map((m) => (
             <button
               key={m.id}
@@ -565,7 +565,7 @@ export default function StoryRoadmap() {
           })()}
 
           {/* ════════════════════════════════════════════════════════════════════
-              MILESTONE 3 (2025–Present — Buckled In Rebrand)
+              MILESTONE 3 (2025–Present — BuckledIn Rebrand)
           ════════════════════════════════════════════════════════════════════ */}
           {(() => {
             const isPassed = progress > 0.86;
@@ -589,7 +589,7 @@ export default function StoryRoadmap() {
                         Mile 29.0 • Modern Era
                       </span>
                       <span className="text-xs font-medium text-slate-400">
-                        Buckled In Network
+                        BuckledIn Network
                       </span>
                     </div>
 
@@ -619,7 +619,7 @@ export default function StoryRoadmap() {
 
                     <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-md md:ml-auto">
                       <ScrollRevealWords
-                        text="In 2025, Assist Services rebranded to Buckled In to directly embody our safety-first mission. Today, backed by 29+ years of proven service, we deliver 2,000+ safe rides daily with Guardian Shield live telematics across 28+ metro regions."
+                        text="In 2025, Assist Services rebranded to BuckledIn to directly embody our safety-first mission. Today, backed by 29+ years of proven service, we deliver 2,000+ safe rides daily with Guardian Shield live telematics across 28+ metro regions."
                         progress={progress}
                         startP={0.62}
                         endP={0.82}

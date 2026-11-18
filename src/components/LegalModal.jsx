@@ -96,7 +96,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
             <strong>Optional Pre-Arbitration Negotiation:</strong> Before filing arbitration, either party may send a written dispute notice describing the claim and relief sought for a 30-day informal negotiation window. For non-frivolous claims under $5,000 following informal negotiation, BuckledIn will reimburse filing fees beyond your $50 share, and will pay unique arbitration costs for qualifying Driver claims as required by applicable law.
           </p>
           <p>
-            <strong>30-Day Opt-Out Right:</strong> You may opt out of arbitration by sending written notice within 30 days of accepting these Terms (including your full name, address, account email, a clear statement opting out of arbitration, and your signature) by email to <a href="mailto:support@buckledin.com" className="text-brand-600 underline">support@buckledin.com</a> or certified mail to: Legal &amp; Compliance, BuckledIn, 9450 SW Gemini Dr, #63721, Beaverton, Oregon 97008, US.
+            <strong>30-Day Opt-Out Right:</strong> You may opt out of arbitration by sending written notice within 30 days of accepting these Terms (including your full name, address, account email, a clear statement opting out of arbitration, and your signature) by email to <a href="mailto:info@buckledin.com" className="text-brand-600 underline">info@buckledin.com</a> or certified mail to: Legal &amp; Compliance, BuckledIn, 9450 SW Gemini Dr, #63721, Beaverton, Oregon 97008, US.
           </p>
 
           <h4 className="font-bold text-black text-sm pt-1">13. Driver Requirements, Pricing, Payments &amp; Promotions</h4>
@@ -109,7 +109,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
 
           <h4 className="font-bold text-black text-sm pt-1">14. Governing Law &amp; Contact</h4>
           <p>
-            Except as governed by Section 12, these Terms are governed by the laws of the State of Oregon without regard to conflict-of-law principles. Questions or notices regarding these Terms may be sent to BuckledIn at <a href="mailto:support@buckledin.com" className="text-brand-600 underline">support@buckledin.com</a>, <a href="tel:18002825334" className="text-brand-600 underline">+1 (800) 282-5334</a>, or 9450 SW Gemini Dr, #63721, Beaverton, Oregon 97008, US.
+            Except as governed by Section 12, these Terms are governed by the laws of the State of Oregon without regard to conflict-of-law principles. Questions or notices regarding these Terms may be sent to BuckledIn at <a href="mailto:info@buckledin.com" className="text-brand-600 underline">info@buckledin.com</a>, <a href="tel:14582279468" className="text-brand-600 underline">(458) 227-9468</a>, or 9450 SW Gemini Dr, #63721, Beaverton, Oregon 97008, US.
           </p>
         </div>
       ),
@@ -190,7 +190,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
 
           <h4 className="font-bold text-black text-sm pt-1">12. Contact Information</h4>
           <p>
-            Questions or privacy rights requests regarding this Privacy Policy may be submitted to BuckledIn by email at <a href="mailto:support@buckledin.com" className="text-brand-600 underline">support@buckledin.com</a>, by phone at <a href="tel:18002825334" className="text-brand-600 underline">+1 (800) 282-5334</a>, or by mail at 9450 SW Gemini Dr, #63721, Beaverton, Oregon 97008, US.
+            Questions or privacy rights requests regarding this Privacy Policy may be submitted to BuckledIn by email at <a href="mailto:info@buckledin.com" className="text-brand-600 underline">info@buckledin.com</a>, by phone at <a href="tel:14582279468" className="text-brand-600 underline">(458) 227-9468</a>, or by mail at 9450 SW Gemini Dr, #63721, Beaverton, Oregon 97008, US.
           </p>
         </div>
       ),

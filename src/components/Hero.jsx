@@ -168,10 +168,19 @@ export default function Hero({ onStartBooking }) {
               }}
               className="relative w-full max-w-5xl rounded-[2rem] sm:rounded-[2.5rem] md:rounded-[2.85rem] p-1.5 sm:p-2 lg:p-2.5 bg-white/95 border border-slate-200/90 shadow-[0_28px_70px_rgba(15,23,42,0.14)]"
             >
-              <div className="relative w-full h-full rounded-[1.6rem] sm:rounded-[2rem] md:rounded-[2.3rem] overflow-hidden bg-black aspect-[16/9]">
-                {/* HTML5 Video */}
+              <div
+                className="relative w-full h-full rounded-[1.6rem] sm:rounded-[2rem] md:rounded-[2.3rem] overflow-hidden bg-[#F1F3F6] aspect-[16/9]"
+                style={{
+                  backgroundImage: 'url("/hero-video-poster.jpg")',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                {/* HTML5 Video with instant high-priority poster frame */}
                 <video
                   ref={videoRef}
+                  poster="/hero-video-poster.jpg"
+                  preload="auto"
                   autoPlay
                   muted
                   loop
@@ -179,10 +188,6 @@ export default function Hero({ onStartBooking }) {
                   className="w-full h-full object-cover"
                 >
                   <source src="/kid-on-board-gps-navigation-rev26-1920x1080-30fps.mp4" type="video/mp4" />
-                  <source
-                    src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
-                    type="video/mp4"
-                  />
                   Your browser does not support the video tag.
                 </video>
               </div>
@@ -198,7 +203,7 @@ export default function Hero({ onStartBooking }) {
             Every student deserves a safe, consistent ride to school.
           </h2>
           <ScrollRevealText
-            text="But for those students with high needs or experiencing special circumstances, the ride is often uncertain. Buckled In was created to change that."
+            text="But for those students with high needs or experiencing special circumstances, the ride is often uncertain. BuckledIn was created to change that."
             className="text-lg sm:text-xl md:text-2xl font-normal leading-relaxed text-center max-w-3xl mx-auto"
           />
         </div>
