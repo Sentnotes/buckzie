@@ -828,7 +828,7 @@ export default function DriversPage({ onBackToHome }) {
             {/* 1. Route to Node 1 (Top: Predictable School Hours) */}
             <circle cx="490" cy="312" r="4.5" fill="#0267CE" />
             <path
-              d="M 490 312 L 490 268 A 28 28 0 0 0 462 240 L 178 240 A 28 28 0 0 1 150 212 L 150 116 A 28 28 0 0 1 178 88 L 440 88"
+              d="M 490 312 L 490 284 A 28 28 0 0 0 462 256 L 178 256 A 28 28 0 0 1 150 228 L 150 116 A 28 28 0 0 1 178 88 L 440 88"
               stroke="#0267CE"
               strokeWidth="1.75"
               strokeLinecap="round"
@@ -838,12 +838,12 @@ export default function DriversPage({ onBackToHome }) {
             {/* 2. Route to Node 2 (Upper Loop: Daily Route Consistency) */}
             <circle cx="565" cy="312" r="4.5" fill="#0267CE" />
             <path
-              d="M 565 312 L 565 286 A 24 24 0 0 1 589 262 L 872 262 A 28 28 0 0 0 900 234 L 900 168 A 28 28 0 0 0 872 140 L 469 140 A 24 24 0 0 0 445 164 L 445 204"
+              d="M 565 312 L 565 286 A 24 24 0 0 1 589 262 L 872 262 A 28 28 0 0 0 900 234 L 900 168 A 28 28 0 0 0 872 140 L 469 140 A 24 24 0 0 0 445 164 L 445 192"
               stroke="#0267CE"
               strokeWidth="1.75"
               strokeLinecap="round"
             />
-            <circle cx="445" cy="204" r="4.5" fill="#0267CE" />
+            <circle cx="445" cy="192" r="4.5" fill="#0267CE" />
 
             {/* 3. Route to Node 3 (Bottom Left: Safe Student Commutes) */}
             <circle cx="420" cy="436" r="4.5" fill="#0267CE" />
@@ -904,7 +904,7 @@ export default function DriversPage({ onBackToHome }) {
           </div>
 
           {/* Node 1 Label */}
-          <div className="absolute left-[38%] top-[9.5%] max-w-[300px]">
+          <div className="absolute left-[38%] top-[8.2%] max-w-[300px]">
             <h4 className="text-base font-bold text-black tracking-tight">Predictable School Hours</h4>
             <p className="mt-0.5 text-xs text-slate-600 leading-relaxed">
               Centered on weekday morning & afternoon bell schedules, with optional midday or evening requests.
@@ -912,7 +912,7 @@ export default function DriversPage({ onBackToHome }) {
           </div>
 
           {/* Node 2 Label */}
-          <div className="absolute left-[38.5%] top-[24.5%] max-w-[300px]">
+          <div className="absolute left-[39.2%] top-[21.8%] max-w-[300px]">
             <h4 className="text-base font-bold text-black tracking-tight">Daily Route Consistency</h4>
             <p className="mt-0.5 text-xs text-slate-600 leading-relaxed">
               Commit to the same recurring student manifests each term. Zero random dispatch chaos.

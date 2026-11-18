@@ -103,43 +103,43 @@ const pillarDeepDives = {
       { value: '-42%', label: 'Morning Anxiety Drop', desc: 'Students arrive calm & ready to learn', color: 'text-emerald-600' }
     ],
     sectionTitle: '4-Stage Driver Vetting & Route Pairing Pipeline',
-    sectionSubtitle: 'How we recruit, screen, and certify dedicated transportation professionals for student routes.',
+    sectionSubtitle: 'How we screen, orient, and pair drivers for reliable student transportation.',
     capabilities: [
       {
         step: '01',
         title: 'Multi-Jurisdictional Clearances',
-        desc: 'Thorough criminal background checks, Child Abuse Central Index registry checks, and 10-year motor vehicle records review.',
+        desc: 'Thorough criminal background checks, child abuse registry checks, and motor vehicle record reviews.',
         tag: 'Background Cleared',
         icon: ShieldCheck
       },
       {
         step: '02',
-        title: 'Specialized IEP & Student Care Coaching',
-        desc: 'In-person training on non-verbal communication, sensory sensitivity management, de-escalation, and certified child safety restraint installation.',
-        tag: 'Special Ed Certified',
+        title: 'Student Safety & Restraint Orientation',
+        desc: 'Drivers complete safety orientation covering student pickup/drop-off procedures, supportive communication, and proper child safety equipment placement.',
+        tag: 'Safety Orientation',
         icon: Award
       },
       {
         step: '03',
-        title: 'Pediatric CPR & First Aid Certification',
-        desc: 'Hands-on emergency response drills, seizure recognition protocols, and bi-annual refresher certifications with certified instructors.',
-        tag: 'Medical Response',
+        title: 'Vehicle Readiness & Dispatch Protocol',
+        desc: 'Vehicles meet inspection standards with required safety equipment onboard, and drivers follow clear incident escalation protocols with our dispatch team.',
+        tag: 'Vehicle Readiness',
         icon: HeartHandshake
       },
       {
         step: '04',
-        title: 'Permanent Route & Family Pairing',
-        desc: 'Drivers are assigned to the same child every morning and afternoon, building predictable routines that parents and students trust.',
+        title: 'Consistent Route & Family Pairing',
+        desc: 'We prioritize matching families with a consistent primary driver to build familiar routines. When a substitute driver is needed, parents and districts are notified in advance.',
         tag: 'Consistent Driver',
         icon: Users
       }
     ],
     verificationCard: {
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80',
-      name: 'Marcus Ramirez',
-      role: 'Assigned Dedicated Driver • Route #402 (Pinecrest District)',
-      details: 'Background Cleared • First Aid & CPR Certified • 5.0 Star Rating',
-      badgeText: 'W-2 FLEET BADGE #0492'
+      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
+      name: 'Craig Washington',
+      role: 'Regional Operations Director • District Fleet & Route Oversight',
+      details: 'W-2 Fleet Operations • Safety Vetting & Route Pairing',
+      badgeText: 'OPERATIONS LEADERSHIP'
     }
   },
   '02': {
@@ -160,8 +160,8 @@ const pillarDeepDives = {
     capabilities: [
       {
         step: '01',
-        title: '45-Minute Pre-Trip Telemetry Ping',
-        desc: 'Drivers initiate pre-route system check-ins 45 minutes prior to first pickup. Algorithms analyze live traffic corridors and weather disruptions.',
+        title: 'Pre-Trip Driver Check-In',
+        desc: 'Drivers are asked to log in at least 20 minutes before starting their route so dispatch can confirm readiness and monitor route conditions.',
         tag: 'Early Verification',
         icon: Clock
       },
@@ -174,9 +174,9 @@ const pillarDeepDives = {
       },
       {
         step: '03',
-        title: 'Campus Perimeter Geofencing & Hand-Off',
-        desc: 'Automated digital timestamps trigger upon crossing school campus geofences, confirming safe custody transfer directly to authorized staff.',
-        tag: 'Verified Custody',
+        title: 'School Arrival & Drop-Off Confirmation',
+        desc: 'Drivers log arrival and drop-off updates through the Driver App, giving schools and families clear visibility when a student reaches campus.',
+        tag: 'Verified Drop-Off',
         icon: CheckCircle2
       }
     ],
@@ -198,7 +198,7 @@ const pillarDeepDives = {
     subtitle: 'Transportation directors have direct phone lines and communication channels to assigned regional coordinators who know your schools, staff, and bell times by name.',
     metrics: [
       { value: '< 25s', label: 'Average Call Answer', desc: 'Direct live human response', color: 'text-brand-600' },
-      { value: '1:1', label: 'Assigned Coordinator', desc: 'Knows your district routes by name', color: 'text-black' },
+      { value: 'Direct', label: 'District Support', desc: 'Knows your district routes & schedules', color: 'text-black' },
       { value: '6AM–6PM', label: 'Safety Operations Center', desc: 'Staffed throughout active school hours', color: 'text-emerald-600' }
     ],
     sectionTitle: 'Dedicated District Operations Pod Structure',
@@ -206,22 +206,22 @@ const pillarDeepDives = {
     capabilities: [
       {
         step: '01',
-        title: 'Designated 1:1 District Account Director',
-        desc: 'A single point of contact dedicated to your district for route adjustments, roster onboarding, IEP schedule sync, and billing questions.',
+        title: 'Dedicated District Account Support',
+        desc: 'A dedicated point of contact for your district to handle route adjustments, roster onboarding, IEP schedule coordination, and billing questions.',
         tag: 'Dedicated Liaison',
         icon: Users
       },
       {
         step: '02',
         title: 'School-Hours Live Human Dispatch',
-        desc: 'Live dispatchers actively monitoring every vehicle. Calls answered in under 25 seconds by US-based coordinators with immediate radio links to drivers.',
+        desc: 'Live dispatchers actively monitoring every vehicle. Calls are answered promptly by coordinators who communicate directly with all drivers and parents—bringing comfort and certainty to every ride.',
         tag: 'Instant Phone Line',
         icon: PhoneCall
       },
       {
         step: '03',
-        title: 'Multi-Lingual Family Liaison Team',
-        desc: 'Bilingual support in English, Spanish, Arabic, and other district home languages, providing parents with direct text and phone updates.',
+        title: 'Bilingual Family Liaison Team',
+        desc: 'Dedicated bilingual support providing families with clear communication, direct text notifications, and live phone updates throughout the school day.',
         tag: 'Parent Reassurance',
         icon: HeartHandshake
       }
@@ -267,15 +267,15 @@ const pillarDeepDives = {
       {
         step: '03',
         title: 'Guardian Live Mobile Tracking App',
-        desc: 'Parents watch their child’s vehicle navigate in real time, see driver photo credentials, and receive automated notifications at pickup and drop-off.',
+        desc: 'Parents watch their child’s vehicle navigate in real time, view live ETA updates, and receive automated notifications at pickup and drop-off.',
         tag: 'Guardian Visibility',
         icon: Activity
       },
       {
         step: '04',
-        title: 'Automated SIS & PowerSchool Roster Sync',
-        desc: 'Direct API connectors automatically sync IEP transport requirements, address changes, and school calendar variations without manual spreadsheets.',
-        tag: 'SIS API Integration',
+        title: 'School Calendar & Route Schedule Coordination',
+        desc: 'We keep rides accurately updated based on school calendars, bell schedule adjustments, address changes, and student transport requirements.',
+        tag: 'Schedule Coordination',
         icon: FileCheck2
       }
     ],
@@ -363,7 +363,7 @@ const implementationSteps = [
     category: 'Roster & Driver Pairing',
     title: 'Custom Routing & Vetted Driver Match',
     description:
-      'Your transportation team submits student ride requests via our secure portal or SIS sync. We match each student with a dedicated, fingerprinted driver trained for their specific accommodations.',
+      'Your transportation team submits student ride requests via our secure portal or direct roster coordination. We match each student with a dedicated, background-cleared driver prepared for their specific accommodations.',
     tag: 'Multi-Level Vetted',
     image:
       'https://images.unsplash.com/photo-1549923746-c502d488b3ea?auto=format&fit=crop&w=900&q=80',
@@ -377,7 +377,7 @@ const implementationSteps = [
     category: 'Live District Command',
     title: 'Real-Time Dispatch & Guardian Sync',
     description:
-      'Before the first pickup, both district coordinators and parents receive full driver credentials and live GPS dashboard access to monitor every morning and afternoon bell arrival.',
+      'Before the first pickup, both district coordinators and parents receive route details and live GPS tracking access to monitor every morning and afternoon bell arrival.',
     tag: 'Live Telemetry',
     image:
       'https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&w=900&q=80',
@@ -634,7 +634,7 @@ export default function SchoolsPage({ onBackToHome }) {
                       <span className="text-[11px] font-medium text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">
                         {pillar.tag}
                       </span>
-                      <span className="text-xs font-mono font-bold text-slate-400">
+                      <span className="text-xs font-bold text-slate-400">
                         {pillar.num}
                       </span>
                     </div>
@@ -1072,7 +1072,7 @@ export default function SchoolsPage({ onBackToHome }) {
                       <span className="text-xs font-semibold text-white bg-black/60 backdrop-blur-md px-3.5 py-1.5 rounded-full border border-white/20">
                         {currentDeepDive.heroBadge}
                       </span>
-                      <span className="text-xs font-mono font-bold text-white/90 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/30">
+                      <span className="text-xs font-bold text-white/90 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full border border-white/30">
                         PILLAR {activePillarModal.num}
                       </span>
                     </div>
@@ -1177,7 +1177,7 @@ export default function SchoolsPage({ onBackToHome }) {
                         </div>
                       </div>
                     </div>
-                    <span className="text-xs font-mono font-bold bg-white px-3 py-1.5 rounded-full border border-slate-200 text-slate-700 shadow-2xs shrink-0">
+                    <span className="text-xs font-bold bg-white px-3 py-1.5 rounded-full border border-slate-200 text-slate-700 shadow-2xs shrink-0">
                       {currentDeepDive.verificationCard.badgeText}
                     </span>
                   </div>

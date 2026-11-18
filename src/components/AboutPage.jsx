@@ -69,7 +69,7 @@ const NEWSLETTER_ISSUES = [
     title: 'Solving Specialized & McKinney-Vento Transit Bottlenecks Across 500+ School Districts',
     excerpt:
       'How public school superintendents and transportation directors are pairing traditional yellow bus fleets with vetted small-capacity vehicles for reliable morning bell arrivals.',
-    image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1000&q=80',
+    image: '/briefings/issue-28-district-partnerships.jpg',
     author: 'Sarah Chen, M.Ed. — VP of District Partnerships',
     highlights: [
       'Reducing out-of-district IEP commute times by an average of 27 minutes per route',
@@ -92,7 +92,7 @@ const NEWSLETTER_ISSUES = [
     title: 'Inside Guardian Shield 3.0: Real-Time Doorstep Geofencing & Live Parent Telemetry',
     excerpt:
       'A deep dive into our upgraded telematics architecture giving parents and school transportation coordinators second-by-second visibility from home pickup to school gate handoff.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    image: '/briefings/issue-27-guardian-telemetry.jpg',
     author: 'Elena Rostova — Head of Telematics & Dispatch Operations',
     highlights: [
       'Instant push notifications at approach, verified pickup, and school check-in',
@@ -115,7 +115,7 @@ const NEWSLETTER_ISSUES = [
     title: 'Our 19-Point Back-to-School Vehicle & Multi-Jurisdiction Driver Vetting Protocol',
     excerpt:
       'How Buckled In drivers complete thorough background checks, child safety restraint certifications, and recurring mechanical inspections before their first route.',
-    image: 'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=800&q=80',
+    image: '/briefings/issue-26-vehicle-vetting.jpg',
     author: 'Marcus Ramirez — Director of Driver Safety & Vetting',
     highlights: [
       'Thorough background checks, state child abuse registry, and continuous MVR monitoring',
@@ -138,7 +138,7 @@ const NEWSLETTER_ISSUES = [
     title: 'From Beaverton to the Lehigh Valley: Celebrating Our 10-Year Driver Partners',
     excerpt:
       'Meet the retirees, former educators, and community champions who have found rewarding weekday routines driving consistent student routes with Buckled In.',
-    image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80',
+    image: '/briefings/issue-25-driver-spotlights.jpg',
     author: 'David Vance — Chief Executive Officer',
     highlights: [
       'Predictable morning and afternoon weekday school bell hours',
@@ -161,7 +161,7 @@ const NEWSLETTER_ISSUES = [
     title: 'Supporting Neurodivergent Learners: Creating Calm, Sensory-Friendly School Commutes',
     excerpt:
       'How quiet cabins, consistent driver pairings, and personalized family intake profiles help students with autism and sensory sensitivities arrive at school ready to learn.',
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+    image: '/briefings/issue-24-sensory-friendly.png',
     author: 'Sarah Chen, M.Ed. — VP of District Partnerships',
     highlights: [
       'Customizable sensory preferences including quiet-cabin protocols',
@@ -184,7 +184,7 @@ const NEWSLETTER_ISSUES = [
     title: 'Assist Services to Buckled In: 29 Years of Heritage Entering a New Era of Safety',
     excerpt:
       'Reflecting on our evolution from a single Oregon school district initiative in 1997 to a nationwide student mobility network delivering 2,000+ safe daily rides.',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80',
+    image: '/briefings/issue-23-heritage-rebrand.jpg',
     author: 'David Vance — Chief Executive Officer',
     highlights: [
       '29+ years of continuous pupil transit service since 1997',
