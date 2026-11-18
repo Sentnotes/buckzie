@@ -350,18 +350,18 @@ export default function FamilyBrandBento({ onExplore }) {
                 <span className="text-xs font-mono font-bold text-black">100%</span>
               </div>
               <div className="w-1/4 p-1.5 flex items-center justify-center">
-                <span className="text-sm sm:text-base font-mono font-bold text-black">2025</span>
+                <span className="text-sm sm:text-base font-mono font-bold text-black">2026</span>
               </div>
             </div>
 
-            {/* Row C: ZERO | Standard Audits | PLAN */}
+            {/* Row C: STRICT | Standard Audits | PLAN */}
             <div className="flex flex-1">
               <div className="w-1/2 p-1.5 border-r border-black flex flex-col justify-between">
                 <span
                   style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", sans-serif' }}
                   className="text-xl sm:text-2xl font-bold text-black leading-none"
                 >
-                  ZERO
+                  STRICT
                 </span>
                 <span className="text-[8px] uppercase font-mono tracking-widest text-black mt-1">
                   COMPLIANCE AUDITS

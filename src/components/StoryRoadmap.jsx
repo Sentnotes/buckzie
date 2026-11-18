@@ -555,7 +555,7 @@ export default function StoryRoadmap() {
                       </span>
                       <span className="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-slate-100/80 text-slate-600">
                         <ShieldCheck className="w-3.5 h-3.5 text-sky-600" />
-                        <span>Fingerprint Vetting Standard</span>
+                        <span>Criminal Background Vetting</span>
                       </span>
                     </div>
                   </div>

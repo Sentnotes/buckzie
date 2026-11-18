@@ -1094,7 +1094,7 @@ export default function DriversPage({ onBackToHome }) {
                     'At least 21 years of age',
                     'Valid driver’s license with 3+ years of US driving experience',
                     'Clean 7-year driving record (no reckless driving or DUIs)',
-                    'Pass federal fingerprint & criminal background checks',
+                    'Pass criminal background checks',
                     'Pass pre-employment 10-panel drug screening',
                     'Warm, empathetic demeanor and patience with children'
                   ].map((req, idx) => (
