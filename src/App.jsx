@@ -6,7 +6,7 @@ import DriversSection from './components/DriversSection';
 import FamiliesSection from './components/FamiliesSection';
 import AboutSection from './components/AboutSection';
 import Footer from './components/Footer';
-import RideSimulationModal from './components/RideSimulationModal';
+import PartnerModal from './components/PartnerModal';
 import LegalModal from './components/LegalModal';
 
 const AboutPage = lazy(() => import('./components/AboutPage'));
@@ -74,8 +74,7 @@ export default function App() {
   const [currentView, setCurrentView] = useState(initialRoute.view); // 'home' | 'schools' | 'about' | 'families' | 'drivers'
   const [aboutTab, setAboutTab] = useState(initialRoute.aboutTab); // 'who-we-are' | 'careers' | 'newsletters'
   const [activeSection, setActiveSection] = useState('home');
-  const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
-  const [bookingDetails, setBookingDetails] = useState(null);
+  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
   const [legalModalState, setLegalModalState] = useState({ isOpen: false, type: 'terms' });
 
   const syncUrl = (nextView, nextAboutTab = 'who-we-are') => {
@@ -191,9 +190,8 @@ export default function App() {
   const handleOpenFullFamilies = () => handleNavigate('families');
   const handleOpenFullDrivers = () => handleNavigate('drivers');
 
-  const handleStartBooking = (data) => {
-    setBookingDetails(data);
-    setIsBookingModalOpen(true);
+  const handleOpenPartnerModal = () => {
+    setIsPartnerModalOpen(true);
   };
 
   const handleOpenLegal = (type) => {
@@ -208,18 +206,7 @@ export default function App() {
         activeSection={activeSection}
         onNavigate={handleNavigate}
         onBackToHome={() => handleNavigate('home')}
-        onOpenBookingModal={() => {
-          setBookingDetails({
-            pickup: 'Current Location (742 Evergreen Terr.)',
-            destination: 'Metropolitan Arts Center',
-            rideType: {
-              name: 'BuckledIn Comfort',
-              price: '$24.50',
-              eta: '4 min',
-            },
-          });
-          setIsBookingModalOpen(true);
-        }}
+        onOpenBookingModal={handleOpenPartnerModal}
       />
 
       {/* Main Content Area */}
@@ -250,9 +237,9 @@ export default function App() {
         ) : (
           /* Standard Homepage View */
           <>
-            {/* Home Tab / Hero Section with Interactive Ride Request Widget */}
+            {/* Home Tab / Hero Section */}
             <Hero
-              onStartBooking={handleStartBooking}
+              onStartBooking={handleOpenPartnerModal}
               onSelectRide={() => {}}
             />
 
@@ -265,19 +252,7 @@ export default function App() {
             {/* Families Tab / Section */}
             <FamiliesSection
               onOpenFullProgram={handleOpenFullFamilies}
-              onBookFamilyRide={() => {
-                setBookingDetails({
-                  pickup: 'Home (742 Evergreen Terr.)',
-                  destination: 'Lincoln Elementary School',
-                  rideType: {
-                    name: 'Family XL',
-                    price: '$32.00',
-                    eta: '6 min',
-                  },
-                  childSeat: 'booster',
-                });
-                setIsBookingModalOpen(true);
-              }}
+              onBookFamilyRide={handleOpenPartnerModal}
             />
 
             {/* About Tab / Teaser Section (1/3 of text + Read Our Full Story Pill + FAQ) */}
@@ -295,11 +270,11 @@ export default function App() {
         onOpenLegalModal={handleOpenLegal}
       />
 
-      {/* Live Ride Simulation Dialog */}
-      <RideSimulationModal
-        isOpen={isBookingModalOpen}
-        bookingData={bookingDetails}
-        onClose={() => setIsBookingModalOpen(false)}
+      {/* District Partnership & Family Guidance Modal */}
+      <PartnerModal
+        isOpen={isPartnerModalOpen}
+        onClose={() => setIsPartnerModalOpen(false)}
+        onNavigate={handleNavigate}
       />
 
       {/* Terms & Conditions / Privacy Policy / Safety Modal */}

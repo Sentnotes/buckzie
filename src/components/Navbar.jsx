@@ -302,10 +302,10 @@ export default function Navbar({
           <div
             inert={showDesktopCollapsed ? '' : undefined}
             aria-hidden={showDesktopCollapsed || undefined}
-            className={`hidden md:flex items-center space-x-3 whitespace-nowrap overflow-hidden flex-shrink-0 ${
+            className={`hidden md:flex items-center space-x-3 whitespace-nowrap flex-shrink-0 ${
               showDesktopCollapsed
-                ? 'max-w-0 opacity-0 scale-95 pointer-events-none'
-                : 'max-w-[340px] opacity-100 scale-100'
+                ? 'max-w-0 opacity-0 scale-95 overflow-hidden pointer-events-none'
+                : 'max-w-[340px] opacity-100 scale-100 overflow-visible'
             }`}
             style={{
               transition: `max-width ${innerWidthMs}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${fadeMs}ms ease, transform ${innerWidthMs}ms cubic-bezier(0.22, 1, 0.36, 1)`,
@@ -319,11 +319,11 @@ export default function Navbar({
             </button>
             <button
               type="button"
-              onClick={() => {}}
-              className="group relative inline-flex items-center space-x-2 px-5 py-2 text-sm font-normal text-white bg-brand-600 hover:bg-brand-700 rounded-full shadow-md shadow-brand-500/25 active:scale-[0.98] transition-all duration-200 cursor-pointer whitespace-nowrap"
+              onClick={onOpenBookingModal}
+              className="group relative inline-flex items-center space-x-2 px-5 py-2 text-sm font-normal text-white bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 rounded-full shadow-md shadow-brand-600/20 hover:shadow-lg hover:shadow-brand-600/25 active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2 whitespace-nowrap"
             >
-              <span>Book a Ride</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              <span>Partner With Us</span>
+              <ArrowRight className="w-4 h-4 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[3px]" />
             </button>
           </div>
         </nav>
@@ -421,11 +421,14 @@ export default function Navbar({
               <div className="pt-3 mt-2 border-t border-black/[0.06] flex items-center justify-center gap-2">
                 <button
                   type="button"
-                  onClick={() => {}}
-                  className="flex-1 py-2.5 px-3 rounded-full font-normal text-center text-white bg-brand-600 hover:bg-brand-700 shadow-sm cursor-pointer text-xs sm:text-sm active:scale-98 transition-all flex items-center justify-center space-x-1.5 whitespace-nowrap"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (onOpenBookingModal) onOpenBookingModal();
+                  }}
+                  className="group flex-1 py-2.5 px-3 rounded-full font-normal text-center text-white bg-brand-600 hover:bg-[#0e85ee] shadow-sm cursor-pointer text-xs sm:text-sm active:scale-[0.97] transition-all flex items-center justify-center space-x-1.5 whitespace-nowrap"
                 >
-                  <span>Book a Ride</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Partner With Us</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
                 </button>
                 <button
                   onClick={() => handleNavClick('drivers')}

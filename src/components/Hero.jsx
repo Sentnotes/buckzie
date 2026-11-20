@@ -84,23 +84,6 @@ export default function Hero({ onStartBooking }) {
     };
   }, []);
 
-  const handleDefaultBooking = () => {
-    onStartBooking({
-      pickup: 'Current Location (742 Evergreen Terr.)',
-      destination: 'Metropolitan Arts Center',
-      rideType: {
-        id: 'comfort',
-        name: 'BuckledIn Comfort',
-        desc: 'Spacious legroom, top-rated drivers & quiet mode',
-        seats: '1-4',
-        eta: '4 min',
-        price: '$24.50',
-      },
-      scheduled: 'now',
-      childSeat: null,
-    });
-  };
-
   const handleScrollToDrivers = () => {
     const el = document.getElementById('drivers');
     if (el) {
@@ -142,12 +125,11 @@ export default function Hero({ onStartBooking }) {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 sm:mb-20 lg:mb-10">
               <button
                 type="button"
-                onClick={() => {}}
-                className="w-full sm:w-auto px-7 py-3.5 rounded-full font-normal text-base text-white bg-brand-600 hover:bg-brand-700 shadow-md active:scale-[0.98] transition-all flex items-center justify-center space-x-3 cursor-pointer"
+                onClick={onStartBooking}
+                className="group w-full sm:w-auto px-7 py-3.5 rounded-full font-normal text-base text-white bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-center space-x-3 cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
               >
-                <Car className="w-5 h-5" />
-                <span>Book a Ride Now</span>
-                <ArrowRight className="w-5 h-5" />
+                <span>Partner Your District</span>
+                <ArrowRight className="w-5 h-5 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[3px]" />
               </button>
               <button
                 onClick={handleScrollToDrivers}
