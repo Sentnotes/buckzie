@@ -110,12 +110,12 @@ export default function LegalModal({ isOpen, type, onClose }) {
             <strong>30-Day Opt-Out Right:</strong> You may opt out of arbitration by sending written notice within 30 days of accepting these Terms (including your full name, address, account email, a clear statement opting out of arbitration, and your signature) by email to <a href="mailto:info@buckledin.com" className="text-brand-600 underline">info@buckledin.com</a> or certified mail to: Legal &amp; Compliance, BuckledIn, 9450 SW Gemini Dr, #63721, Beaverton, Oregon 97008, US.
           </p>
 
-          <h4 className="font-bold text-black text-sm pt-1">13. Driver Requirements, Pricing, Payments &amp; Promotions</h4>
+          <h4 className="font-bold text-black text-sm pt-1">13. Driver Standards &amp; District Service Agreements</h4>
           <p>
-            Drivers operating on the BuckledIn Platform must maintain a valid driver&rsquo;s license, required insurance, an approved well-maintained vehicle meeting safety inspection standards, continuous background and motor vehicle record authorization (including prompt self-reporting of any citation or arrest), a working mobile phone, strict adherence to zero-tolerance impairment and safety laws, and required child safety equipment or booster seats in accordance with state law and reasonable accommodation policies.
+            BuckledIn drivers are W-2 employees who must maintain a valid driver&rsquo;s license, required insurance, an approved well-maintained vehicle meeting our 19-point mechanical safety inspection standards, continuous background and motor vehicle record authorization (including prompt self-reporting of any citation or arrest), a working mobile phone, strict adherence to zero-tolerance impairment and safety laws, and required child safety equipment or booster seats in accordance with state law and reasonable accommodation policies.
           </p>
           <p>
-            Ride Organizers authorize BuckledIn to charge the designated payment method for all applicable ride fares, tolls, surcharges, and taxes disclosed prior to booking confirmation. Promotional offers and codes are subject to single-use limits and may be modified or ended at any time at BuckledIn&rsquo;s discretion.
+            Transportation services, routing scope, and billing terms are governed by the applicable school district service agreement, cooperative purchasing contract, or institutional statement of work executed between BuckledIn and the contracting school district or organization.
           </p>
 
           <h4 className="font-bold text-black text-sm pt-1">14. Governing Law &amp; Contact</h4>
@@ -171,7 +171,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
 
           <h4 className="font-bold text-black text-sm pt-1">6. How We Disclose Information</h4>
           <p>
-            We disclose Personal Information only as needed to deliver Services and operate responsibly: between Ride Organizers, Guardians, and assigned Drivers to fulfill rides; with payment processors (such as Stripe) to process payments without BuckledIn storing raw card or bank numbers; with school districts, enterprise partners, and government licensing authorities where required; with authorized background screening, mapping (such as Google Maps), cloud hosting, analytics, insurance, and professional service providers acting under confidentiality obligations; with corporate affiliates or during business restructurings; and when required by law, subpoena, or to protect safety and legal rights.
+            We disclose Personal Information only as needed to deliver Services and operate responsibly: between Ride Organizers, Guardians, and assigned Drivers to fulfill scheduled school routes; with school districts, institutional billing/invoicing partners, and government licensing authorities where required; with authorized background screening, mapping (such as Google Maps), cloud hosting, analytics, insurance, and professional service providers acting under confidentiality obligations; with corporate affiliates or during business restructurings; and when required by law, subpoena, or to protect safety and legal rights.
           </p>
 
           <h4 className="font-bold text-black text-sm pt-1">7. Data Retention &amp; Security</h4>
