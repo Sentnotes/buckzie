@@ -130,7 +130,7 @@ export default function Hero({ onStartBooking }) {
               >
                 Safely <span className="text-[#fe6c10]">In,</span> Securely <span className="text-[#3da02c]">In,</span>
                 <br />
-                Buckled <span className="text-[#0063ce]">In.</span>
+                Buckled <span className="text-brand-600">In.</span>
               </h1>
 
               <p className="mt-5 sm:mt-6 text-base sm:text-xl md:text-2xl text-slate-700 font-medium leading-relaxed max-w-3xl mx-auto">

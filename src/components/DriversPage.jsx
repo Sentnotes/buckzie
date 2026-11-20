@@ -372,7 +372,7 @@ function RegionCarousel({ onApply }) {
                     {region.name}
                   </h3>
                   <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-white text-black shadow-xs shrink-0">
-                    <Check className="w-2.5 h-2.5 text-[#0063ce] stroke-[2.5]" />
+                    <Check className="w-2.5 h-2.5 text-brand-600 stroke-[2.5]" />
                   </span>
                 </div>
 

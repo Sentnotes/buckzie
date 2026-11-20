@@ -778,7 +778,7 @@ export default function FamiliesPage({ onBackToHome }) {
                       Live Dispatch
                     </h3>
                     <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-white text-black shadow-xs shrink-0">
-                      <Check className="w-2 h-2 text-[#0063ce] stroke-[2.5]" />
+                      <Check className="w-2 h-2 text-brand-600 stroke-[2.5]" />
                     </span>
                   </div>
                 </div>
@@ -812,7 +812,7 @@ export default function FamiliesPage({ onBackToHome }) {
                       Parent / Guardian
                     </h3>
                     <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-white text-black shadow-xs shrink-0">
-                      <Check className="w-2 h-2 text-[#0063ce] stroke-[2.5]" />
+                      <Check className="w-2 h-2 text-brand-600 stroke-[2.5]" />
                     </span>
                   </div>
                 </div>
@@ -937,7 +937,7 @@ export default function FamiliesPage({ onBackToHome }) {
                       Marcus Ramirez
                     </h3>
                     <span className="inline-flex items-center justify-center w-3.5 h-3.5 rounded-full bg-white text-black shadow-xs shrink-0">
-                      <Check className="w-2 h-2 text-[#0063ce] stroke-[2.5]" />
+                      <Check className="w-2 h-2 text-brand-600 stroke-[2.5]" />
                     </span>
                   </div>
                 </div>
