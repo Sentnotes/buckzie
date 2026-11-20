@@ -412,10 +412,10 @@ export default function FamiliesPage({ onBackToHome }) {
                     key={pillar.id}
                     type="button"
                     onClick={() => setActiveHeroPillar(idx)}
-                    className={`transition-colors cursor-pointer ${
+                    className={`transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2 rounded ${
                       isActive
                         ? 'text-[#0267CE] font-bold'
-                        : 'text-slate-300 hover:text-slate-500 font-medium'
+                        : 'text-slate-600 hover:text-black font-medium'
                     }`}
                   >
                     {pillar.label}
@@ -439,7 +439,7 @@ export default function FamiliesPage({ onBackToHome }) {
                   )
                 }
                 aria-label="Previous family highlight"
-                className="text-slate-400 hover:text-[#121316] transition-colors cursor-pointer p-1"
+                className="w-11 h-11 rounded-full flex items-center justify-center text-slate-600 hover:text-[#121316] hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -454,7 +454,7 @@ export default function FamiliesPage({ onBackToHome }) {
                   )
                 }
                 aria-label="Next family highlight"
-                className="w-8 h-8 rounded-full bg-[#0267CE]/10 hover:bg-[#0267CE] text-[#0267CE] hover:text-white flex items-center justify-center transition-all cursor-pointer active:scale-95"
+                className="w-11 h-11 rounded-full bg-[#0267CE]/10 hover:bg-[#0267CE] text-[#0267CE] hover:text-white flex items-center justify-center focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2 transition-all cursor-pointer active:scale-95"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -665,10 +665,75 @@ export default function FamiliesPage({ onBackToHome }) {
           </p>
         </div>
 
-        {/* ── 3-Party Connected Ecosystem Showcase (Phone Center, Clean Team Cards, Path-Written Data Flows) ── */}
+        {/* ── Mobile Stacked 3-Party Connected Ecosystem (< md) ── */}
+        <div className="md:hidden space-y-5 mb-14">
+          <div className="flex justify-center">
+            <img
+              src="/family/tripfamilyview.png"
+              alt="BuckledIn Guardian App Live GPS Tracking on iPhone 16"
+              className="w-[210px] h-auto drop-shadow-[0_16px_36px_rgba(0,0,0,0.16)] block select-none"
+              loading="lazy"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 gap-3">
+            {[
+              {
+                title: 'Live Dispatch',
+                flow: 'transport coordination',
+                badgeClass: 'bg-sky-50 text-sky-700 border-sky-200',
+                dotClass: 'bg-sky-600',
+                img: '/family/dispatch.png',
+                alt: 'Dispatch staffer monitoring commute on console',
+              },
+              {
+                title: 'Parent / Guardian',
+                flow: 'parent tracking',
+                badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                dotClass: 'bg-emerald-600',
+                img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+                alt: 'Parent Guardian viewing live ride update on smartphone',
+              },
+              {
+                title: 'Marcus Ramirez',
+                flow: 'driver direction',
+                badgeClass: 'bg-amber-50 text-amber-800 border-amber-200',
+                dotClass: 'bg-amber-500',
+                img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80',
+                alt: 'Certified Driver navigating dedicated route',
+              },
+            ].map((party) => (
+              <div
+                key={party.title}
+                className="flex items-center gap-4 bg-white rounded-2xl p-3 border border-slate-200 shadow-sm"
+              >
+                <img
+                  src={party.img}
+                  alt={party.alt}
+                  loading="lazy"
+                  className="w-16 h-16 rounded-xl object-cover shrink-0 border border-slate-200/80"
+                />
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <h3 className="text-sm font-semibold text-black truncate">{party.title}</h3>
+                    <span className="inline-flex items-center justify-center w-4 h-4 rounded-full bg-brand-50 text-brand-600 shrink-0">
+                      <Check className="w-2.5 h-2.5 stroke-[2.5]" />
+                    </span>
+                  </div>
+                  <span className={`mt-1.5 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium border ${party.badgeClass}`}>
+                    <span className={`w-1.5 h-1.5 rounded-full ${party.dotClass}`} aria-hidden="true" />
+                    {party.flow}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── 3-Party Connected Ecosystem Showcase (Desktop md+: Phone Center, Clean Team Cards, Path-Written Data Flows) ── */}
         <div
           ref={showcaseContainerRef}
-          className="relative w-full max-w-[980px] mx-auto mb-16 sm:mb-20 select-none overflow-hidden flex justify-center items-start"
+          className="hidden md:flex relative w-full max-w-[980px] mx-auto mb-16 sm:mb-20 select-none overflow-hidden justify-center items-start"
           style={{
             height: showcaseScale < 1 ? `${showcaseScale * 520}px` : '520px',
           }}
@@ -991,6 +1056,8 @@ export default function FamiliesPage({ onBackToHome }) {
                 className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs hover:border-slate-300 transition-colors"
               >
                 <button
+                  type="button"
+                  aria-expanded={isOpen}
                   onClick={() => setOpenFaq(isOpen ? null : index)}
                   className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer"
                 >

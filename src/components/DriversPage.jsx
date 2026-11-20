@@ -189,18 +189,41 @@ function RegionCarousel({ onApply }) {
     return el.children[driverRegions.length].offsetLeft - el.children[0].offsetLeft;
   };
 
-  // Continuous seamless infinite forward loop (pauses on hover or touch)
+  // Continuous seamless infinite forward loop (pauses off-screen, on hover/touch, or reduced motion)
   useEffect(() => {
-    let animationFrameId;
+    const el = carouselRef.current;
+    if (!el) return;
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let animationFrameId = 0;
+    let isVisible = true;
+    let cachedSetWidth = getSingleSetWidth();
+
+    const handleResize = () => {
+      cachedSetWidth = getSingleSetWidth();
+    };
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    const observer =
+      typeof IntersectionObserver !== 'undefined'
+        ? new IntersectionObserver(
+            ([entry]) => {
+              isVisible = entry.isIntersecting;
+            },
+            { threshold: 0.05 }
+          )
+        : null;
+    observer?.observe(el);
 
     const step = () => {
-      const el = carouselRef.current;
-      if (el && !isPaused) {
-        const singleSetWidth = getSingleSetWidth();
-        if (singleSetWidth > 0) {
+      if (isVisible && !isPaused) {
+        if (!cachedSetWidth) cachedSetWidth = getSingleSetWidth();
+        if (cachedSetWidth > 0) {
           scrollPosRef.current += 0.35;
-          if (scrollPosRef.current >= singleSetWidth) {
-            scrollPosRef.current -= singleSetWidth;
+          if (scrollPosRef.current >= cachedSetWidth) {
+            scrollPosRef.current -= cachedSetWidth;
           }
           el.scrollLeft = scrollPosRef.current;
         }
@@ -209,7 +232,11 @@ function RegionCarousel({ onApply }) {
     };
 
     animationFrameId = window.requestAnimationFrame(step);
-    return () => window.cancelAnimationFrame(animationFrameId);
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
+      observer?.disconnect();
+    };
   }, [isPaused]);
 
   const scroll = (direction) => {
@@ -232,34 +259,22 @@ function RegionCarousel({ onApply }) {
     }, 450);
   };
 
+  const pauseCarousel = () => {
+    if (carouselRef.current) {
+      scrollPosRef.current = carouselRef.current.scrollLeft;
+    }
+    setIsPaused(true);
+  };
+
+  const resumeCarousel = () => {
+    if (carouselRef.current) {
+      scrollPosRef.current = carouselRef.current.scrollLeft;
+    }
+    setIsPaused(false);
+  };
+
   return (
-    <div
-      className="w-full overflow-hidden"
-      onMouseEnter={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(true);
-      }}
-      onMouseLeave={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(false);
-      }}
-      onTouchStart={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(true);
-      }}
-      onTouchEnd={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(false);
-      }}
-    >
+    <div className="w-full overflow-hidden">
       {/* Header with Title and Left/Right Buttons (Aligned to max-w-7xl) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 sm:mb-10">
@@ -314,8 +329,20 @@ function RegionCarousel({ onApply }) {
           {loopedRegions.map((region, i) => (
             <div
               key={`${region.code}-${i}`}
+              role="button"
+              tabIndex={0}
               onClick={onApply}
-              className="w-[235px] sm:w-[260px] md:w-[275px] shrink-0 h-[350px] sm:h-[380px] md:h-[395px] rounded-[26px] overflow-hidden relative shadow-md hover:shadow-xl transition-all duration-500 group snap-start border border-slate-200/80 flex flex-col justify-end cursor-pointer"
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onApply();
+                }
+              }}
+              onMouseEnter={pauseCarousel}
+              onMouseLeave={resumeCarousel}
+              onTouchStart={pauseCarousel}
+              onTouchEnd={resumeCarousel}
+              className="w-[235px] sm:w-[260px] md:w-[275px] shrink-0 h-[350px] sm:h-[380px] md:h-[395px] rounded-[26px] overflow-hidden relative shadow-md hover:shadow-xl transition-all duration-500 group snap-start border border-slate-200/80 flex flex-col justify-end cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
             >
               {/* Full-bleed State Background Image */}
               <img
@@ -409,10 +436,19 @@ export default function DriversPage({ onBackToHome }) {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setFormSubmitted(true);
-    setTimeout(() => {
-      // Keep state showing success
-    }, 500);
   };
+
+  useEffect(() => {
+    if (!isApplyModalOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setFormSubmitted(false);
+        setIsApplyModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isApplyModalOpen]);
 
   const resetForm = () => {
     setFormSubmitted(false);
@@ -1186,8 +1222,9 @@ export default function DriversPage({ onBackToHome }) {
           {/* Editorial Asymmetric Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-12 sm:mb-14">
             <div className="lg:col-span-3">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#E5A800]">
-                (Onboarding)
+              <span className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-black">
+                <span className="w-2 h-2 rounded-full bg-[#FFCC00] ring-1 ring-black/15 shrink-0" aria-hidden="true" />
+                <span>(Onboarding)</span>
               </span>
             </div>
             <div className="lg:col-span-9 max-w-2xl">
@@ -1209,17 +1246,17 @@ export default function DriversPage({ onBackToHome }) {
               type="button"
               onClick={() => setActiveOnboardingStep((prev) => (prev === 0 ? onboardingSteps.length - 1 : prev - 1))}
               aria-label="Previous onboarding step"
-              className="w-11 h-7 rounded-full bg-white hover:bg-neutral-50 border border-black/5 shadow-xs flex items-center justify-center text-[#E5A800] transition-all cursor-pointer active:scale-95"
+              className="w-11 h-11 rounded-full bg-white hover:bg-neutral-50 border border-black/10 shadow-sm flex items-center justify-center text-black focus-visible:outline-2 focus-visible:outline-black transition-all cursor-pointer active:scale-95"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="w-4 h-4" />
             </button>
             <button
               type="button"
               onClick={() => setActiveOnboardingStep((prev) => (prev === onboardingSteps.length - 1 ? 0 : prev + 1))}
               aria-label="Next onboarding step"
-              className="w-11 h-7 rounded-full bg-black hover:bg-neutral-900 shadow-xs flex items-center justify-center text-[#FFCC00] transition-all cursor-pointer active:scale-95"
+              className="w-11 h-11 rounded-full bg-black hover:bg-neutral-900 shadow-sm flex items-center justify-center text-[#FFCC00] focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 transition-all cursor-pointer active:scale-95"
             >
-              <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+              <ArrowLeft className="w-4 h-4 rotate-180" />
             </button>
           </div>
 
@@ -1230,11 +1267,20 @@ export default function DriversPage({ onBackToHome }) {
               return (
                 <div
                   key={idx}
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={isActive}
                   onClick={() => setActiveOnboardingStep(idx)}
-                  className={`min-h-[260px] sm:min-h-[280px] rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveOnboardingStep(idx);
+                    }
+                  }}
+                  className={`min-h-[260px] sm:min-h-[280px] rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 ${
                     isActive
                       ? 'bg-[#FFCC00] border border-[#F0C000] shadow-md text-black'
-                      : 'bg-white/80 backdrop-blur-md border border-white/90 hover:bg-white/90 shadow-xs text-black'
+                      : 'bg-white/80 backdrop-blur-md border border-white/90 hover:bg-white/90 shadow-sm text-black'
                   }`}
                 >
                   <div>
@@ -1323,6 +1369,8 @@ export default function DriversPage({ onBackToHome }) {
                   className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs hover:border-slate-300 transition-colors"
                 >
                   <button
+                    type="button"
+                    aria-expanded={isOpen}
                     onClick={() => setOpenFaq(isOpen ? null : index)}
                     className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer"
                   >
@@ -1383,12 +1431,23 @@ export default function DriversPage({ onBackToHome }) {
 
       {/* Application Modal */}
       {isApplyModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="driver-apply-modal-title"
+          onClick={resetForm}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto"
+          >
             {/* Close Button */}
             <button
+              type="button"
               onClick={resetForm}
-              className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-black hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label="Close application modal"
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full text-slate-600 hover:text-black hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -1398,7 +1457,7 @@ export default function DriversPage({ onBackToHome }) {
                 <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-bold text-black tracking-tight">
+                <h3 id="driver-apply-modal-title" className="text-2xl font-bold text-black tracking-tight">
                   Application Received!
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed max-w-xs mx-auto">
@@ -1406,6 +1465,7 @@ export default function DriversPage({ onBackToHome }) {
                 </p>
                 <div className="pt-4">
                   <button
+                    type="button"
                     onClick={resetForm}
                     className="bg-black hover:bg-neutral-800 text-white font-normal px-6 py-2.5 rounded-full text-sm transition-colors cursor-pointer"
                   >
@@ -1417,116 +1477,124 @@ export default function DriversPage({ onBackToHome }) {
               <div>
                 <div className="mb-6">
                   <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">Fast 5-Minute Application</span>
-                  <h3 className="text-2xl font-bold text-black tracking-tight mt-1">
+                  <h3 id="driver-apply-modal-title" className="text-2xl font-bold text-black tracking-tight mt-1">
                     Apply to Become a Driver
                   </h3>
-                  <p className="text-xs text-slate-500 mt-1">
+                  <p className="text-xs text-slate-600 mt-1">
                     Fill out your basic details below to begin the route matching process.
                   </p>
                 </div>
 
                 <form onSubmit={handleFormSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
+                      <label htmlFor="driver-first-name" className="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
                       <input
+                        id="driver-first-name"
                         type="text"
                         name="firstName"
                         required
                         value={formData.firstName}
                         onChange={handleInputChange}
                         placeholder="Sarah"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
+                      <label htmlFor="driver-last-name" className="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
                       <input
+                        id="driver-last-name"
                         type="text"
                         name="lastName"
                         required
                         value={formData.lastName}
                         onChange={handleInputChange}
                         placeholder="Jenkins"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Email *</label>
+                      <label htmlFor="driver-email" className="block text-xs font-bold text-slate-700 mb-1">Email *</label>
                       <input
+                        id="driver-email"
                         type="email"
                         name="email"
                         required
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="sarah@example.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Phone Number *</label>
+                      <label htmlFor="driver-phone" className="block text-xs font-bold text-slate-700 mb-1">Phone Number *</label>
                       <input
+                        id="driver-phone"
                         type="tel"
                         name="phone"
                         required
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder="(503) 555-0192"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">City *</label>
+                      <label htmlFor="driver-city" className="block text-xs font-bold text-slate-700 mb-1">City *</label>
                       <input
+                        id="driver-city"
                         type="text"
                         name="city"
                         required
                         value={formData.city}
                         onChange={handleInputChange}
                         placeholder="Portland"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">State *</label>
+                      <label htmlFor="driver-state" className="block text-xs font-bold text-slate-700 mb-1">State *</label>
                       <input
+                        id="driver-state"
                         type="text"
                         name="state"
                         required
                         value={formData.state}
                         onChange={handleInputChange}
                         placeholder="Oregon"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Vehicle Year &amp; Model *</label>
+                      <label htmlFor="driver-vehicle" className="block text-xs font-bold text-slate-700 mb-1">Vehicle Year &amp; Model *</label>
                       <input
+                        id="driver-vehicle"
                         type="text"
                         name="vehicleModel"
                         required
                         value={formData.vehicleModel}
                         onChange={handleInputChange}
                         placeholder="2020 Toyota RAV4"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">Driving Experience</label>
+                      <label htmlFor="driver-experience" className="block text-xs font-bold text-slate-700 mb-1">Driving Experience</label>
                       <select
+                        id="driver-experience"
                         name="experience"
                         value={formData.experience}
                         onChange={handleInputChange}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent bg-white"
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent bg-white"
                       >
                         <option value="3-5 years">3–5 Years</option>
                         <option value="5-10 years">5–10 Years</option>
@@ -1538,11 +1606,11 @@ export default function DriversPage({ onBackToHome }) {
                   <div className="pt-4">
                     <button
                       type="submit"
-                      className="w-full bg-brand-600 hover:bg-brand-700 text-white font-normal py-3 rounded-xl shadow-md transition-colors cursor-pointer text-sm"
+                      className="w-full bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 text-white font-medium py-3 rounded-full shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer text-sm focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
                     >
                       Submit Driver Application
                     </button>
-                    <p className="text-[11px] text-slate-400 text-center mt-2">
+                    <p className="text-[11px] text-slate-600 text-center mt-2">
                       By submitting, you agree to allow BuckledIn to contact you regarding route openings.
                     </p>
                   </div>

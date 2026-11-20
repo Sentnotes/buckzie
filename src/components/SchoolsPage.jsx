@@ -496,12 +496,6 @@ export default function SchoolsPage({ onBackToHome }) {
     };
   }, [activePillarModal]);
 
-  const scrollSteps = (direction) => {
-    if (!stepsCarouselRef.current) return;
-    const scrollAmount = direction === 'left' ? -360 : 360;
-    stepsCarouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-  };
-
   return (
     <div className="min-h-screen bg-white text-black pb-24">
       {/* ── 1. Hero Header Section ────────────────────────────────────────── */}
@@ -617,24 +611,32 @@ export default function SchoolsPage({ onBackToHome }) {
             return (
               <div
                 key={pillar.num}
+                role={pillar.hasDeepDive ? 'button' : undefined}
+                tabIndex={pillar.hasDeepDive ? 0 : undefined}
                 onClick={() => {
                   if (pillar.hasDeepDive) handleOpenModal(pillar);
                 }}
-                className={`${colSpanClass} bg-slate-50/70 hover:bg-white rounded-[2rem] border border-slate-200/90 p-7 sm:p-8 transition-all duration-300 hover:shadow-xl flex flex-col justify-between group ${
+                onKeyDown={(e) => {
+                  if (pillar.hasDeepDive && (e.key === 'Enter' || e.key === ' ')) {
+                    e.preventDefault();
+                    handleOpenModal(pillar);
+                  }
+                }}
+                className={`${colSpanClass} bg-slate-50/70 hover:bg-white rounded-[2rem] border border-slate-200/90 p-7 sm:p-8 transition-all duration-300 hover:shadow-xl flex flex-col justify-between group focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2 ${
                   pillar.hasDeepDive ? 'cursor-pointer hover:border-brand-300/80' : ''
                 }`}
               >
                 <div className="space-y-5">
                   {/* Top Row: Icon + Pillar Number & Badge */}
                   <div className="flex items-center justify-between">
-                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center text-brand-600 group-hover:bg-black group-hover:text-white group-hover:border-black transition-colors duration-300">
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex items-center justify-center text-brand-600 group-hover:bg-black group-hover:text-white group-hover:border-black transition-colors duration-300">
                       <PillarIcon className="w-5 h-5" />
                     </div>
                     <div className="flex items-center space-x-2">
                       <span className="text-[11px] font-medium text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">
                         {pillar.tag}
                       </span>
-                      <span className="text-xs font-bold text-slate-400">
+                      <span className="text-xs font-bold text-slate-600">
                         {pillar.num}
                       </span>
                     </div>
@@ -718,8 +720,9 @@ export default function SchoolsPage({ onBackToHome }) {
           {/* Editorial Asymmetric Header */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-12 sm:mb-14">
             <div className="lg:col-span-3">
-              <span className="text-xs font-bold uppercase tracking-widest text-[#E5A800]">
-                (Turnkey Operations)
+              <span className="inline-flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-black">
+                <span className="w-2 h-2 rounded-full bg-[#FFCC00] ring-1 ring-black/15 shrink-0" aria-hidden="true" />
+                <span>(Turnkey Operations)</span>
               </span>
             </div>
             <div className="lg:col-span-9 max-w-2xl">
@@ -745,9 +748,9 @@ export default function SchoolsPage({ onBackToHome }) {
                 )
               }
               aria-label="Previous partnership phase"
-              className="w-11 h-7 rounded-full bg-white hover:bg-neutral-50 border border-black/5 shadow-xs flex items-center justify-center text-[#E5A800] transition-all cursor-pointer active:scale-95"
+              className="w-11 h-11 rounded-full bg-white hover:bg-neutral-50 border border-black/10 shadow-sm flex items-center justify-center text-black focus-visible:outline-2 focus-visible:outline-black transition-all cursor-pointer active:scale-95"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="w-4 h-4" />
             </button>
             <button
               type="button"
@@ -757,9 +760,9 @@ export default function SchoolsPage({ onBackToHome }) {
                 )
               }
               aria-label="Next partnership phase"
-              className="w-11 h-7 rounded-full bg-black hover:bg-neutral-900 shadow-xs flex items-center justify-center text-[#FFCC00] transition-all cursor-pointer active:scale-95"
+              className="w-11 h-11 rounded-full bg-black hover:bg-neutral-900 shadow-sm flex items-center justify-center text-[#FFCC00] focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 transition-all cursor-pointer active:scale-95"
             >
-              <ArrowLeft className="w-3.5 h-3.5 rotate-180" />
+              <ArrowLeft className="w-4 h-4 rotate-180" />
             </button>
           </div>
 
@@ -770,11 +773,20 @@ export default function SchoolsPage({ onBackToHome }) {
               return (
                 <div
                   key={stepItem.step}
+                  role="button"
+                  tabIndex={0}
+                  aria-pressed={isActive}
                   onClick={() => setActivePartnershipStep(idx)}
-                  className={`min-h-[260px] sm:min-h-[280px] rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActivePartnershipStep(idx);
+                    }
+                  }}
+                  className={`min-h-[260px] sm:min-h-[280px] rounded-2xl p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2 ${
                     isActive
                       ? 'bg-[#FFCC00] border border-[#F0C000] shadow-md text-black'
-                      : 'bg-white/80 backdrop-blur-md border border-white/90 hover:bg-white/90 shadow-xs text-black'
+                      : 'bg-white/80 backdrop-blur-md border border-white/90 hover:bg-white/90 shadow-sm text-black'
                   }`}
                 >
                   <div>
@@ -889,6 +901,8 @@ export default function SchoolsPage({ onBackToHome }) {
                 className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-2xs hover:border-slate-300 transition-colors"
               >
                 <button
+                  type="button"
+                  aria-expanded={isOpen}
                   onClick={() => setOpenFaq(isOpen ? null : index)}
                   className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer"
                 >
@@ -963,47 +977,51 @@ export default function SchoolsPage({ onBackToHome }) {
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">Full Name *</label>
+                      <label htmlFor="school-fullname" className="block text-xs font-medium text-slate-700 mb-1">Full Name *</label>
                       <input
+                        id="school-fullname"
                         type="text"
                         required
                         placeholder="Dr. Jane Miller"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white"
+                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">Title / Role *</label>
+                      <label htmlFor="school-role" className="block text-xs font-medium text-slate-700 mb-1">Title / Role *</label>
                       <input
+                        id="school-role"
                         type="text"
                         required
                         placeholder="Transportation Director"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white"
+                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
                       />
                     </div>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">School District / Organization *</label>
+                      <label htmlFor="school-district" className="block text-xs font-medium text-slate-700 mb-1">School District / Organization *</label>
                       <input
+                        id="school-district"
                         type="text"
                         required
                         placeholder="Beaverton School District"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white"
+                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">Work Email *</label>
+                      <label htmlFor="school-email" className="block text-xs font-medium text-slate-700 mb-1">Work Email *</label>
                       <input
+                        id="school-email"
                         type="email"
                         required
                         placeholder="jmiller@district.edu"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white"
+                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
                       />
                     </div>
                   </div>
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-full bg-black hover:bg-brand-600 text-white text-xs sm:text-sm font-normal transition-all duration-200 cursor-pointer shadow-xs active:scale-98"
+                    className="w-full py-3 rounded-full bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 text-white text-xs sm:text-sm font-medium shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
                   >
                     Schedule District Consultation
                   </button>
@@ -1021,6 +1039,9 @@ export default function SchoolsPage({ onBackToHome }) {
 
         return (
           <div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="pillar-modal-title"
             onClick={handleCloseModal}
             className={`fixed inset-0 z-[90] flex items-start sm:items-center justify-center p-3 sm:p-6 pt-16 sm:pt-20 bg-black/60 backdrop-blur-md overflow-hidden ${
               isModalVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
@@ -1087,6 +1108,7 @@ export default function SchoolsPage({ onBackToHome }) {
                   </div>
                   <h3
                     style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
+                    id="pillar-modal-title"
                     className="text-2xl sm:text-3xl md:text-4xl font-medium text-black tracking-tight leading-tight"
                   >
                     {currentDeepDive.title}
@@ -1102,7 +1124,7 @@ export default function SchoolsPage({ onBackToHome }) {
                     <div key={idx} className="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 text-left">
                       <div className={`text-2xl sm:text-3xl font-semibold ${m.color}`}>{m.value}</div>
                       <div className="text-xs font-medium text-slate-700 mt-1">{m.label}</div>
-                      <div className="text-[11px] text-slate-400 mt-0.5">{m.desc}</div>
+                      <div className="text-[11px] text-slate-600 mt-0.5">{m.desc}</div>
                     </div>
                   ))}
                 </div>

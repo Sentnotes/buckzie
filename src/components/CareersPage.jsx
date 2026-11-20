@@ -245,7 +245,7 @@ const staffOpenings = [
     id: 'stf-1',
     title: 'Ride Monitoring & Safety Specialist',
     department: 'Safety & Telematics Operations',
-    location: 'Remote (US) / Headquarters (New York)',
+    location: 'Remote (US) / Headquarters (Beaverton, OR)',
     type: 'Full-Time',
     badge: 'Open Position',
     description: 'Monitor live GPS telematics, route ETAs, and geofence alerts for daily student rides in real time. Proactively identify delays, assist drivers, and notify school district liaisons.',
@@ -285,7 +285,7 @@ const staffOpenings = [
     id: 'stf-3',
     title: 'District Partnerships & Transportation Liaison',
     department: 'School Partnerships',
-    location: 'Hybrid (New York, NY / Travel to District Hubs)',
+    location: 'Hybrid (Beaverton, OR / Travel to District Hubs)',
     type: 'Full-Time',
     badge: 'Open Position',
     description: 'Work directly with public school superintendents, transportation directors, and county boards of education to expand BuckledIn student transportation contracts.',
@@ -386,6 +386,17 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
     e.preventDefault();
     setApplicationSubmitted(true);
   };
+
+  React.useEffect(() => {
+    if (!isApplyModalOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsApplyModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isApplyModalOpen]);
 
   // Get available metros based on current state selection
   const availableMetros = React.useMemo(() => {
@@ -520,12 +531,15 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search city or keyword..."
-                    className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-black placeholder-slate-400 pl-10 pr-4 py-2.5 rounded-full focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 font-normal"
+                    aria-label="Search city or keyword"
+                    className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-black placeholder-slate-500 pl-10 pr-8 py-2.5 rounded-full focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 font-normal"
                   />
                   {searchQuery && (
                     <button
+                      type="button"
+                      aria-label="Clear search"
                       onClick={() => setSearchQuery('')}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-black cursor-pointer"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-black cursor-pointer"
                     >
                       <X className="w-3.5 h-3.5" />
                     </button>
@@ -859,13 +873,24 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
 
       {/* Application Modal */}
       {isApplyModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[92vh] overflow-y-auto">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedRole?.title || 'Job Application'}
+          onClick={() => setIsApplyModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[92vh] overflow-y-auto"
+          >
 
             {/* Close Button */}
             <button
+              type="button"
               onClick={() => setIsApplyModalOpen(false)}
-              className="absolute top-5 right-5 p-2 rounded-full text-slate-400 hover:text-black hover:bg-slate-100 transition-colors cursor-pointer"
+              aria-label="Close application modal"
+              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full text-slate-600 hover:text-black hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>

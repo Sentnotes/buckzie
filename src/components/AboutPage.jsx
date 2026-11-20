@@ -42,7 +42,7 @@ const PROGRAM_PARTNERS = [
   { name: 'Mohave Educational Services', image: '/program/mohave.webp', tilt: -10 },
   { name: 'Oregon DHS', image: '/program/odhs.webp', tilt: 12 },
   { name: 'PA Intermediate Units', image: '/program/paiu.webp', tilt: -7 },
-  { name: 'Southwell District Transit', image: '/program/sourdewell.webp', tilt: 9 },
+  { name: 'Sourcewell District Transit', image: '/program/sourdewell.webp', tilt: 9 },
   { name: 'Washington State DCYF', image: '/program/washington-state-dpeartment-children.webp', tilt: -12 },
 ];
 
@@ -324,70 +324,70 @@ const teamMembers = [
     role: 'CEO',
     quote: 'Knowing thousands of vulnerable children arrive at school safely and ready to learn every morning is our greatest reward.',
     image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Sarah Chen, M.Ed.',
     role: 'VP of Partnerships',
     quote: 'We aren’t just solving bus shortages—we build dependable daily lifelines for special education students and their families.',
     image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Marcus Ramirez',
     role: 'Chief Safety Officer',
     quote: 'Our multi-tier background audits and strict vehicle standards give parents complete peace of mind on every student route.',
     image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Elena Rostova',
     role: 'Head of Telematics',
     quote: 'Live GPS route tracking and instant parent alerts ensure school districts and families have total daily transparency.',
     image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Jonathan Brooks',
     role: 'Driver Community Lead',
     quote: 'Empowering consistent, compassionate local drivers who truly get to know each student makes our culture unbeatable.',
     image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Amara Okafor',
     role: 'Special Needs Transit',
     quote: 'Every child deserves quiet, tailored, sensory-friendly rides—delivering that comfort every morning drives my heart.',
     image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Robert Sterling',
     role: 'VP of Fleet Ops',
     quote: 'Zero mechanical disruptions across our student transit networks is our non-negotiable benchmark in every state.',
     image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Maya Patel, CPA',
     role: 'Chief Financial Officer',
     quote: 'Helping public school districts redirect transit savings back directly into classroom learning inspires me every day.',
     image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Craig Washington',
     role: 'Regional Ops Director',
     quote: 'Connecting rural and urban districts through dependable routing has restored daily classroom attendance for hundreds.',
     image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
   {
     name: 'Rachel Morales',
     role: 'Crisis Response Lead',
     quote: 'Being there within seconds whenever a parent, driver, or school coordinator needs real human support defines our team.',
     image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
-    linkedin: 'https://www.linkedin.com',
+    linkedin: 'https://www.linkedin.com/company/buckledin',
   },
 ];
 
@@ -405,18 +405,41 @@ function LeadershipCarousel() {
     return el.children[teamMembers.length].offsetLeft - el.children[0].offsetLeft;
   };
 
-  // Continuous seamless infinite forward loop (pauses on hover or touch)
+  // Continuous seamless infinite forward loop (pauses off-screen, on card hover/touch, or reduced motion)
   useEffect(() => {
-    let animationFrameId;
+    const el = carouselRef.current;
+    if (!el) return;
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    let animationFrameId = 0;
+    let isVisible = true;
+    let cachedSetWidth = getSingleSetWidth();
+
+    const handleResize = () => {
+      cachedSetWidth = getSingleSetWidth();
+    };
+    window.addEventListener('resize', handleResize, { passive: true });
+
+    const observer =
+      typeof IntersectionObserver !== 'undefined'
+        ? new IntersectionObserver(
+            ([entry]) => {
+              isVisible = entry.isIntersecting;
+            },
+            { threshold: 0.05 }
+          )
+        : null;
+    observer?.observe(el);
 
     const step = () => {
-      const el = carouselRef.current;
-      if (el && !isPaused) {
-        const singleSetWidth = getSingleSetWidth();
-        if (singleSetWidth > 0) {
+      if (isVisible && !isPaused) {
+        if (!cachedSetWidth) cachedSetWidth = getSingleSetWidth();
+        if (cachedSetWidth > 0) {
           scrollPosRef.current += 0.35;
-          if (scrollPosRef.current >= singleSetWidth) {
-            scrollPosRef.current -= singleSetWidth;
+          if (scrollPosRef.current >= cachedSetWidth) {
+            scrollPosRef.current -= cachedSetWidth;
           }
           el.scrollLeft = scrollPosRef.current;
         }
@@ -425,8 +448,26 @@ function LeadershipCarousel() {
     };
 
     animationFrameId = window.requestAnimationFrame(step);
-    return () => window.cancelAnimationFrame(animationFrameId);
+    return () => {
+      window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('resize', handleResize);
+      observer?.disconnect();
+    };
   }, [isPaused]);
+
+  const pauseCarousel = () => {
+    if (carouselRef.current) {
+      scrollPosRef.current = carouselRef.current.scrollLeft;
+    }
+    setIsPaused(true);
+  };
+
+  const resumeCarousel = () => {
+    if (carouselRef.current) {
+      scrollPosRef.current = carouselRef.current.scrollLeft;
+    }
+    setIsPaused(false);
+  };
 
   const scroll = (direction) => {
     const el = carouselRef.current;
@@ -452,30 +493,6 @@ function LeadershipCarousel() {
     <section
       id="team"
       className="w-full mb-20 md:mb-28 scroll-mt-28 overflow-hidden"
-      onMouseEnter={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(true);
-      }}
-      onMouseLeave={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(false);
-      }}
-      onTouchStart={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(true);
-      }}
-      onTouchEnd={() => {
-        if (carouselRef.current) {
-          scrollPosRef.current = carouselRef.current.scrollLeft;
-        }
-        setIsPaused(false);
-      }}
     >
       {/* Header with Title and Left/Right Buttons (Aligned to max-w-7xl) */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -538,6 +555,10 @@ function LeadershipCarousel() {
             return (
               <div
                 key={i}
+                onMouseEnter={pauseCarousel}
+                onMouseLeave={resumeCarousel}
+                onTouchStart={pauseCarousel}
+                onTouchEnd={resumeCarousel}
                 className="w-[235px] sm:w-[260px] md:w-[275px] shrink-0 h-[350px] sm:h-[380px] md:h-[395px] rounded-[26px] overflow-hidden relative shadow-md hover:shadow-xl transition-all duration-500 group snap-start border border-slate-200/80 flex flex-col justify-end"
               >
                 {/* Full-bleed Portrait Headshot */}
@@ -580,7 +601,7 @@ function LeadershipCarousel() {
                   {/* LinkedIn Pill Button */}
                   <div className="mt-3 flex items-center justify-end">
                     <a
-                      href={member.linkedin || "https://www.linkedin.com"}
+                      href={member.linkedin || "https://www.linkedin.com/company/buckledin"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center space-x-1.5 px-3.5 py-1.5 rounded-full bg-white text-black hover:bg-slate-100 transition-all duration-200 text-[11px] font-medium shadow-sm cursor-pointer active:scale-95"
@@ -702,12 +723,15 @@ function NewslettersTabView({ onBackToHome }) {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search briefings..."
-                  className="w-full bg-white border border-slate-200/90 text-xs text-black placeholder-slate-400 pl-8 pr-8 py-1.5 rounded-full focus:outline-none focus:border-[#0267CE]"
+                  aria-label="Search briefings"
+                  className="w-full bg-white border border-slate-200/90 text-xs text-black placeholder-slate-500 pl-8 pr-8 py-1.5 rounded-full focus:outline-none focus:ring-2 focus:ring-[#0267CE] focus:border-[#0267CE]"
                 />
                 {searchQuery && (
                   <button
+                    type="button"
+                    aria-label="Clear search"
                     onClick={() => setSearchQuery('')}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-black cursor-pointer"
+                    className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 hover:text-black cursor-pointer"
                   >
                     <X className="w-3.5 h-3.5" />
                   </button>
@@ -834,6 +858,9 @@ function NewslettersTabView({ onBackToHome }) {
       {/* ── Issue Reader Deep-Dive Modal (Matches Schools Page Dedicated Driver Model) ── */}
       {activeIssueModal && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeIssueModal.title}
           onClick={handleCloseIssueModal}
           className={`fixed inset-0 z-[90] flex items-start sm:items-center justify-center p-3 sm:p-6 pt-16 sm:pt-20 bg-black/60 backdrop-blur-md overflow-hidden ${
             isModalVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
