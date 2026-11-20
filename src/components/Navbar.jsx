@@ -261,7 +261,8 @@ export default function Navbar({
               Sign Up to Drive
             </button>
             <button
-              onClick={onOpenBookingModal}
+              type="button"
+              onClick={() => {}}
               className="group relative inline-flex items-center space-x-2 px-5 py-2 text-sm font-normal text-white bg-brand-600 hover:bg-brand-700 rounded-full shadow-md shadow-brand-500/25 active:scale-[0.98] transition-all duration-200 cursor-pointer whitespace-nowrap"
             >
               <span>Book a Ride</span>
@@ -362,10 +363,8 @@ export default function Navbar({
               {/* Action Buttons: Clean Apple-Style Centered Side-by-Side Pills */}
               <div className="pt-3 mt-2 border-t border-black/[0.06] flex items-center justify-center gap-2">
                 <button
-                  onClick={() => {
-                    setMobileMenuOpen(false);
-                    onOpenBookingModal();
-                  }}
+                  type="button"
+                  onClick={() => {}}
                   className="flex-1 py-2.5 px-3 rounded-full font-normal text-center text-white bg-brand-600 hover:bg-brand-700 shadow-sm cursor-pointer text-xs sm:text-sm active:scale-98 transition-all flex items-center justify-center space-x-1.5 whitespace-nowrap"
                 >
                   <span>Book a Ride</span>

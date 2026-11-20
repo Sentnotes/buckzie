@@ -141,7 +141,8 @@ export default function Hero({ onStartBooking }) {
             {/* Hero Action Buttons */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 sm:mb-20 lg:mb-10">
               <button
-                onClick={handleDefaultBooking}
+                type="button"
+                onClick={() => {}}
                 className="w-full sm:w-auto px-7 py-3.5 rounded-full font-normal text-base text-white bg-brand-600 hover:bg-brand-700 shadow-md active:scale-[0.98] transition-all flex items-center justify-center space-x-3 cursor-pointer"
               >
                 <Car className="w-5 h-5" />
