@@ -447,7 +447,25 @@ export default function SchoolsPage({ onBackToHome }) {
   const [activePillarModal, setActivePillarModal] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [consultationSubmitted, setConsultationSubmitted] = useState(false);
+  const [schoolProgramNeeds, setSchoolProgramNeeds] = useState(['General Partnership']);
   const modalTimerRef = useRef(null);
+
+  const SCHOOL_PROGRAM_OPTIONS = [
+    'General Partnership',
+    'IEP / Special Ed',
+    'McKinney-Vento',
+    'Foster Care',
+    'Out-of-District',
+    'Early Childhood',
+  ];
+
+  const toggleSchoolProgram = (option) => {
+    setSchoolProgramNeeds((prev) => {
+      const exists = prev.includes(option);
+      if (exists && prev.length === 1) return prev;
+      return exists ? prev.filter((item) => item !== option) : [...prev, option];
+    });
+  };
 
   const handleOpenModal = (pillar) => {
     if (modalTimerRef.current) clearTimeout(modalTimerRef.current);
@@ -928,106 +946,173 @@ export default function SchoolsPage({ onBackToHome }) {
 
       {/* ── 6. District Consultation Inquiry Form / CTA ───────────────────── */}
       <section id="district-inquiry" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
-        <div className="bg-slate-50 border border-slate-200/90 rounded-[2.5rem] p-8 sm:p-12 shadow-sm">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-6 space-y-4">
-              <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-white border border-slate-200 text-xs font-bold text-brand-600 uppercase tracking-wider">
-                <Building2 className="w-3.5 h-3.5" />
-                <span>Partner With BuckledIn</span>
+        <div className="rounded-[28px] overflow-hidden bg-white border border-slate-200 shadow-xl grid grid-cols-1 lg:grid-cols-12">
+          {/* Left Trust Anchor (#051D97 Official Logo Royal Blue) */}
+          <div className="lg:col-span-5 bg-[#051D97] text-white p-7 sm:p-9 flex flex-col justify-between relative overflow-hidden">
+            <div className="space-y-4 sm:space-y-5 relative z-10">
+              <div className="inline-flex items-center gap-2 text-xs font-medium text-sky-200">
+                <span className="w-2 h-2 rounded-full bg-[#FFCC00]" aria-hidden="true" />
+                <span>District Partnerships</span>
               </div>
               <h3
                 style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                className="text-2xl sm:text-4xl font-medium text-black tracking-tight leading-tight"
+                className="text-2xl sm:text-3xl font-medium text-white tracking-tight leading-tight"
               >
-                Ready to Solve Your District&apos;s Hardest Routes?
+                Ready to solve your district&apos;s hardest student routes?
               </h3>
-              <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                Connect with our District Partnerships team for a custom route cost analysis, cooperative contract details, or a live demo of our District Command Portal.
+              <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed">
+                Connect with our District Partnerships team for a custom route cost analysis, Sourcewell cooperative contract details, or a live demo of our District Command Portal.
               </p>
-              <div className="pt-2 space-y-2 text-xs sm:text-sm text-slate-700 font-medium">
-                <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-600 shrink-0" />
-                  <span>No minimum vehicle commitments required</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <CheckCircle2 className="w-4 h-4 text-brand-600 shrink-0" />
-                  <span>Cooperative purchasing &amp; RFP support included</span>
-                </div>
-              </div>
+              <ul className="space-y-2.5 pt-2 text-xs text-white/95">
+                <li className="flex items-start gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                  </span>
+                  <span>100% W-2 employee drivers, never gig contractors</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                  </span>
+                  <span>No minimum vehicle commitments · RFP &amp; Sourcewell ready</span>
+                </li>
+                <li className="flex items-start gap-2.5">
+                  <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                    <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                  </span>
+                  <span>Response within 1 business day</span>
+                </li>
+              </ul>
             </div>
 
-            <div className="lg:col-span-6">
-              {consultationSubmitted ? (
-                <div className="bg-white rounded-3xl p-8 border border-slate-200 text-center space-y-3 shadow-xs">
-                  <div className="w-12 h-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
-                    <CheckCircle2 className="w-6 h-6" />
-                  </div>
-                  <h4 className="text-lg font-bold text-black">Consultation Request Received</h4>
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    Thank you! Our VP of District Partnerships will reach out within 1 business day with cooperative contract information and routing options for your district.
-                  </p>
+            <div className="pt-6 mt-6 border-t border-white/15 text-xs text-blue-100/90 space-y-1 relative z-10">
+              <div className="font-semibold text-white flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                <a href="tel:14582279468" className="hover:text-[#16C3FF] transition-colors">(458) 227-9468</a>
+                <span aria-hidden="true">·</span>
+                <a href="mailto:info@buckledin.com" className="hover:text-[#16C3FF] transition-colors">info@buckledin.com</a>
+              </div>
+              <div className="text-blue-200/80">Headquarters · Beaverton, Oregon</div>
+            </div>
+          </div>
+
+          {/* Right Clean Daylight Form */}
+          <div className="lg:col-span-7 p-7 sm:p-9 bg-white flex flex-col justify-center">
+            {consultationSubmitted ? (
+              <div role="status" aria-live="polite" className="text-center py-8 space-y-3">
+                <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-7 h-7" />
                 </div>
-              ) : (
-                <form
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    setConsultationSubmitted(true);
-                  }}
-                  className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-xs space-y-4"
-                >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="school-fullname" className="block text-xs font-medium text-slate-700 mb-1">Full Name *</label>
-                      <input
-                        id="school-fullname"
-                        type="text"
-                        required
-                        placeholder="Dr. Jane Miller"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="school-role" className="block text-xs font-medium text-slate-700 mb-1">Title / Role *</label>
-                      <input
-                        id="school-role"
-                        type="text"
-                        required
-                        placeholder="Transportation Director"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
-                      />
-                    </div>
+                <h4 className="font-inktrap text-xl sm:text-2xl font-medium text-black tracking-tight">
+                  Consultation Request Received
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-md mx-auto">
+                  Thank you! Our District Partnerships team will reach out within 1 business day with cooperative contract information and routing options for your district.
+                </p>
+              </div>
+            ) : (
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  setConsultationSubmitted(true);
+                }}
+                className="space-y-5"
+              >
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="school-fullname" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                      Full Name *
+                    </label>
+                    <input
+                      id="school-fullname"
+                      type="text"
+                      required
+                      placeholder="Dr. Jane Miller"
+                      className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
+                    />
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="school-district" className="block text-xs font-medium text-slate-700 mb-1">School District / Organization *</label>
-                      <input
-                        id="school-district"
-                        type="text"
-                        required
-                        placeholder="Beaverton School District"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="school-email" className="block text-xs font-medium text-slate-700 mb-1">Work Email *</label>
-                      <input
-                        id="school-email"
-                        type="email"
-                        required
-                        placeholder="jmiller@district.edu"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600 focus:bg-white"
-                      />
-                    </div>
+                  <div>
+                    <label htmlFor="school-role" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                      Title / Role *
+                    </label>
+                    <input
+                      id="school-role"
+                      type="text"
+                      required
+                      placeholder="Transportation Director"
+                      className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
+                    />
                   </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="school-district" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                      School District *
+                    </label>
+                    <input
+                      id="school-district"
+                      type="text"
+                      required
+                      placeholder="Beaverton School District"
+                      className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="school-email" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                      Work Email *
+                    </label>
+                    <input
+                      id="school-email"
+                      type="email"
+                      required
+                      placeholder="jmiller@district.edu"
+                      className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span id="school-program-label" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600">
+                      Program Needs
+                    </span>
+                    <span className="text-[11px] text-slate-500">Select all that apply</span>
+                  </div>
+                  <div role="group" aria-labelledby="school-program-label" className="flex flex-wrap gap-1.5">
+                    {SCHOOL_PROGRAM_OPTIONS.map((option) => {
+                      const isSelected = schoolProgramNeeds.includes(option);
+                      return (
+                        <button
+                          key={option}
+                          type="button"
+                          aria-pressed={isSelected}
+                          onClick={() => toggleSchoolProgram(option)}
+                          className={`inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all duration-150 cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2 ${
+                            isSelected
+                              ? 'bg-brand-600 text-white border border-brand-600 shadow-sm'
+                              : 'bg-white text-brand-600 border border-brand-600/45 hover:border-brand-600 hover:bg-brand-50/60'
+                          }`}
+                        >
+                          {isSelected && <Check className="w-3.5 h-3.5 stroke-[2.5] shrink-0" aria-hidden="true" />}
+                          <span>{option}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="pt-2 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <span className="text-xs text-slate-600">Dedicated local ops &amp; standby fleets</span>
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-full bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 text-white text-xs sm:text-sm font-medium shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
+                    className="group inline-flex items-center justify-center space-x-2 py-3 px-6 rounded-full bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 text-white text-sm font-medium shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2 shrink-0"
                   >
-                    Schedule District Consultation
+                    <span>Schedule Consultation</span>
+                    <ArrowRight className="w-4 h-4 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[3px]" />
                   </button>
-                </form>
-              )}
-            </div>
+                </div>
+              </form>
+            )}
           </div>
         </div>
       </section>

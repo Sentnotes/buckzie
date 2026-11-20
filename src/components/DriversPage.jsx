@@ -1440,55 +1440,87 @@ export default function DriversPage({ onBackToHome }) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto"
+            className="bg-white rounded-[28px] max-w-4xl w-full shadow-2xl border border-slate-200 relative max-h-[92vh] overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-12"
           >
             {/* Close Button */}
             <button
               type="button"
               onClick={resetForm}
               aria-label="Close application modal"
-              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full text-slate-600 hover:text-black hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
+              className="absolute top-3.5 right-3.5 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 md:bg-transparent text-slate-600 hover:text-black hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {formSubmitted ? (
-              <div className="text-center py-8 space-y-4">
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
-                  <CheckCircle2 className="w-8 h-8" />
+            {/* Left Trust Anchor (#051D97 Official Logo Royal Blue) */}
+            <div className="md:col-span-5 bg-[#051D97] text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+              <div className="space-y-4 sm:space-y-5 relative z-10 pr-8 md:pr-0">
+                <div className="inline-flex items-center gap-2 text-xs font-medium text-sky-200">
+                  <span className="w-2 h-2 rounded-full bg-[#FFCC00]" aria-hidden="true" />
+                  <span>W-2 Driver Careers</span>
                 </div>
-                <h3 id="driver-apply-modal-title" className="text-2xl font-bold text-black tracking-tight">
-                  Application Received!
+                <h3 id="driver-apply-modal-title" className="font-inktrap text-2xl sm:text-[1.75rem] font-medium tracking-tight leading-tight text-white">
+                  Drive a steady, meaningful school-day route.
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed max-w-xs mx-auto">
-                  Thank you, <span className="font-semibold text-black">{formData.firstName}</span>. Our local district driver coordinator will review your information and reach out within 24 business hours.
+                <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed">
+                  Complete this 5-minute application to connect with your local district driver coordinator and start route matching.
                 </p>
-                <div className="pt-4">
-                  <button
-                    type="button"
-                    onClick={resetForm}
-                    className="bg-black hover:bg-neutral-800 text-white font-normal px-6 py-2.5 rounded-full text-sm transition-colors cursor-pointer"
-                  >
-                    Done
-                  </button>
-                </div>
+                <ul className="space-y-2.5 pt-1 text-xs text-white/95">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                    </span>
+                    <span>Steady W-2 hourly pay &amp; paid training</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                    </span>
+                    <span>Predictable weekday school bell hours</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                    </span>
+                    <span>Coordinator review within 24 business hours</span>
+                  </li>
+                </ul>
               </div>
-            ) : (
-              <div>
-                <div className="mb-6">
-                  <span className="text-xs font-bold text-brand-600 uppercase tracking-wider">Fast 5-Minute Application</span>
-                  <h3 id="driver-apply-modal-title" className="text-2xl font-bold text-black tracking-tight mt-1">
-                    Apply to Become a Driver
-                  </h3>
-                  <p className="text-xs text-slate-600 mt-1">
-                    Fill out your basic details below to begin the route matching process.
-                  </p>
-                </div>
 
-                <form onSubmit={handleFormSubmit} className="space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="pt-6 mt-6 border-t border-white/15 text-xs text-blue-100/90 space-y-1 relative z-10">
+                <div className="font-semibold text-white">(458) 227-9468 · info@buckledin.com</div>
+                <div className="text-blue-200/80">19-Point Vehicle Safety Standard</div>
+              </div>
+            </div>
+
+            {/* Right Clean Daylight Form */}
+            <div className="md:col-span-7 p-6 sm:p-8 bg-white flex flex-col justify-center">
+              {formSubmitted ? (
+                <div role="status" aria-live="polite" className="text-center py-8 space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h4 className="font-inktrap text-2xl font-medium text-black tracking-tight">
+                    Application Received!
+                  </h4>
+                  <p className="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                    Thank you, <span className="font-semibold text-black">{formData.firstName}</span>. Our local district driver coordinator will review your information and reach out within 24 business hours.
+                  </p>
+                  <div className="pt-3">
+                    <button
+                      type="button"
+                      onClick={resetForm}
+                      className="bg-black hover:bg-neutral-800 text-white font-medium px-7 py-2.5 rounded-full text-sm transition-colors cursor-pointer"
+                    >
+                      Done
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleFormSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label htmlFor="driver-first-name" className="block text-xs font-bold text-slate-700 mb-1">First Name *</label>
+                      <label htmlFor="driver-first-name" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">First Name *</label>
                       <input
                         id="driver-first-name"
                         type="text"
@@ -1497,11 +1529,11 @@ export default function DriversPage({ onBackToHome }) {
                         value={formData.firstName}
                         onChange={handleInputChange}
                         placeholder="Sarah"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                     <div>
-                      <label htmlFor="driver-last-name" className="block text-xs font-bold text-slate-700 mb-1">Last Name *</label>
+                      <label htmlFor="driver-last-name" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">Last Name *</label>
                       <input
                         id="driver-last-name"
                         type="text"
@@ -1510,14 +1542,14 @@ export default function DriversPage({ onBackToHome }) {
                         value={formData.lastName}
                         onChange={handleInputChange}
                         placeholder="Jenkins"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label htmlFor="driver-email" className="block text-xs font-bold text-slate-700 mb-1">Email *</label>
+                      <label htmlFor="driver-email" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">Email *</label>
                       <input
                         id="driver-email"
                         type="email"
@@ -1526,11 +1558,11 @@ export default function DriversPage({ onBackToHome }) {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="sarah@example.com"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                     <div>
-                      <label htmlFor="driver-phone" className="block text-xs font-bold text-slate-700 mb-1">Phone Number *</label>
+                      <label htmlFor="driver-phone" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">Phone Number *</label>
                       <input
                         id="driver-phone"
                         type="tel"
@@ -1539,14 +1571,14 @@ export default function DriversPage({ onBackToHome }) {
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder="(503) 555-0192"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label htmlFor="driver-city" className="block text-xs font-bold text-slate-700 mb-1">City *</label>
+                      <label htmlFor="driver-city" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">City *</label>
                       <input
                         id="driver-city"
                         type="text"
@@ -1555,11 +1587,11 @@ export default function DriversPage({ onBackToHome }) {
                         value={formData.city}
                         onChange={handleInputChange}
                         placeholder="Portland"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                     <div>
-                      <label htmlFor="driver-state" className="block text-xs font-bold text-slate-700 mb-1">State *</label>
+                      <label htmlFor="driver-state" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">State *</label>
                       <input
                         id="driver-state"
                         type="text"
@@ -1568,14 +1600,14 @@ export default function DriversPage({ onBackToHome }) {
                         value={formData.state}
                         onChange={handleInputChange}
                         placeholder="Oregon"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label htmlFor="driver-vehicle" className="block text-xs font-bold text-slate-700 mb-1">Vehicle Year &amp; Model *</label>
+                      <label htmlFor="driver-vehicle" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">Vehicle Year &amp; Model *</label>
                       <input
                         id="driver-vehicle"
                         type="text"
@@ -1584,17 +1616,17 @@ export default function DriversPage({ onBackToHome }) {
                         value={formData.vehicleModel}
                         onChange={handleInputChange}
                         placeholder="2020 Toyota RAV4"
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                     <div>
-                      <label htmlFor="driver-experience" className="block text-xs font-bold text-slate-700 mb-1">Driving Experience</label>
+                      <label htmlFor="driver-experience" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">Driving Experience</label>
                       <select
                         id="driver-experience"
                         name="experience"
                         value={formData.experience}
                         onChange={handleInputChange}
-                        className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-transparent bg-white"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black focus:outline-none focus:border-brand-600 transition-colors"
                       >
                         <option value="3-5 years">3–5 Years</option>
                         <option value="5-10 years">5–10 Years</option>
@@ -1603,20 +1635,21 @@ export default function DriversPage({ onBackToHome }) {
                     </div>
                   </div>
 
-                  <div className="pt-4">
+                  <div className="pt-2 space-y-2.5">
                     <button
                       type="submit"
-                      className="w-full bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 text-white font-medium py-3 rounded-full shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer text-sm focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 text-white font-medium py-3 px-6 rounded-full shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer text-sm focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
                     >
-                      Submit Driver Application
+                      <Send className="w-4 h-4" />
+                      <span>Submit Driver Application</span>
                     </button>
-                    <p className="text-[11px] text-slate-600 text-center mt-2">
+                    <p className="text-[11px] text-slate-500 text-center">
                       By submitting, you agree to allow BuckledIn to contact you regarding route openings.
                     </p>
                   </div>
                 </form>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </div>
       )}

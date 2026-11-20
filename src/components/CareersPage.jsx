@@ -893,129 +893,164 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[92vh] overflow-y-auto"
+            className="bg-white rounded-[28px] max-w-4xl w-full shadow-2xl border border-slate-200 relative max-h-[92vh] overflow-y-auto no-scrollbar grid grid-cols-1 md:grid-cols-12"
           >
-
             {/* Close Button */}
             <button
               type="button"
               onClick={() => setIsApplyModalOpen(false)}
               aria-label="Close application modal"
-              className="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full text-slate-600 hover:text-black hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
+              className="absolute top-3.5 right-3.5 z-20 w-10 h-10 flex items-center justify-center rounded-full bg-white/90 md:bg-transparent text-slate-600 hover:text-black hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
 
-            {applicationSubmitted ? (
-              <div className="text-center py-10 space-y-4">
-                <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center mx-auto shadow-sm">
-                  <Check className="w-8 h-8" />
+            {/* Left Trust Anchor (#051D97 Official Logo Royal Blue) */}
+            <div className="md:col-span-5 bg-[#051D97] text-white p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden">
+              <div className="space-y-4 sm:space-y-5 relative z-10 pr-8 md:pr-0">
+                <div className="inline-flex items-center gap-2 text-xs font-medium text-sky-200">
+                  <span className="w-2 h-2 rounded-full bg-[#FFCC00]" aria-hidden="true" />
+                  <span>{activeCategory === 'drivers' ? 'W-2 Driver Application' : 'Staff Position Application'}</span>
                 </div>
                 <h3
                   style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                  className="text-2xl sm:text-3xl font-medium text-black tracking-tight"
+                  className="text-2xl sm:text-[1.75rem] font-medium text-white tracking-tight leading-tight"
                 >
-                  Application Submitted!
+                  {selectedRole ? selectedRole.title : 'Apply to BuckledIn'}
                 </h3>
-                <p className="text-sm text-slate-700 font-normal max-w-md mx-auto leading-relaxed">
-                  Thank you for applying for <strong>{selectedRole?.title}</strong>. Our recruiting and onboarding coordination team will review your details and reach out within 1–2 business days.
+                <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed">
+                  Complete this quick application to begin our streamlined onboarding and vetting review with your local team.
                 </p>
-                <div className="pt-4">
-                  <button
-                    onClick={() => setIsApplyModalOpen(false)}
-                    className="px-8 py-3 bg-black hover:bg-neutral-800 text-white font-medium text-sm rounded-full cursor-pointer transition-colors"
-                  >
-                    Close Window
-                  </button>
-                </div>
+                <ul className="space-y-2.5 pt-1 text-xs text-white/95">
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                    </span>
+                    <span>W-2 employment with structured training &amp; support</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                    </span>
+                    <span>Purpose-driven K–12 student transportation mission</span>
+                  </li>
+                  <li className="flex items-start gap-2.5">
+                    <span className="w-5 h-5 rounded-full bg-white/15 inline-flex items-center justify-center text-[#16C3FF] shrink-0 mt-0.5">
+                      <Check className="w-3 h-3 stroke-[2.8]" aria-hidden="true" />
+                    </span>
+                    <span>Recruiting review within 1–2 business days</span>
+                  </li>
+                </ul>
               </div>
-            ) : (
-              <div>
-                <div className="mb-6">
-                  <span className="text-[11px] font-medium uppercase tracking-wider text-brand-600 bg-brand-50 px-2.5 py-0.5 rounded-full border border-brand-100">
-                    {activeCategory === 'drivers' ? 'Driver Partner Application' : 'Staff Position Application'}
-                  </span>
-                  <h3
-                    style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                    className="text-2xl sm:text-3xl font-medium text-black tracking-tight mt-2"
-                  >
-                    {selectedRole ? selectedRole.title : 'Apply to BuckledIn'}
-                  </h3>
-                  <p className="text-xs text-slate-600 font-normal mt-1">
-                    Complete this quick application to begin our streamlined onboarding and vetting review.
-                  </p>
-                </div>
 
-                <form onSubmit={handleSubmitApplication} className="space-y-4 font-normal">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="pt-6 mt-6 border-t border-white/15 text-xs text-blue-100/90 space-y-1 relative z-10">
+                <div className="font-semibold text-white">(458) 227-9468 · info@buckledin.com</div>
+                <div className="text-blue-200/80">Headquarters · Beaverton, Oregon</div>
+              </div>
+            </div>
+
+            {/* Right Clean Daylight Form */}
+            <div className="md:col-span-7 p-6 sm:p-8 bg-white flex flex-col justify-center">
+              {applicationSubmitted ? (
+                <div role="status" aria-live="polite" className="text-center py-10 space-y-4">
+                  <div className="w-16 h-16 bg-emerald-50 text-emerald-600 border border-emerald-200 rounded-full flex items-center justify-center mx-auto shadow-sm">
+                    <Check className="w-8 h-8" />
+                  </div>
+                  <h4
+                    style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
+                    className="text-2xl sm:text-3xl font-medium text-black tracking-tight"
+                  >
+                    Application Submitted!
+                  </h4>
+                  <p className="text-sm text-slate-700 font-normal max-w-md mx-auto leading-relaxed">
+                    Thank you for applying for <strong>{selectedRole?.title}</strong>. Our recruiting and onboarding coordination team will review your details and reach out within 1–2 business days.
+                  </p>
+                  <div className="pt-4">
+                    <button
+                      type="button"
+                      onClick={() => setIsApplyModalOpen(false)}
+                      className="px-8 py-3 bg-black hover:bg-neutral-800 text-white font-medium text-sm rounded-full cursor-pointer transition-colors"
+                    >
+                      Close Window
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmitApplication} className="space-y-5 font-normal">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label htmlFor="career-first-name" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                         First Name *
                       </label>
                       <input
+                        id="career-first-name"
                         type="text"
                         name="firstName"
                         required
                         value={formData.firstName}
                         onChange={handleInputChange}
-                        placeholder="e.g. Maria"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                        placeholder="Maria"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label htmlFor="career-last-name" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                         Last Name *
                       </label>
                       <input
+                        id="career-last-name"
                         type="text"
                         name="lastName"
                         required
                         value={formData.lastName}
                         onChange={handleInputChange}
-                        placeholder="e.g. Santos"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                        placeholder="Santos"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label htmlFor="career-email" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                         Email Address *
                       </label>
                       <input
+                        id="career-email"
                         type="email"
                         name="email"
                         required
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="you@email.com"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label htmlFor="career-phone" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                         Phone Number *
                       </label>
                       <input
+                        id="career-phone"
                         type="tel"
                         name="phone"
                         required
                         value={formData.phone}
                         onChange={handleInputChange}
                         placeholder="(555) 000-0000"
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* State & Metro Selection */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label htmlFor="career-state" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                         Operating State *
                       </label>
                       <select
+                        id="career-state"
                         name="state"
                         value={formData.state}
                         onChange={(e) => {
@@ -1026,7 +1061,7 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
                             metro: statesData.find((s) => s.code === val)?.metros[0] || ''
                           }));
                         }}
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black focus:outline-none focus:border-brand-600 transition-colors"
                       >
                         {statesData.filter((s) => s.code !== 'ALL').map((st) => (
                           <option key={st.code} value={st.code}>
@@ -1037,14 +1072,15 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium text-slate-700 mb-1">
+                      <label htmlFor="career-metro" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                         Preferred Metro Area *
                       </label>
                       <select
+                        id="career-metro"
                         name="metro"
                         value={formData.metro}
                         onChange={handleInputChange}
-                        className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black focus:outline-none focus:border-brand-600 transition-colors"
                       >
                         {(statesData.find((s) => s.code === formData.state)?.metros || []).map((m) => (
                           <option key={m} value={m}>
@@ -1057,16 +1093,17 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
 
                   {/* Driver Specific Fields */}
                   {activeCategory === 'drivers' && (
-                    <div className="space-y-4 pt-1 border-t border-slate-100">
+                    <div className="space-y-5">
                       <div>
-                        <label className="block text-xs font-medium text-slate-700 mb-1">
+                        <label htmlFor="career-vehicle-type" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                           Vehicle Type You Own / Drive *
                         </label>
                         <select
+                          id="career-vehicle-type"
                           name="vehicleType"
                           value={formData.vehicleType}
                           onChange={handleInputChange}
-                          className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                          className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black focus:outline-none focus:border-brand-600 transition-colors"
                         >
                           <option value="sedan">4-Door Sedan (Camry, Accord, etc.)</option>
                           <option value="suv">SUV / Crossover (RAV4, CR-V, Explorer)</option>
@@ -1076,33 +1113,35 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
                         </select>
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                         <div>
-                          <label className="block text-xs font-medium text-slate-700 mb-1">
+                          <label htmlFor="career-vehicle-year" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                             Vehicle Year *
                           </label>
                           <input
+                            id="career-vehicle-year"
                             type="text"
                             name="vehicleYear"
                             required
                             value={formData.vehicleYear}
                             onChange={handleInputChange}
-                            placeholder="e.g. 2021"
-                            className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                            placeholder="2021"
+                            className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                           />
                         </div>
                         <div>
-                          <label className="block text-xs font-medium text-slate-700 mb-1">
+                          <label htmlFor="career-vehicle-model" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                             Vehicle Make &amp; Model *
                           </label>
                           <input
+                            id="career-vehicle-model"
                             type="text"
                             name="vehicleModel"
                             required
                             value={formData.vehicleModel}
                             onChange={handleInputChange}
-                            placeholder="e.g. Toyota RAV4"
-                            className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                            placeholder="Toyota RAV4"
+                            className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
                           />
                         </div>
                       </div>
@@ -1111,52 +1150,51 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
 
                   {/* Staff Specific Fields */}
                   {activeCategory === 'staff' && (
-                    <div className="space-y-4 pt-1 border-t border-slate-100">
-                      <div>
-                        <label className="block text-xs font-medium text-slate-700 mb-1">
-                          LinkedIn Profile or Resume Link *
-                        </label>
-                        <input
-                          type="url"
-                          name="resumeLink"
-                          required
-                          value={formData.resumeLink}
-                          onChange={handleInputChange}
-                          placeholder="https://linkedin.com/in/... or Google Drive link"
-                          className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
-                        />
-                      </div>
+                    <div>
+                      <label htmlFor="career-resume-link" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                        LinkedIn Profile or Resume Link *
+                      </label>
+                      <input
+                        id="career-resume-link"
+                        type="url"
+                        name="resumeLink"
+                        required
+                        value={formData.resumeLink}
+                        onChange={handleInputChange}
+                        placeholder="https://linkedin.com/in/... or Google Drive link"
+                        className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors"
+                      />
                     </div>
                   )}
 
                   {/* Notes / Experience */}
                   <div>
-                    <label className="block text-xs font-medium text-slate-700 mb-1">
-                      Brief Experience or Relevant Notes (Optional)
+                    <label htmlFor="career-notes" className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
+                      Brief Experience or Notes (Optional)
                     </label>
                     <textarea
+                      id="career-notes"
                       name="notes"
                       rows={2}
                       value={formData.notes}
                       onChange={handleInputChange}
                       placeholder={activeCategory === 'drivers' ? 'Previous driving, student care, or school bus experience...' : 'Relevant dispatch, telematics, or customer experience...'}
-                      className="w-full text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-brand-500 focus:bg-white font-normal"
+                      className="w-full pb-2 pt-1 bg-transparent border-b-2 border-slate-200 text-sm text-black placeholder-slate-400 focus:outline-none focus:border-brand-600 transition-colors resize-none"
                     />
                   </div>
 
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm rounded-full transition-all duration-200 cursor-pointer shadow-md shadow-brand-500/25 active:scale-98 flex items-center justify-center space-x-2"
+                      className="w-full py-3.5 px-6 bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 text-white font-medium text-sm rounded-full shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] cursor-pointer flex items-center justify-center space-x-2 focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
                     >
                       <Send className="w-4 h-4" />
                       <span>Submit Application</span>
                     </button>
                   </div>
                 </form>
-              </div>
-            )}
-
+              )}
+            </div>
           </div>
         </div>
       )}
