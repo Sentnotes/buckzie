@@ -39,13 +39,13 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
           {/* Right Side: Subscribe to BuckledIn + Audience Role Selector Tabs */}
           <div className="lg:col-span-6 text-center lg:text-left order-1 lg:order-2">
             <span className="text-xs font-bold uppercase tracking-widest text-brand-600 mb-3 inline-block">
-              Safety Alerts &amp; Rider Perks
+              District &amp; Family Updates
             </span>
             <h2 className="font-inktrap text-3xl sm:text-4xl font-medium text-black tracking-tight mb-3">
               Subscribe to BuckledIn
             </h2>
             <p className="text-slate-600 text-sm max-w-md mx-auto lg:mx-0 mb-5 leading-relaxed">
-              Be the first to hear about new city launches, family travel discounts, and driver benefits.
+              Be the first to hear about new district launches, safety updates, and W-2 driver openings.
             </p>
 
             {/* Audience Role Selector Pills (Families / Drivers / School Districts) */}

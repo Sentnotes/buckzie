@@ -691,7 +691,7 @@ export default function FamiliesPage({ onBackToHome }) {
                 flow: 'parent tracking',
                 badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200',
                 dotClass: 'bg-emerald-600',
-                img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80',
+                img: '/family/Mother-Son.png',
                 alt: 'Parent Guardian viewing live ride update on smartphone',
               },
               {
@@ -787,7 +787,7 @@ export default function FamiliesPage({ onBackToHome }) {
               {/* Card 2: Parent / Guardian */}
               <div className="w-full h-[230px] rounded-[22px] overflow-hidden relative shadow-[0_8px_26px_rgba(0,0,0,0.08)] border border-slate-200/80 flex flex-col justify-end bg-slate-900">
                 <img
-                  src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80"
+                  src="/family/Mother-Son.png"
                   alt="Parent Guardian viewing live ride update on smartphone"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"

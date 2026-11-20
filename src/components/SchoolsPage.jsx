@@ -298,7 +298,7 @@ const pillarDeepDives = {
     metrics: [
       { value: '6AM–6PM', label: 'Active Route Oversight', desc: 'Live safety monitoring during school hours', color: 'text-brand-600' },
       { value: 'Vetted', label: 'Thorough Background Checks', desc: 'Multi-jurisdictional screening', color: 'text-black' },
-      { value: '150-Pt', label: 'Mechanical Inspection', desc: 'Annual & quarterly vehicle audits', color: 'text-emerald-600' }
+      { value: '19-Point', label: 'Vehicle Inspection', desc: 'Certified mechanical safety audits', color: 'text-emerald-600' }
     ],
     sectionTitle: 'Continuous Safety Oversight & Audit Checklist',
     sectionSubtitle: 'Daily automated checks and recurring certifications that keep pupil transit safe.',
@@ -319,9 +319,9 @@ const pillarDeepDives = {
       },
       {
         step: '03',
-        title: '150-Point Certified Mechanic Vehicle Inspections',
-        desc: 'Vehicles must undergo comprehensive periodic mechanical audits by ASE-certified mechanics covering brakes, tires, steering, and LATCH child anchors.',
-        tag: '150-Point Inspection',
+        title: '19-Point Certified Mechanic Vehicle Inspections',
+        desc: 'Vehicles must undergo comprehensive periodic 19-point mechanical audits by ASE-certified mechanics covering brakes, tires, steering, and LATCH child anchors.',
+        tag: '19-Point Inspection',
         icon: CheckCircle2
       },
       {
@@ -1043,7 +1043,7 @@ export default function SchoolsPage({ onBackToHome }) {
             aria-modal="true"
             aria-labelledby="pillar-modal-title"
             onClick={handleCloseModal}
-            className={`fixed inset-0 z-[90] flex items-start sm:items-center justify-center p-3 sm:p-6 pt-16 sm:pt-20 bg-black/60 backdrop-blur-md overflow-hidden ${
+            className={`fixed inset-0 z-[110] flex items-start sm:items-center justify-center p-3 sm:p-6 pt-16 sm:pt-20 bg-black/60 backdrop-blur-md overflow-hidden ${
               isModalVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
             }`}
             style={{

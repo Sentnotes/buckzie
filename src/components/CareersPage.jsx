@@ -785,8 +785,19 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Filter staff positions..."
-                  className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-black placeholder-slate-400 pl-10 pr-4 py-3 rounded-full focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 font-normal"
+                  aria-label="Filter staff positions"
+                  className="w-full bg-white border border-slate-200 text-xs sm:text-sm text-black placeholder-slate-500 pl-10 pr-8 py-3 rounded-full focus:outline-none focus:border-brand-600 focus:ring-2 focus:ring-brand-600/20 font-normal"
                 />
+                {searchQuery && (
+                  <button
+                    type="button"
+                    aria-label="Clear search"
+                    onClick={() => setSearchQuery('')}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-black cursor-pointer"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
               </div>
             </div>
 
@@ -878,7 +889,7 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
           aria-modal="true"
           aria-label={selectedRole?.title || 'Job Application'}
           onClick={() => setIsApplyModalOpen(false)}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
+          className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -1065,7 +1076,7 @@ export default function CareersPage({ onBackToHome, embedded = false }) {
                         </select>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <label className="block text-xs font-medium text-slate-700 mb-1">
                             Vehicle Year *

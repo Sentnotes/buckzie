@@ -159,6 +159,17 @@ export default function Navbar({
     return () => window.removeEventListener('resize', updateLiquidPill);
   }, [targetFocusId, showDesktopCollapsed]);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   return (
     <>
       {/* Mobile Backdrop Overlay when Menu is Open */}
@@ -174,6 +185,7 @@ export default function Navbar({
       <header className="fixed top-3 sm:top-5 left-0 right-0 z-[100] flex justify-center px-3 sm:px-4 pointer-events-none transition-all duration-300">
         {/* ── Desktop Header Bar (md and up) — Collapses to Centered Squircle on Scroll Down ── */}
         <nav
+          aria-label="Primary navigation"
           onMouseEnter={() => {
             if (!isLockedCollapsed) {
               setMorphMs(480);
@@ -183,6 +195,18 @@ export default function Navbar({
           onMouseLeave={() => {
             setMorphMs(480);
             setIsDesktopHovered(false);
+          }}
+          onFocus={() => {
+            if (!isLockedCollapsed) {
+              setMorphMs(480);
+              setIsDesktopHovered(true);
+            }
+          }}
+          onBlur={(e) => {
+            if (!e.currentTarget.contains(e.relatedTarget)) {
+              setMorphMs(480);
+              setIsDesktopHovered(false);
+            }
           }}
           className={`hidden md:flex pointer-events-auto w-full items-center justify-center overflow-hidden ${
             showDesktopCollapsed
@@ -277,6 +301,7 @@ export default function Navbar({
                   onFocus={() => setHoveredNavId(item.id)}
                   onBlur={() => setHoveredNavId(null)}
                   onClick={() => handleNavClick(item.id)}
+                  aria-current={isActive ? 'page' : undefined}
                   className={`relative z-10 px-4 py-1.5 text-sm font-normal rounded-full transition-colors duration-200 cursor-pointer whitespace-nowrap active:scale-[0.97] ${
                     isActive
                       ? 'text-brand-600'
@@ -364,9 +389,11 @@ export default function Navbar({
 
             {/* Right: Hamburger (=) when closed, Close (X) when open */}
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-expanded={mobileMenuOpen}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 active:scale-90 transition-all cursor-pointer flex-shrink-0"
+              className="w-11 h-11 flex items-center justify-center rounded-full hover:bg-black/5 active:scale-90 transition-all cursor-pointer flex-shrink-0"
             >
               {mobileMenuOpen ? (
                 <X className="w-5 h-5 text-black stroke-[2.2]" />
@@ -395,6 +422,8 @@ export default function Navbar({
                   return (
                     <button
                       key={item.id}
+                      type="button"
+                      aria-current={isActive ? 'page' : undefined}
                       onClick={() => handleNavClick(item.id)}
                       className={`w-full py-2.5 px-4 rounded-2xl transition-all duration-200 cursor-pointer flex items-center justify-center space-x-2 group active:scale-[0.98] ${
                         isActive

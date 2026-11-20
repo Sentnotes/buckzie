@@ -782,8 +782,16 @@ function NewslettersTabView({ onBackToHome }) {
               return (
                 <article
                   key={issue.id}
+                  role="button"
+                  tabIndex={0}
                   onClick={() => handleOpenIssueModal(issue)}
-                  className={`${rowDividerClass} bg-transparent hover:bg-white/80 transition-colors duration-300 flex flex-col justify-between group cursor-pointer overflow-hidden px-5 sm:px-6 lg:px-7 pb-6 sm:pb-7 ${
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      handleOpenIssueModal(issue);
+                    }
+                  }}
+                  className={`${rowDividerClass} bg-transparent hover:bg-white/80 transition-colors duration-300 flex flex-col justify-between group cursor-pointer overflow-hidden px-5 sm:px-6 lg:px-7 pb-6 sm:pb-7 focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-[-2px] ${
                     idx < 3 ? 'pt-4 sm:pt-5' : 'pt-6 sm:pt-7'
                   }`}
                 >
@@ -862,7 +870,7 @@ function NewslettersTabView({ onBackToHome }) {
           aria-modal="true"
           aria-label={activeIssueModal.title}
           onClick={handleCloseIssueModal}
-          className={`fixed inset-0 z-[90] flex items-start sm:items-center justify-center p-3 sm:p-6 pt-16 sm:pt-20 bg-black/60 backdrop-blur-md overflow-hidden ${
+          className={`fixed inset-0 z-[110] flex items-start sm:items-center justify-center p-3 sm:p-6 pt-16 sm:pt-20 bg-black/60 backdrop-blur-md overflow-hidden ${
             isModalVisible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           }`}
           style={{

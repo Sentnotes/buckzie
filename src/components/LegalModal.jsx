@@ -228,7 +228,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
       body: (
         <div className="space-y-4 text-xs sm:text-sm text-black font-medium leading-relaxed">
           <p>
-            Every BuckledIn vehicle must pass a 150-point annual mechanical inspection. Every driver undergoes continuous DMV license monitoring and multi-jurisdictional background screening.
+            Every BuckledIn vehicle must pass a 19-point mechanical safety inspection. Every driver undergoes continuous DMV license monitoring and multi-jurisdictional background screening.
           </p>
           <p>
             In-app SOS connects directly to both local 911 dispatchers and our dedicated crisis response team during active school hours with GPS coordinates shared instantly.
@@ -262,7 +262,7 @@ export default function LegalModal({ isOpen, type, onClose }) {
       aria-modal="true"
       aria-labelledby="legal-modal-title"
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-200"
+      className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-200"
     >
       <div
         onClick={(e) => e.stopPropagation()}

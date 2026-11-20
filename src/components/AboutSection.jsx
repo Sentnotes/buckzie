@@ -103,6 +103,8 @@ export default function AboutSection({ onOpenFullAbout }) {
                   className="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs hover:border-slate-300 transition-colors"
                 >
                   <button
+                    type="button"
+                    aria-expanded={isOpen}
                     onClick={() => setOpenFaq(isOpen ? null : index)}
                     className="w-full flex items-center justify-between p-5 text-left bg-white hover:bg-slate-50 transition-colors cursor-pointer"
                   >

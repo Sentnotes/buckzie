@@ -124,12 +124,12 @@ const driverTestimonials = [
     name: 'Deborah Miller',
     location: 'Seattle, WA',
     tenure: '2 Years with BuckledIn',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80'
+    avatar: '/driverssection/pic1.jpg'
   },
   {
     quote: "Here, my route is set, the schedule is predictable, and school coordinators and parents treat me with respect and trust. Best driving decision I ever made.",
     name: 'Carlos Mendez',
-    location: 'Boise, ID',
+    location: 'Portland, OR',
     tenure: '4 Years with BuckledIn',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80'
   }
@@ -413,7 +413,7 @@ function RegionCarousel({ onApply }) {
 
 export default function DriversPage({ onBackToHome }) {
   const [openFaq, setOpenFaq] = useState(null);
-  const [activeOnboardingStep, setActiveOnboardingStep] = useState(3);
+  const [activeOnboardingStep, setActiveOnboardingStep] = useState(0);
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -617,7 +617,7 @@ export default function DriversPage({ onBackToHome }) {
                       Morning Bell • 7:15 AM
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-white text-[10px] font-semibold shadow-2xs rotate-3">
-                      100% Tips Kept
+                      W-2 Steady Pay
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-white text-[10px] font-semibold shadow-2xs -rotate-1">
                       Weekly Deposit
@@ -1436,7 +1436,7 @@ export default function DriversPage({ onBackToHome }) {
           aria-modal="true"
           aria-labelledby="driver-apply-modal-title"
           onClick={resetForm}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
+          className="fixed inset-0 z-[110] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-200"
         >
           <div
             onClick={(e) => e.stopPropagation()}

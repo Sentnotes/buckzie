@@ -200,6 +200,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-white text-black selection:bg-brand-500 selection:text-white flex flex-col justify-between">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[120] focus:px-4 focus:py-2 focus:rounded-full focus:bg-brand-600 focus:text-white focus:text-sm focus:font-medium focus:shadow-lg"
+      >
+        Skip to main content
+      </a>
+
       {/* Pill-shaped Glassmorphic Navbar */}
       <Navbar
         currentView={currentView}
@@ -210,7 +217,7 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         <Suspense
           fallback={
             <div className="min-h-[60vh] flex items-center justify-center bg-white">
