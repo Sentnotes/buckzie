@@ -50,9 +50,8 @@ export default function RideSimulationModal({ isOpen, bookingData, onClose }) {
           <div className="py-8 text-center space-y-6">
             <div className="relative w-24 h-24 mx-auto flex items-center justify-center">
               <div className="absolute inset-0 rounded-full bg-brand-500/20 animate-ping" />
-              <div className="absolute inset-2 rounded-full bg-brand-500/30 animate-pulse" />
               <div className="w-16 h-16 rounded-full bg-brand-600 flex items-center justify-center text-white shadow-xl relative z-10">
-                <Car className="w-8 h-8 animate-bounce" />
+                <Car className="w-8 h-8" />
               </div>
             </div>
 

@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import InteractiveShowcase from './components/InteractiveShowcase';
 import DriversSection from './components/DriversSection';
 import FamiliesSection from './components/FamiliesSection';
 import AboutSection from './components/AboutSection';
-import AboutPage from './components/AboutPage';
-import FamiliesPage from './components/FamiliesPage';
-import DriversPage from './components/DriversPage';
-import SchoolsPage from './components/SchoolsPage';
 import Footer from './components/Footer';
 import RideSimulationModal from './components/RideSimulationModal';
 import LegalModal from './components/LegalModal';
+
+const AboutPage = lazy(() => import('./components/AboutPage'));
+const FamiliesPage = lazy(() => import('./components/FamiliesPage'));
+const DriversPage = lazy(() => import('./components/DriversPage'));
+const SchoolsPage = lazy(() => import('./components/SchoolsPage'));
 
 const ROUTE_MAP = {
   '/': {
@@ -223,6 +224,13 @@ export default function App() {
 
       {/* Main Content Area */}
       <main className="flex-grow">
+        <Suspense
+          fallback={
+            <div className="min-h-[60vh] flex items-center justify-center bg-white">
+              <div className="w-8 h-8 rounded-full border-2 border-slate-200 border-t-brand-600 animate-spin" aria-label="Loading page" />
+            </div>
+          }
+        >
         {currentView === 'about' ? (
           /* Dedicated Full About Page with Hero Pill Tabs (Who We Are | Careers | Newsletters) */
           <AboutPage
@@ -278,6 +286,7 @@ export default function App() {
             />
           </>
         )}
+        </Suspense>
       </main>
 
       {/* Deep Black Footer with Contact Us, Terms & Conditions, Privacy Policy */}
