@@ -26,7 +26,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Neue Haas Grotesk"', 'Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
         inktrap: ['"Whyte Inktrap"', '"Whyte Inktrap Medium"', '"ABC Whyte Inktrap"', 'sans-serif'],
       },
       boxShadow: {
