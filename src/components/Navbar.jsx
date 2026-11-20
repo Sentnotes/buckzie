@@ -12,6 +12,7 @@ export default function Navbar({
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isDesktopHovered, setIsDesktopHovered] = useState(false);
   const [isLockedCollapsed, setIsLockedCollapsed] = useState(false);
+  const [morphMs, setMorphMs] = useState(520);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredNavId, setHoveredNavId] = useState(null);
   const [liquidPill, setLiquidPill] = useState({ left: 0, width: 0, visible: false });
@@ -36,34 +37,66 @@ export default function Navbar({
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let rafId = 0;
+
+    const durationForSpeed = (deltaPx) => {
+      const speed = Math.abs(deltaPx);
+      const clamped = Math.min(Math.max(speed, 20), 140);
+      const ratio = (clamped - 20) / (140 - 20);
+      // Slow scroll -> ~680ms calm glide; fast flick -> ~330ms crisp morph
+      return Math.round(680 - ratio * 350);
+    };
+
+    const updateOnScroll = () => {
+      rafId = 0;
       const currentY = window.scrollY;
       const delta = currentY - lastScrollY.current;
+      const nextScrolled = currentY > 20;
 
-      setIsScrolled(currentY > 20);
+      setIsScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
 
       // Always keep expanded near the top of the page
       if (currentY < 60) {
-        setIsCollapsed(false);
+        setIsCollapsed((prev) => {
+          if (prev) setMorphMs(durationForSpeed(delta));
+          return false;
+        });
         lastScrollY.current = currentY;
-      } else if (delta > 12 && currentY > 95) {
+      } else if (delta > 16 && currentY > 95) {
         // Scrolling down -> smoothly collapse into centered squircle
-        setIsCollapsed(true);
+        setIsCollapsed((prev) => {
+          if (!prev) setMorphMs(durationForSpeed(delta));
+          return true;
+        });
         lastScrollY.current = currentY;
-      } else if (delta < -12) {
+      } else if (delta < -16) {
         // Scrolling up -> smoothly zoom out into full pill
-        setIsCollapsed(false);
+        setIsCollapsed((prev) => {
+          if (prev) setMorphMs(durationForSpeed(delta));
+          return false;
+        });
         lastScrollY.current = currentY;
       }
     };
 
+    const handleScroll = () => {
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(updateOnScroll);
+      }
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   // Desktop morph state: expands if user scrolls up OR hovers over the collapsed squircle
   // BUT if isLockedCollapsed is true (e.g. modal overlay open), stay strictly collapsed and DO NOT expand
   const showDesktopCollapsed = isLockedCollapsed || (isCollapsed && !isDesktopHovered);
+  const innerWidthMs = Math.round(morphMs * 0.9);
+  const fadeMs = Math.round(morphMs * 0.48);
 
   // Uniform navigation items across all pages
   const navItems = [
@@ -142,25 +175,31 @@ export default function Navbar({
         {/* ── Desktop Header Bar (md and up) — Collapses to Centered Squircle on Scroll Down ── */}
         <nav
           onMouseEnter={() => {
-            if (!isLockedCollapsed) setIsDesktopHovered(true);
+            if (!isLockedCollapsed) {
+              setMorphMs(480);
+              setIsDesktopHovered(true);
+            }
           }}
-          onMouseLeave={() => setIsDesktopHovered(false)}
-          className={`hidden md:flex pointer-events-auto w-full items-center overflow-hidden ${
+          onMouseLeave={() => {
+            setMorphMs(480);
+            setIsDesktopHovered(false);
+          }}
+          className={`hidden md:flex pointer-events-auto w-full items-center justify-center overflow-hidden ${
             showDesktopCollapsed
-              ? 'justify-center max-w-[126px] rounded-[22px] bg-white/85 border border-white/75 shadow-[0_14px_38px_0_rgba(0,0,0,0.12),0_1px_1px_0_rgba(255,255,255,0.95)_inset] py-2 px-3 ring-1 ring-black/5 scale-[0.97]'
+              ? 'max-w-[126px] rounded-[22px] bg-white/85 border border-white/75 shadow-[0_14px_38px_0_rgba(0,0,0,0.12),0_1px_1px_0_rgba(255,255,255,0.95)_inset] py-2 px-3 ring-1 ring-black/5 scale-[0.97]'
               : isScrolled
-              ? 'justify-between max-w-5xl rounded-[999px] bg-white/75 border border-white/60 shadow-[0_12px_40px_0_rgba(0,0,0,0.10),0_1px_1px_0_rgba(255,255,255,0.9)_inset] py-2 sm:py-2.5 px-4 md:px-6 ring-1 ring-black/5 scale-100'
-              : 'justify-between max-w-5xl rounded-[999px] bg-white/65 border border-white/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.08),0_1px_1px_0_rgba(255,255,255,0.95)_inset] py-2.5 sm:py-3 px-4 md:px-7 ring-1 ring-black/5 scale-100'
+              ? 'max-w-5xl rounded-[999px] bg-white/75 border border-white/60 shadow-[0_12px_40px_0_rgba(0,0,0,0.10),0_1px_1px_0_rgba(255,255,255,0.9)_inset] py-2 sm:py-2.5 px-4 md:px-6 ring-1 ring-black/5 scale-100'
+              : 'max-w-5xl rounded-[999px] bg-white/65 border border-white/50 shadow-[0_8px_32px_0_rgba(0,0,0,0.08),0_1px_1px_0_rgba(255,255,255,0.95)_inset] py-2.5 sm:py-3 px-4 md:px-7 ring-1 ring-black/5 scale-100'
           }`}
           style={{
             WebkitBackdropFilter: 'blur(20px) saturate(180%)',
             backdropFilter: 'blur(20px) saturate(180%)',
             transform: 'translateZ(0)',
             willChange: 'transform, max-width',
-            transition: 'all 620ms cubic-bezier(0.22, 1, 0.36, 1)',
+            transition: `max-width ${morphMs}ms cubic-bezier(0.22, 1, 0.36, 1), border-radius ${morphMs}ms cubic-bezier(0.22, 1, 0.36, 1), padding ${morphMs}ms cubic-bezier(0.22, 1, 0.36, 1), transform ${morphMs}ms cubic-bezier(0.22, 1, 0.36, 1), background-color 300ms ease, box-shadow 300ms ease`,
           }}
         >
-          {/* Brand Logo - Always Returns Home & Centers Smoothly When Collapsed */}
+          {/* Brand Logo - Always Returns Home & Glides Smoothly to Center When Collapsed */}
           <button
             onClick={() => {
               if (currentView !== 'home' && onBackToHome) {
@@ -169,7 +208,7 @@ export default function Navbar({
                 handleNavClick('home');
               }
             }}
-            className="flex items-center justify-center group focus:outline-none cursor-pointer flex-shrink-0"
+            className="flex items-center justify-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-lg cursor-pointer flex-shrink-0"
             aria-label="BuckledIn Home"
           >
             <img
@@ -179,19 +218,28 @@ export default function Navbar({
             />
           </button>
 
+          {/* Animated Left Flex Spacer (prevents justify-between -> justify-center snap) */}
+          <div
+            aria-hidden="true"
+            className={showDesktopCollapsed ? 'flex-grow-0' : 'flex-grow'}
+            style={{ transition: `flex-grow ${morphMs}ms cubic-bezier(0.22, 1, 0.36, 1)` }}
+          />
+
           {/* Desktop Navigation Tabs - Glassmorphic inner pill with sliding Liquid Glass focus */}
           <div
             ref={innerPillRef}
+            inert={showDesktopCollapsed ? '' : undefined}
+            aria-hidden={showDesktopCollapsed || undefined}
             onMouseLeave={() => setHoveredNavId(null)}
             className={`relative hidden md:flex items-center space-x-1 bg-black/[0.04] rounded-full border border-black/[0.04] shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)] whitespace-nowrap overflow-hidden flex-shrink-0 ${
               showDesktopCollapsed
-                ? 'max-w-0 opacity-0 scale-90 p-0 border-0 pointer-events-none'
+                ? 'max-w-0 opacity-0 scale-95 p-0 border-0 pointer-events-none'
                 : 'max-w-[440px] opacity-100 scale-100 p-1.5'
             }`}
             style={{
               WebkitBackdropFilter: 'blur(12px)',
               backdropFilter: 'blur(12px)',
-              transition: 'all 750ms cubic-bezier(0.4, 0, 0.2, 1)',
+              transition: `max-width ${innerWidthMs}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${fadeMs}ms ease, transform ${innerWidthMs}ms cubic-bezier(0.22, 1, 0.36, 1), padding ${innerWidthMs}ms cubic-bezier(0.22, 1, 0.36, 1)`,
             }}
           >
             {/* Sliding Liquid Glass Focus Pill */}
@@ -209,7 +257,7 @@ export default function Navbar({
                 boxShadow:
                   '0 4px 14px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.05), inset 0 1.5px 1px rgba(255, 255, 255, 0.98), inset 0 -1px 2px rgba(15, 23, 42, 0.05)',
                 transition:
-                  'transform 460ms cubic-bezier(0.22, 1.28, 0.36, 1), width 420ms cubic-bezier(0.22, 1.28, 0.36, 1), opacity 200ms ease',
+                  'transform 420ms cubic-bezier(0.22, 1, 0.36, 1), width 380ms cubic-bezier(0.22, 1, 0.36, 1), opacity 200ms ease',
                 willChange: 'transform, width, opacity',
               }}
             >
@@ -243,15 +291,24 @@ export default function Navbar({
             })}
           </div>
 
+          {/* Animated Right Flex Spacer */}
+          <div
+            aria-hidden="true"
+            className={showDesktopCollapsed ? 'flex-grow-0' : 'flex-grow'}
+            style={{ transition: `flex-grow ${morphMs}ms cubic-bezier(0.22, 1, 0.36, 1)` }}
+          />
+
           {/* Right Action Buttons (Uniform across all pages) */}
           <div
+            inert={showDesktopCollapsed ? '' : undefined}
+            aria-hidden={showDesktopCollapsed || undefined}
             className={`hidden md:flex items-center space-x-3 whitespace-nowrap overflow-hidden flex-shrink-0 ${
               showDesktopCollapsed
-                ? 'max-w-0 opacity-0 scale-90 pointer-events-none'
+                ? 'max-w-0 opacity-0 scale-95 pointer-events-none'
                 : 'max-w-[340px] opacity-100 scale-100'
             }`}
             style={{
-              transition: 'all 750ms cubic-bezier(0.4, 0, 0.2, 1)',
+              transition: `max-width ${innerWidthMs}ms cubic-bezier(0.22, 1, 0.36, 1), opacity ${fadeMs}ms ease, transform ${innerWidthMs}ms cubic-bezier(0.22, 1, 0.36, 1)`,
             }}
           >
             <button
@@ -295,7 +352,7 @@ export default function Navbar({
                   handleNavClick('home');
                 }
               }}
-              className="flex items-center focus:outline-none cursor-pointer group flex-shrink-0 pl-1"
+              className="flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-2 rounded-lg cursor-pointer group flex-shrink-0 pl-1"
               aria-label="BuckledIn Home"
             >
               <img

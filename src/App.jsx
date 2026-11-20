@@ -9,23 +9,107 @@ import AboutPage from './components/AboutPage';
 import FamiliesPage from './components/FamiliesPage';
 import DriversPage from './components/DriversPage';
 import SchoolsPage from './components/SchoolsPage';
-import CareersPage from './components/CareersPage';
 import Footer from './components/Footer';
 import RideSimulationModal from './components/RideSimulationModal';
 import LegalModal from './components/LegalModal';
 
+const ROUTE_MAP = {
+  '/': {
+    view: 'home',
+    aboutTab: 'who-we-are',
+    title: 'BuckledIn | Alternative Safe and Reliable Student Transportation',
+  },
+  '/schools': {
+    view: 'schools',
+    aboutTab: 'who-we-are',
+    title: 'Schools & Districts | BuckledIn',
+  },
+  '/families': {
+    view: 'families',
+    aboutTab: 'who-we-are',
+    title: 'Families & Guardians | BuckledIn',
+  },
+  '/drivers': {
+    view: 'drivers',
+    aboutTab: 'who-we-are',
+    title: 'Drive With Us | BuckledIn',
+  },
+  '/about': {
+    view: 'about',
+    aboutTab: 'who-we-are',
+    title: 'About Us | BuckledIn',
+  },
+  '/careers': {
+    view: 'about',
+    aboutTab: 'careers',
+    title: 'Careers | BuckledIn',
+  },
+  '/newsletters': {
+    view: 'about',
+    aboutTab: 'newsletters',
+    title: 'Newsletters | BuckledIn',
+  },
+};
+
+function parseRoute(pathname) {
+  const normalized = pathname.replace(/\/+$/, '').toLowerCase() || '/';
+  return ROUTE_MAP[normalized] || ROUTE_MAP['/'];
+}
+
+function getPathForRoute(view, aboutTab = 'who-we-are') {
+  if (view === 'schools') return '/schools';
+  if (view === 'families') return '/families';
+  if (view === 'drivers') return '/drivers';
+  if (view === 'about') {
+    if (aboutTab === 'careers') return '/careers';
+    if (aboutTab === 'newsletters') return '/newsletters';
+    return '/about';
+  }
+  return '/';
+}
+
 export default function App() {
-  const [currentView, setCurrentView] = useState('home'); // 'home' | 'schools' | 'about' | 'families' | 'drivers' | 'careers'
-  const [aboutTab, setAboutTab] = useState('who-we-are'); // 'who-we-are' | 'careers' | 'newsletters'
+  const initialRoute = parseRoute(window.location.pathname);
+  const [currentView, setCurrentView] = useState(initialRoute.view); // 'home' | 'schools' | 'about' | 'families' | 'drivers'
+  const [aboutTab, setAboutTab] = useState(initialRoute.aboutTab); // 'who-we-are' | 'careers' | 'newsletters'
   const [activeSection, setActiveSection] = useState('home');
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false);
   const [bookingDetails, setBookingDetails] = useState(null);
   const [legalModalState, setLegalModalState] = useState({ isOpen: false, type: 'terms' });
 
+  const syncUrl = (nextView, nextAboutTab = 'who-we-are') => {
+    const nextPath = getPathForRoute(nextView, nextAboutTab);
+    if (window.location.pathname !== nextPath) {
+      window.history.pushState({ view: nextView, aboutTab: nextAboutTab }, '', nextPath);
+    }
+  };
+
+  useEffect(() => {
+    const routePath = getPathForRoute(currentView, aboutTab);
+    const meta = ROUTE_MAP[routePath] || ROUTE_MAP['/'];
+    document.title = meta.title;
+  }, [currentView, aboutTab]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const route = parseRoute(window.location.pathname);
+      setCurrentView(route.view);
+      setAboutTab(route.aboutTab);
+      if (route.view === 'home') {
+        setActiveSection('home');
+      }
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   const handleNavigate = (target) => {
     if (target === 'careers') {
       setAboutTab('careers');
       setCurrentView('about');
+      syncUrl('about', 'careers');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -33,24 +117,28 @@ export default function App() {
     if (target === 'newsletters') {
       setAboutTab('newsletters');
       setCurrentView('about');
+      syncUrl('about', 'newsletters');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
     if (target === 'schools') {
       setCurrentView('schools');
+      syncUrl('schools');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
     if (target === 'drivers') {
       setCurrentView('drivers');
+      syncUrl('drivers');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
 
     if (target === 'families') {
       setCurrentView('families');
+      syncUrl('families');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -58,6 +146,7 @@ export default function App() {
     if (target === 'about') {
       setAboutTab('who-we-are');
       setCurrentView('about');
+      syncUrl('about', 'who-we-are');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -65,6 +154,7 @@ export default function App() {
     if (target === 'home') {
       setCurrentView('home');
       setActiveSection('home');
+      syncUrl('home');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       return;
     }
@@ -73,6 +163,7 @@ export default function App() {
     setActiveSection(target);
     if (currentView !== 'home') {
       setCurrentView('home');
+      syncUrl('home');
       setTimeout(() => {
         const element = document.getElementById(target);
         if (element) {
@@ -89,26 +180,15 @@ export default function App() {
     }
   };
 
-  const handleOpenFullAbout = () => {
-    setAboutTab('who-we-are');
-    setCurrentView('about');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handleAboutTabChange = (nextTab) => {
+    setAboutTab(nextTab);
+    syncUrl('about', nextTab);
   };
 
-  const handleOpenFullSchools = () => {
-    setCurrentView('schools');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleOpenFullFamilies = () => {
-    setCurrentView('families');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleOpenFullDrivers = () => {
-    setCurrentView('drivers');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const handleOpenFullAbout = () => handleNavigate('about');
+  const handleOpenFullSchools = () => handleNavigate('schools');
+  const handleOpenFullFamilies = () => handleNavigate('families');
+  const handleOpenFullDrivers = () => handleNavigate('drivers');
 
   const handleStartBooking = (data) => {
     setBookingDetails(data);
@@ -147,6 +227,7 @@ export default function App() {
           /* Dedicated Full About Page with Hero Pill Tabs (Who We Are | Careers | Newsletters) */
           <AboutPage
             initialTab={aboutTab}
+            onTabChange={handleAboutTabChange}
             onBackToHome={() => handleNavigate('home')}
           />
         ) : currentView === 'schools' ? (
@@ -158,9 +239,6 @@ export default function App() {
         ) : currentView === 'drivers' ? (
           /* Dedicated Full Drivers Page */
           <DriversPage onBackToHome={() => handleNavigate('home')} />
-        ) : currentView === 'careers' ? (
-          /* Dedicated Full Careers Page */
-          <CareersPage onBackToHome={() => handleNavigate('home')} />
         ) : (
           /* Standard Homepage View */
           <>

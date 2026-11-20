@@ -42,6 +42,8 @@ export default function DriversSection({ onOpenFullDrivers }) {
               <img
                 src="/driverhomenologo.jpg"
                 alt="Our Drivers - Empowering Safe & Predictable Student Commutes"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-auto object-contain rounded-3xl block select-none pointer-events-none"
               />
             </div>

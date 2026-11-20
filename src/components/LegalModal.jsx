@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, Shield, Lock, FileText, Phone, Mail } from 'lucide-react';
 
 export default function LegalModal({ isOpen, type, onClose }) {
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const content = {
@@ -226,13 +237,16 @@ export default function LegalModal({ isOpen, type, onClose }) {
       ),
     },
     'driver-terms': {
-      title: 'Driver Partner Agreement',
+      title: 'W-2 Driver Employment & Safety Standards',
       icon: FileText,
-      subtitle: 'The 88% Take-Home Policy',
+      subtitle: 'Consistency First • W-2 Employee Model',
       body: (
         <div className="space-y-4 text-xs sm:text-sm text-black font-medium leading-relaxed">
           <p>
-            BuckledIn covenants that our platform take rate shall never exceed 15% on standard rides. Driver partners retain 100% of all gratuities and bonuses, with instant zero-fee payout rights.
+            BuckledIn drivers are W-2 employees—never gig-economy contractors—compensated with predictable, scheduled school-route wages rather than variable commissions or gratuities.
+          </p>
+          <p>
+            Every driver completes comprehensive background screening, continuous DMV monitoring, and student-safety training so school districts and families can rely on the same trusted driver every day.
           </p>
         </div>
       ),
@@ -243,21 +257,32 @@ export default function LegalModal({ isOpen, type, onClose }) {
   const Icon = activeContent.icon;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 max-h-[85vh] overflow-y-auto">
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="legal-modal-title"
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm transition-opacity duration-200"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 max-h-[85vh] overflow-y-auto"
+      >
         <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center">
               <Icon className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-xl font-extrabold text-black">{activeContent.title}</h3>
-              <p className="text-xs text-black font-medium">{activeContent.subtitle}</p>
+              <h2 id="legal-modal-title" className="text-xl font-extrabold text-black">{activeContent.title}</h2>
+              <p className="text-xs text-slate-600 font-medium">{activeContent.subtitle}</p>
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-slate-100 text-black hover:text-brand-600 transition-colors"
+            aria-label="Close dialog"
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 text-black hover:text-brand-600 focus-visible:outline-2 focus-visible:outline-brand-600 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -267,10 +292,11 @@ export default function LegalModal({ isOpen, type, onClose }) {
 
         <div className="mt-6 pt-4 border-t border-slate-100 flex justify-end">
           <button
+            type="button"
             onClick={onClose}
-            className="px-6 py-2.5 rounded-full font-normal text-xs text-white bg-brand-600 hover:bg-brand-700 transition-all shadow-md cursor-pointer"
+            className="px-6 py-2.5 rounded-full font-normal text-xs text-white bg-brand-600 hover:bg-[#0e85ee] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 shadow-md cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2"
           >
-            I Understand & Accept
+            I Understand &amp; Accept
           </button>
         </div>
       </div>

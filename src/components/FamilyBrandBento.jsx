@@ -289,6 +289,8 @@ export default function FamilyBrandBento({ onExplore }) {
                 <img
                   src={tile.src}
                   alt={tile.alt}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover rounded-sm mix-blend-luminosity opacity-90"
                 />
               </div>
@@ -386,41 +388,60 @@ export default function FamilyBrandBento({ onExplore }) {
 
         {/* ─── ROW 3, COL 3: Transit Gold Card - Continuous Line Art ─── */}
         <div className="relative bg-[#FFB800] min-h-[200px] sm:min-h-[230px] p-5 sm:p-6 flex flex-col justify-between border-t md:border-t-0 border-black/10">
-          {/* Continuous Line Art Vector (Cheering Clinking Glasses / Celebration) */}
+          {/* Continuous Line Art Vector (One-Line Joyride: 4 Wheels, Tangled Loops, Kid & Smile) */}
           <div className="relative w-full h-32 sm:h-36 flex items-center justify-center my-auto">
-            <svg className="w-full h-full overflow-visible" viewBox="0 0 280 160" fill="none">
-              {/* Starting Dot */}
-              <circle cx="28" cy="35" r="3.5" fill="#000000" />
-              
-              {/* Continuous Line Drawing of Clinking Glasses */}
+            <svg className="w-full h-full overflow-visible" viewBox="0 0 280 160" fill="none" aria-hidden="true">
+              {/* Starting Ink Dot */}
+              <circle cx="18" cy="116" r="3.5" fill="#000000" />
+
+              {/* Continuous single-stroke tangled line: trailing swirl -> 4 looping wheels -> car roof -> smiling kid -> forward loop */}
               <path
-                d="M 28 35
-                   C 45 35, 60 75, 75 95
-                   C 85 110, 105 120, 115 100
-                   C 125 80, 120 52, 95 48
-                   C 75 42, 70 70, 85 85
-                   C 95 95, 105 122, 90 140
-                   C 80 152, 70 152, 65 152
-                   L 100 152
-                   M 90 140
-                   C 115 135, 140 90, 155 72
-                   C 170 54, 195 50, 210 68
-                   C 225 85, 215 112, 190 118
-                   C 170 122, 160 95, 175 80
-                   C 185 72, 200 102, 195 125
-                   C 190 148, 175 152, 170 152
-                   L 210 152
-                   M 195 125
-                   C 215 120, 245 138, 255 152"
+                d="M 18 116
+                   C 34 116, 40 94, 52 100
+                   C 64 106, 54 128, 70 128
+                   C 82 128, 94 118, 94 108
+                   C 94 98, 78 98, 78 112
+                   C 78 126, 98 128, 108 118
+                   C 114 112, 114 102, 104 102
+                   C 96 102, 96 122, 112 124
+                   C 132 126, 152 126, 174 124
+                   C 188 122, 192 102, 180 102
+                   C 170 102, 170 124, 188 126
+                   C 202 128, 214 114, 206 104
+                   C 198 94, 186 108, 198 122
+                   C 210 134, 232 122, 234 100
+                   C 236 78, 214 68, 194 64
+                   C 182 40, 156 26, 126 30
+                   C 96 34, 80 56, 72 78
+                   C 64 98, 78 104, 102 96
+                   C 122 90, 124 44, 148 44
+                   C 168 44, 172 74, 152 84
+                   C 134 92, 118 76, 128 60
+                   C 136 46, 160 50, 162 66
+                   C 164 80, 146 92, 134 86
+                   C 120 78, 138 104, 166 98
+                   C 196 92, 218 70, 242 54
+                   C 254 46, 266 56, 258 68
+                   C 250 78, 238 72, 246 62"
                 stroke="#000000"
                 strokeWidth="2.2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
 
-              {/* Celebration Sparkle Accents */}
-              <circle cx="145" cy="48" r="2" fill="#000000" />
-              <circle cx="135" cy="36" r="1.75" fill="#000000" />
+              {/* Kid's happy eyes & warm smile inside the window loop */}
+              <circle cx="140" cy="60" r="2.2" fill="#000000" />
+              <circle cx="153" cy="60" r="2.2" fill="#000000" />
+              <path
+                d="M 138 69 C 142 76, 152 76, 156 69"
+                stroke="#000000"
+                strokeWidth="2.1"
+                strokeLinecap="round"
+              />
+
+              {/* Joy Sparkle Accents */}
+              <circle cx="250" cy="36" r="1.8" fill="#000000" />
+              <circle cx="262" cy="44" r="1.5" fill="#000000" />
             </svg>
           </div>
 

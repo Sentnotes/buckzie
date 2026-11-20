@@ -977,7 +977,7 @@ function NewslettersTabView({ onBackToHome }) {
 }
 
 /* ─── Main Component ──────────────────────────────────────────────────────── */
-export default function AboutPage({ onBackToHome, initialTab = 'who-we-are' }) {
+export default function AboutPage({ onBackToHome, initialTab = 'who-we-are', onTabChange }) {
   const [activeTab, setActiveTab] = useState(initialTab);
 
   useEffect(() => {
@@ -985,6 +985,13 @@ export default function AboutPage({ onBackToHome, initialTab = 'who-we-are' }) {
       setActiveTab(initialTab);
     }
   }, [initialTab]);
+
+  const handleSelectTab = (tabId) => {
+    setActiveTab(tabId);
+    if (onTabChange) {
+      onTabChange(tabId);
+    }
+  };
 
   const heroTabs = [
     { id: 'who-we-are', label: 'Who We Are' },
@@ -1052,7 +1059,7 @@ export default function AboutPage({ onBackToHome, initialTab = 'who-we-are' }) {
                   key={tab.id}
                   role="tab"
                   aria-selected={isActive}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => handleSelectTab(tab.id)}
                   className={`px-5 sm:px-6 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-medium transition-colors duration-150 cursor-pointer ${
                     isActive
                       ? 'bg-black text-white shadow-xs'
@@ -1193,7 +1200,7 @@ export default function AboutPage({ onBackToHome, initialTab = 'who-we-are' }) {
               <div className="flex flex-wrap items-center justify-center gap-3">
                 <button
                   onClick={() => {
-                    setActiveTab('careers');
+                    handleSelectTab('careers');
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
                   className="px-6 py-3 rounded-full font-normal text-white bg-brand-600 hover:bg-brand-500 shadow-md transition-all active:scale-95 cursor-pointer text-sm"

@@ -41,12 +41,9 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
             <span className="text-xs font-bold uppercase tracking-widest text-brand-600 mb-3 inline-block">
               Safety Alerts &amp; Rider Perks
             </span>
-            <h4
-              style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-              className="text-3xl sm:text-4xl font-medium text-black tracking-tight mb-3"
-            >
+            <h2 className="font-inktrap text-3xl sm:text-4xl font-medium text-black tracking-tight mb-3">
               Subscribe to BuckledIn
-            </h4>
+            </h2>
             <p className="text-slate-600 text-sm max-w-md mx-auto lg:mx-0 mb-5 leading-relaxed">
               Be the first to hear about new city launches, family travel discounts, and driver benefits.
             </p>
@@ -85,20 +82,25 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
               </div>
             ) : (
               <form onSubmit={handleSubscribe} className="w-full max-w-md mx-auto lg:mx-0 flex flex-col sm:flex-row gap-2.5">
+                <label htmlFor="footer-newsletter-email" className="sr-only">
+                  Email address
+                </label>
                 <input
+                  id="footer-newsletter-email"
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="flex-1 bg-slate-50 border border-slate-300 text-black placeholder-slate-400 px-5 py-3 rounded-full text-sm focus:outline-none focus:border-black"
+                  aria-label="Email address"
+                  className="flex-1 bg-slate-50 border border-slate-300 text-black placeholder-slate-500 px-5 py-3 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-brand-600 focus:border-brand-600"
                 />
                 <button
                   type="submit"
-                  className="bg-black hover:bg-neutral-900 text-white px-7 py-3 rounded-full text-sm font-medium transition-all flex items-center justify-center space-x-2 cursor-pointer active:scale-95 shrink-0"
+                  className="group bg-brand-600 hover:bg-[#0e85ee] text-white px-7 py-3 rounded-full text-sm font-medium shadow-[0_8px_20px_-4px_rgba(2,103,206,0.32)] hover:shadow-[0_12px_26px_-4px_rgba(2,103,206,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97] transition-all duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] flex items-center justify-center space-x-2 cursor-pointer focus-visible:outline-2 focus-visible:outline-brand-600 focus-visible:outline-offset-2 shrink-0"
                 >
                   <span>Subscribe</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-4 h-4 transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-[3px]" />
                 </button>
               </form>
             )}
@@ -184,46 +186,49 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
                 Operating in 28+ Major Metro Areas
               </span>
 
-              {/* Social Icons (LinkedIn clickable; Facebook & Instagram non-clickable) */}
+              {/* Social Icons (LinkedIn, Facebook & Instagram) */}
               <div className="flex items-center space-x-3 pt-2">
                 <a
-                  href="https://www.linkedin.com/company/buckledin/home/"
+                  href="https://www.linkedin.com/company/buckledin"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="BuckledIn on LinkedIn"
-                  className="w-9 h-9 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#0B3AE0] transition-all cursor-pointer"
+                  className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#0B3AE0] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 transition-all cursor-pointer"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
                   </svg>
                 </a>
-                <span
-                  aria-label="Facebook"
-                  className="w-9 h-9 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-white/75 cursor-default select-none"
+                <a
+                  href="https://www.facebook.com/61576133175473/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="BuckledIn on Facebook"
+                  className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#0B3AE0] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 transition-all cursor-pointer"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14c-.326-.043-1.557-.14-2.857-.14C11.928 2 10 3.657 10 6.7v2.8H7v4h3V22h4v-8.5z" />
                   </svg>
-                </span>
-                <span
-                  aria-label="Instagram"
-                  className="w-9 h-9 rounded-full bg-white/10 border border-white/15 flex items-center justify-center text-white/75 cursor-default select-none"
+                </a>
+                <a
+                  href="https://www.instagram.com/buckled.in/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="BuckledIn on Instagram"
+                  className="w-11 h-11 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-[#0B3AE0] focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 transition-all cursor-pointer"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
                   </svg>
-                </span>
+                </a>
               </div>
             </div>
 
             {/* Navigation Column */}
             <div className="lg:col-span-3">
-              <h5
-                style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                className="text-xs font-medium uppercase tracking-widest text-blue-200 mb-4"
-              >
+              <h3 className="font-inktrap text-xs font-medium uppercase tracking-widest text-blue-200 mb-4">
                 Navigation
-              </h5>
+              </h3>
               <ul className="space-y-2.5 text-sm text-white/90">
                 <li>
                   <button onClick={() => onNavigate('schools')} className="hover:text-amber-300 transition-colors cursor-pointer">
@@ -260,12 +265,9 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
 
             {/* Contact Us Column */}
             <div id="contact" className="lg:col-span-3">
-              <h5
-                style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                className="text-xs font-medium uppercase tracking-widest text-blue-200 mb-4"
-              >
+              <h3 className="font-inktrap text-xs font-medium uppercase tracking-widest text-blue-200 mb-4">
                 Contact Us
-              </h5>
+              </h3>
               <ul className="space-y-3.5 text-sm text-white/90">
                 <li className="flex items-start space-x-2.5">
                   <Phone className="w-4 h-4 text-blue-200 shrink-0 mt-0.5" />
@@ -304,12 +306,9 @@ export default function Footer({ onNavigate, onOpenLegalModal }) {
 
             {/* Legal & Cookies Column */}
             <div className="lg:col-span-2">
-              <h5
-                style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                className="text-xs font-medium uppercase tracking-widest text-blue-200 mb-4"
-              >
+              <h3 className="font-inktrap text-xs font-medium uppercase tracking-widest text-blue-200 mb-4">
                 Legal
-              </h5>
+              </h3>
               <ul className="space-y-2.5 text-sm text-white/90">
                 <li>
                   <button onClick={() => onOpenLegalModal('terms')} className="hover:text-amber-300 transition-colors cursor-pointer text-left">

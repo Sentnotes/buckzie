@@ -181,7 +181,7 @@ export default function Hero({ onStartBooking }) {
                 <video
                   ref={videoRef}
                   poster="/hero-video-poster.jpg"
-                  preload="auto"
+                  preload="metadata"
                   autoPlay
                   muted
                   loop
