@@ -13,6 +13,16 @@ This project follows [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PA
 
 ---
 
+## [1.1.1] - 2026-11-23
+
+### Fixed
+- **iOS Safari 3D Page Flip Rendering (`MobileHandbook3D.jsx`, `ShelfBook3D.jsx`):**
+  - Added `-webkit-backface-visibility: hidden`, `-webkit-transform-style: preserve-3d`, `translateZ(0.5px)` face separation, and monotonic 3D `Z` depth sorting for flipped/unflipped pages so iOS Safari no longer mirrors flipped page text or blanks out the active right-hand page.
+- **Cleaner Book Elevation:**
+  - Removed heavy dark drop shadows and floor shadow blobs behind/under the 3D books on both mobile and desktop.
+
+---
+
 ## [1.1.0] - 2026-11-23
 
 ### Added

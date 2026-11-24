@@ -202,10 +202,10 @@ export default function ShelfBook3D({
 
         {/* 4. BACK COVER */}
         <div
-          className="absolute inset-0 rounded-l-sm rounded-r-md shadow-2xl"
+          className="absolute inset-0 rounded-l-sm rounded-r-md"
           style={{
             transform: `translateZ(${-halfT}px)`,
-            boxShadow: isOpen || isFacing ? '16px 20px 44px rgba(15,23,42,0.35)' : '4px 10px 20px rgba(15,23,42,0.22)',
+            boxShadow: isOpen || isFacing ? '0 10px 24px rgba(15,23,42,0.10)' : '0 4px 10px rgba(15,23,42,0.08)',
             backgroundColor: backCoverColor,
             backgroundImage: `url("${NOISE_DATA_URL}")`,
           }}
@@ -249,10 +249,13 @@ export default function ShelfBook3D({
                 {/* Front Face (Right-hand page) */}
                 <div
                   className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden bg-[#fffdf9] p-5 text-center"
-                  style={{ backfaceVisibility: 'hidden' }}
+                  style={{
+                    transform: 'translateZ(0.5px)',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                  }}
                 >
-                  <div className="pointer-events-none absolute top-0 right-0 bottom-0 w-10 bg-gradient-to-l from-black/15 via-black/5 to-transparent" />
-                  <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-3 bg-gradient-to-r from-black/10 to-transparent" />
+                  <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-2.5 bg-gradient-to-r from-slate-900/[0.06] to-transparent" />
 
                   <div className="relative z-10 w-full font-serif text-neutral-800 select-none">
                     {pages[idx].image && (
@@ -301,11 +304,12 @@ export default function ShelfBook3D({
                 <div
                   className="absolute inset-0 flex items-center justify-center bg-[#f6f2e9]"
                   style={{
-                    transform: 'rotateY(180deg)',
+                    transform: 'rotateY(180deg) translateZ(0.5px)',
                     backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
                   }}
                 >
-                  <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-10 bg-gradient-to-r from-black/15 via-black/5 to-transparent" />
+                  <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-slate-900/[0.05] to-transparent" />
                   <div className="rotate-90 transform font-sans text-[9px] tracking-widest text-neutral-400 uppercase opacity-50 select-none">
                     Flip back
                   </div>

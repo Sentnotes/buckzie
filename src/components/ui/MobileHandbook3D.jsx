@@ -97,6 +97,7 @@ export default function MobileHandbook3D({
   };
 
   const { width, height } = dims;
+  const pageCount = pages.length;
 
   return (
     <div className="flex flex-col items-center justify-center py-6">
@@ -105,8 +106,9 @@ export default function MobileHandbook3D({
         className="relative flex items-center justify-center cursor-pointer"
         style={{
           perspective: '1500px',
+          WebkitPerspective: '1500px',
           width: width * 2 + 16,
-          height: height + 36,
+          height: height + 24,
         }}
         onClick={() => {
           if (!isOpen) setIsOpen(true);
@@ -118,50 +120,55 @@ export default function MobileHandbook3D({
             width,
             height,
             transformStyle: 'preserve-3d',
+            WebkitTransformStyle: 'preserve-3d',
           }}
           animate={{
             x: isOpen ? width / 2 : 0,
-            rotateY: isOpen ? -14 : 0,
-            rotateX: isOpen ? 8 : 0,
-            z: isOpen ? 30 : 0,
+            rotateY: isOpen ? -10 : 0,
+            rotateX: isOpen ? 5 : 0,
+            z: isOpen ? 20 : 0,
           }}
           transition={{ duration: 0.65, ease: EASE }}
         >
-          {/* Back Cover - Tactile Royal Blue Cloth */}
+          {/* Back Cover - Tactile Royal Blue Cloth (no heavy dark drop shadow) */}
           <div
-            className="absolute inset-0 rounded-l-sm rounded-r-md shadow-2xl"
+            className="absolute inset-0 rounded-l-sm rounded-r-md border border-slate-200/70"
             style={{
-              transform: 'translateZ(-18px)',
-              boxShadow: '16px 20px 44px rgba(15,23,42,0.38)',
+              transform: 'translateZ(-4px)',
               backgroundColor: '#051D97',
               backgroundImage: `url("${NOISE_DATA_URL}")`,
             }}
           />
 
-          {/* PAGES STACK */}
-          {Array.from({ length: pages.length })
-            .map((_, i) => pages.length - 1 - i)
+          {/* PAGES STACK — monotonic 3D Z depths for iOS Safari / WebKit compatibility */}
+          {Array.from({ length: pageCount })
+            .map((_, i) => pageCount - 1 - i)
             .map((index) => {
               const isFlipped = index < pageIndex;
-              const activeZIndex = isFlipped ? index + 1 : 20 - index;
+              const activeZIndex = isFlipped ? index + 1 : pageCount + 10 - index;
+              // Explicit Z ordering so iOS Safari never z-fights or hides the active right page
+              const targetZ = isFlipped
+                ? (index + 1) * 1.2
+                : (pageCount - index) * 1.2;
               const page = pages[index];
 
               return (
                 <motion.div
                   key={index}
-                  className="absolute inset-y-[2px] right-[2px] left-[4px] origin-left cursor-pointer rounded-l-sm rounded-r-md border border-neutral-100/60 bg-[#fffcf5]"
+                  className="absolute inset-y-[2px] right-[2px] left-[4px] origin-left cursor-pointer rounded-l-sm rounded-r-md border border-slate-200/70 bg-[#fffcf5]"
                   style={{
                     transformStyle: 'preserve-3d',
+                    WebkitTransformStyle: 'preserve-3d',
                     zIndex: activeZIndex,
                   }}
                   animate={{
                     rotateY: isFlipped ? -176 : 0,
-                    z: isFlipped ? 0 : pages.length - 1 - index,
+                    z: targetZ,
                   }}
                   transition={{
                     duration: 0.55,
                     ease: EASE,
-                    delay: isFlipped ? 0 : index * 0.03,
+                    delay: isFlipped ? 0 : index * 0.02,
                   }}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -176,17 +183,20 @@ export default function MobileHandbook3D({
                     }
                   }}
                 >
-                  {/* FRONT FACE (Right side content) */}
+                  {/* FRONT FACE (Right side content) — +0.5px Z prevents WebKit backface bleed */}
                   <div
-                    className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden bg-[#fffdf9] p-3.5 sm:p-5 text-center"
-                    style={{ backfaceVisibility: 'hidden' }}
+                    className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden rounded-l-sm rounded-r-md bg-[#fffdf9] p-3.5 sm:p-5 text-center"
+                    style={{
+                      transform: 'translateZ(0.5px)',
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                    }}
                   >
-                    <div className="pointer-events-none absolute top-0 right-0 bottom-0 w-8 bg-gradient-to-l from-black/15 via-black/5 to-transparent" />
-                    <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-2 bg-gradient-to-r from-black/10 to-transparent" />
+                    <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-2 bg-gradient-to-r from-slate-900/[0.06] to-transparent" />
 
                     <div className="relative z-10 w-full font-serif text-neutral-800 select-none">
                       {page.image && (
-                        <div className="mb-2 sm:mb-3 overflow-hidden rounded-sm border border-neutral-200 shadow-inner">
+                        <div className="mb-2 sm:mb-3 overflow-hidden rounded-sm border border-neutral-200">
                           <img
                             src={page.image}
                             alt={page.title || 'Program'}
@@ -213,20 +223,21 @@ export default function MobileHandbook3D({
                       )}
                     </div>
                     <span className="absolute right-3 bottom-2 text-[8px] text-neutral-400 select-none">
-                      {index + 1} / {pages.length}
+                      {index + 1} / {pageCount}
                     </span>
                   </div>
 
-                  {/* BACK FACE (Left side when flipped) */}
+                  {/* BACK FACE (Left side when flipped) — +0.5px Z after 180deg flip for WebKit */}
                   <div
-                    className="absolute inset-0 flex items-center justify-center bg-[#f6f2e9]"
+                    className="absolute inset-0 flex items-center justify-center overflow-hidden rounded-l-sm rounded-r-md bg-[#f7f4ec]"
                     style={{
-                      transform: 'rotateY(180deg)',
+                      transform: 'rotateY(180deg) translateZ(0.5px)',
                       backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
                     }}
                   >
-                    <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-black/15 via-black/5 to-transparent" />
-                    <div className="rotate-90 transform font-sans text-[8.5px] tracking-widest text-neutral-400 uppercase opacity-50 select-none">
+                    <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-4 bg-gradient-to-r from-slate-900/[0.05] to-transparent" />
+                    <div className="rotate-90 transform font-sans text-[8.5px] tracking-widest text-neutral-400 uppercase opacity-55 select-none">
                       Tap to go back
                     </div>
                   </div>
@@ -245,11 +256,12 @@ export default function MobileHandbook3D({
             }}
             style={{
               transformStyle: 'preserve-3d',
+              WebkitTransformStyle: 'preserve-3d',
             }}
             initial={false}
             animate={{
               rotateY: isOpen ? -178 : 0,
-              z: isOpen ? 0 : 12,
+              z: isOpen ? 0 : pageCount * 1.2 + 4,
             }}
             transition={{
               duration: 0.7,
@@ -259,11 +271,13 @@ export default function MobileHandbook3D({
           >
             {/* Outer Cover */}
             <div
-              className="absolute inset-0 overflow-hidden rounded-l-sm rounded-r-md border-l border-white/20 shadow-md"
+              className="absolute inset-0 overflow-hidden rounded-l-sm rounded-r-md border-l border-white/20"
               style={{
+                transform: 'translateZ(0.5px)',
                 backgroundImage:
                   'linear-gradient(135deg, #0e85ee 0%, #0267ce 50%, #051D97 100%)',
                 backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
               }}
             >
               <div
@@ -287,12 +301,11 @@ export default function MobileHandbook3D({
                 className="pointer-events-none absolute inset-0 opacity-25"
                 style={{
                   background:
-                    'radial-gradient(ellipse at 35% 25%, rgba(255,255,255,0.6) 0%, transparent 65%), linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.2) 100%)',
+                    'radial-gradient(ellipse at 35% 25%, rgba(255,255,255,0.6) 0%, transparent 65%), linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.12) 100%)',
                 }}
               />
-              <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-black/40 via-white/10 to-transparent z-20" />
-              <div className="pointer-events-none absolute top-0 bottom-0 left-2.5 w-px bg-black/25 z-20" />
-              <div className="pointer-events-none absolute top-0 bottom-0 right-0 w-2.5 bg-gradient-to-l from-black/20 to-transparent z-20" />
+              <div className="pointer-events-none absolute top-0 bottom-0 left-0 w-6 bg-gradient-to-r from-black/25 via-white/10 to-transparent z-20" />
+              <div className="pointer-events-none absolute top-0 bottom-0 left-2.5 w-px bg-black/15 z-20" />
 
               {/* Cover Content */}
               <div className="absolute inset-0 z-10 flex flex-col justify-between p-5 sm:p-6 text-white select-none">
@@ -306,7 +319,7 @@ export default function MobileHandbook3D({
                 </div>
 
                 <div className="my-auto flex flex-col items-center justify-center py-2 text-center">
-                  <h3 className="font-serif text-[26px] sm:text-[34px] font-bold tracking-tight text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.25)] leading-none">
+                  <h3 className="font-serif text-[26px] sm:text-[34px] font-bold tracking-tight text-white leading-none">
                     Programs
                   </h3>
                   <div className="mt-3 h-0.5 w-7 rounded-full bg-white/70" />
@@ -324,10 +337,11 @@ export default function MobileHandbook3D({
 
             {/* Inner Cover */}
             <div
-              className="absolute inset-0 overflow-hidden rounded-l-md rounded-r-sm border-r border-neutral-200 bg-[#f5f1e8]"
+              className="absolute inset-0 overflow-hidden rounded-l-md rounded-r-sm border border-neutral-200 bg-[#f5f1e8]"
               style={{
-                transform: 'rotateY(180deg)',
+                transform: 'rotateY(180deg) translateZ(0.5px)',
                 backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
               }}
             >
               <div className="flex h-full w-full flex-col justify-between p-4 sm:p-6 select-none">
@@ -339,7 +353,7 @@ export default function MobileHandbook3D({
                     Tailored Programs
                   </p>
                   <p className="mt-1 font-sans text-[9px] uppercase tracking-wider text-neutral-400">
-                    {pages.length} Chapters
+                    {pageCount} Chapters
                   </p>
                 </div>
                 <p className="text-center font-serif text-[10px] sm:text-xs text-neutral-500 italic">
@@ -349,19 +363,12 @@ export default function MobileHandbook3D({
             </div>
           </motion.div>
         </motion.div>
-
-        {/* Floor Shadow */}
-        <div
-          className={`pointer-events-none absolute bottom-1 h-8 rounded-[100%] bg-black/35 blur-xl transition-all duration-500 ${
-            isOpen ? 'w-[85%] opacity-70' : 'w-[50%] opacity-40'
-          }`}
-        />
       </div>
 
       {/* Tap Hint */}
       <p className="mt-3 text-center text-xs text-slate-500">
         {isOpen
-          ? `Page ${pageIndex + 1} of ${pages.length} — tap right page for next, left side to go back`
+          ? `Page ${pageIndex + 1} of ${pageCount} — tap right page for next, left side to go back`
           : 'Tap the handbook to open and flip through all 9 programs'}
       </p>
     </div>
