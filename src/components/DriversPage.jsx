@@ -26,6 +26,7 @@ import {
   X
 } from 'lucide-react';
 import MorphingPillButton from './MorphingPillButton';
+import DriverTestimonialsSpotlight from './DriverTestimonialsSpotlight';
 
 const driverBenefits = [
   {
@@ -1304,46 +1305,7 @@ export default function DriversPage({ onBackToHome }) {
       </section>
 
       {/* Section 5: Driver Voices / Testimonials */}
-      <section className="py-20 bg-slate-50 border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2
-              style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-              className="text-3xl sm:text-4xl md:text-5xl font-medium text-black tracking-tight"
-            >
-              Hear From Our Drivers
-            </h2>
-            <p className="mt-4 text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
-              Read how everyday drivers found meaningful work, stable schedules, and strong community connections.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {driverTestimonials.map((t, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-3xl p-7 border border-slate-200 shadow-xs flex flex-col justify-between"
-              >
-                <p className="text-sm sm:text-base text-slate-700 font-medium leading-relaxed mb-6 italic">
-                  "{t.quote}"
-                </p>
-
-                <div className="flex items-center space-x-3.5 pt-4 border-t border-slate-100">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="w-12 h-12 rounded-full object-cover border border-slate-200"
-                  />
-                  <div>
-                    <div className="text-sm font-bold text-black">{t.name}</div>
-                    <div className="text-xs text-slate-500 font-medium">{t.location} • {t.tenure}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <DriverTestimonialsSpotlight testimonials={driverTestimonials} />
 
       {/* Section 6: Frequently Asked Questions */}
       <section id="faq" className="py-20 bg-white">

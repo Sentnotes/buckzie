@@ -1,8 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   ChevronLeft,
   ChevronRight,
-  ArrowUpRight,
   Sparkles,
   ShieldCheck,
   Heart,
@@ -14,112 +13,273 @@ import {
   Users,
 } from 'lucide-react';
 import MorphingPillButton from './MorphingPillButton';
+import ShelfBook3D from './ui/ShelfBook3D';
+import MobileHandbook3D from './ui/MobileHandbook3D';
 
-const BOOK_STYLES = [
-  { bg: '#F472B6', text: '#FFFFFF', heightClass: 'h-[320px] sm:h-[360px]', basisClass: 'basis-[32px] sm:basis-[36px]', tilt: '0deg', labelPos: 'top', Icon: Sparkles },
-  { bg: '#14532D', text: '#F8FAFC', heightClass: 'h-[370px] sm:h-[420px]', basisClass: 'basis-[56px] sm:basis-[66px]', tilt: '3deg', labelPos: 'bottom', Icon: ShieldCheck },
-  { bg: '#2563EB', text: '#FFFFFF', heightClass: 'h-[390px] sm:h-[445px]', basisClass: 'basis-[58px] sm:basis-[68px]', tilt: '0deg', labelPos: 'top', Icon: Heart },
-  { bg: '#FDE047', text: '#111827', heightClass: 'h-[395px] sm:h-[450px]', basisClass: 'basis-[64px] sm:basis-[76px]', tilt: '0deg', labelPos: 'bottom', Icon: GraduationCap },
-  { bg: '#8B5CF6', text: '#FFFFFF', heightClass: 'h-[405px] sm:h-[465px]', basisClass: 'basis-[42px] sm:basis-[48px]', tilt: '-6deg', labelPos: 'top', Icon: Compass },
-  { bg: '#A3E635', text: '#111827', heightClass: 'h-[330px] sm:h-[370px]', basisClass: 'basis-[30px] sm:basis-[34px]', tilt: '-2deg', labelPos: 'top', Icon: Bus },
-  { bg: '#1E1B4B', text: '#E0E7FF', heightClass: 'h-[385px] sm:h-[440px]', basisClass: 'basis-[58px] sm:basis-[68px]', tilt: '7deg', labelPos: 'top', Icon: Trophy },
-  { bg: '#FB923C', text: '#111827', heightClass: 'h-[355px] sm:h-[405px]', basisClass: 'basis-[44px] sm:basis-[52px]', tilt: '0deg', labelPos: 'bottom', Icon: Sun },
-  { bg: '#0EA5E9', text: '#FFFFFF', heightClass: 'h-[375px] sm:h-[425px]', basisClass: 'basis-[50px] sm:basis-[58px]', tilt: '-3deg', labelPos: 'top', Icon: Users },
-];
-
-const programs = [
+const PROGRAM_BOOKS = [
   {
     title: 'Specialized & IEP Support',
+    shortTitle: 'IEP & Special Ed',
     shortTag: 'IEP / IDEA',
+    subtitle: 'IEP & IDEA',
     tag: '[IEP & IDEA]',
+    coverColor: '#051D97',
+    backCoverColor: '#04146B',
+    spineHeight: 336,
+    thickness: 44,
+    tilt: 0,
+    Icon: Sparkles,
     image: '/schools/(IEP).png',
-    description: 'Special education, Individualized Education Plans (IEP), and students requiring additional support with certified, consistent drivers.',
+    description:
+      'Special education, Individualized Education Plans (IEP), and students requiring additional support with certified, consistent drivers.',
+    quote: 'Consistent drivers and calm routines make every school morning predictable.',
   },
   {
     title: 'McKinney-Vento Stability',
+    shortTitle: 'McKinney-Vento',
     shortTag: 'Origin',
+    subtitle: 'School of Origin',
     tag: '[School of Origin]',
+    coverColor: '#14532D',
+    backCoverColor: '#0E3B20',
+    spineHeight: 356,
+    thickness: 44,
+    tilt: 1.5,
+    Icon: ShieldCheck,
     image: '/librarybooks/Mckinnet-Vento.jpg',
-    description: 'Confidential, dignified transportation for students experiencing housing transitions to remain connected to their district of origin.',
+    description:
+      'Confidential, dignified transportation for students experiencing housing transitions to remain connected to their district of origin.',
+    quote: 'Keeping students anchored to their teachers, friends, and school community.',
   },
   {
     title: 'Foster Care Continuity',
+    shortTitle: 'Foster Care',
     shortTag: 'ESSA',
+    subtitle: 'ESSA Compliant',
     tag: '[ESSA Compliant]',
-    image: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80',
-    description: 'Transportation solutions helping students maintain academic and emotional continuity across changing foster care placements.',
+    coverColor: '#0267CE',
+    backCoverColor: '#034E9B',
+    spineHeight: 346,
+    thickness: 44,
+    tilt: 0,
+    Icon: Heart,
+    image:
+      'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=900&q=80',
+    description:
+      'Transportation solutions helping students maintain academic and emotional continuity across changing foster care placements.',
+    quote: 'Seamless district coordination so placement changes never interrupt learning.',
   },
   {
     title: 'Early Childhood & Pre-K',
+    shortTitle: 'Early Childhood',
     shortTag: 'Pre-K',
+    subtitle: 'Child Safety',
     tag: '[Child Safety]',
+    coverColor: '#B45309',
+    backCoverColor: '#8A3F07',
+    spineHeight: 326,
+    thickness: 44,
+    tilt: -1.5,
+    Icon: GraduationCap,
     image: '/librarybooks/EarlyChildhood.jpg',
-    description: 'Vehicles equipped with certified child-safety seats and booster devices helping young learners travel safely to Head Start and Pre-K.',
+    description:
+      'Vehicles equipped with certified child-safety seats and booster devices helping young learners travel safely to Head Start and Pre-K.',
+    quote: 'Age-appropriate car seats, booster checks, and gentle handoffs at the door.',
   },
   {
     title: 'Out-of-District Placement',
+    shortTitle: 'Out-of-District',
     shortTag: 'County',
+    subtitle: 'Cross-County',
     tag: '[Cross-County]',
+    coverColor: '#5B21B6',
+    backCoverColor: '#431886',
+    spineHeight: 362,
+    thickness: 42,
+    tilt: -2,
+    Icon: Compass,
     image: '/librarybooks/out-of-district.jpg',
-    description: 'Cross-district and specialized facility transit when students need access to programs outside standard school bus corridors.',
+    description:
+      'Cross-district and specialized facility transit when students need access to programs outside standard school bus corridors.',
+    quote: 'Reliable regional coverage when specialized schools sit miles across county lines.',
   },
   {
     title: 'Charter & Private Schools',
+    shortTitle: 'Charter & Private',
     shortTag: 'Charter',
+    subtitle: 'Alternative Hub',
     tag: '[Alternative Hub]',
+    coverColor: '#0F766E',
+    backCoverColor: '#0B5751',
+    spineHeight: 332,
+    thickness: 42,
+    tilt: 0,
+    Icon: Bus,
     image: '/librarybooks/CharterandPrivate.jpg',
-    description: 'Custom transportation corridors connecting families to magnet, charter, and private schools without district transportation fleets.',
+    description:
+      'Custom transportation corridors connecting families to magnet, charter, and private schools without district transportation fleets.',
+    quote: 'Purpose-built corridors tailored to independent bell schedules.',
   },
   {
     title: 'Extracurricular & Athletics',
+    shortTitle: 'Extracurricular',
     shortTag: 'Athletics',
+    subtitle: 'After School',
     tag: '[After School]',
+    coverColor: '#1E1B4B',
+    backCoverColor: '#141234',
+    spineHeight: 352,
+    thickness: 44,
+    tilt: 2,
+    Icon: Trophy,
     image: '/librarybooks/extracurricular.jpg',
-    description: 'Scheduled rides for field trips, sports teams, clubs, and enrichment programs when traditional district buses are already parked.',
+    description:
+      'Scheduled rides for field trips, sports teams, clubs, and enrichment programs when traditional district buses are already parked.',
+    quote: 'Every student gets to participate—even after the last yellow bus leaves.',
   },
   {
     title: 'Summer School Programs',
+    shortTitle: 'Summer School',
     shortTag: 'Summer',
+    subtitle: 'Year-Round',
     tag: '[Year-Round]',
+    coverColor: '#C2410C',
+    backCoverColor: '#913009',
+    spineHeight: 328,
+    thickness: 44,
+    tilt: 0,
+    Icon: Sun,
     image: '/librarybooks/Summerschool.jpg',
-    description: 'Continuous year-round coverage for extended school year programs, credit recovery sessions, and specialized therapy commutes.',
+    description:
+      'Continuous year-round coverage for extended school year programs, credit recovery sessions, and specialized therapy commutes.',
+    quote: 'Uninterrupted support through ESY, enrichment camps, and summer sessions.',
   },
   {
     title: 'General Student Population',
+    shortTitle: 'General Transit',
     shortTag: 'Fleet',
+    subtitle: 'Supplemental Fleet',
     tag: '[Supplemental Fleet]',
-    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80',
-    description: 'Safe overflow and supplemental capacity to relieve severe district yellow bus driver shortages without route cancellations.',
+    coverColor: '#0369A1',
+    backCoverColor: '#024E78',
+    spineHeight: 344,
+    thickness: 44,
+    tilt: -1.5,
+    Icon: Users,
+    image:
+      'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80',
+    description:
+      'Safe overflow and supplemental capacity to relieve severe district yellow bus driver shortages without route cancellations.',
+    quote: 'Flexible W-2 driver capacity that keeps every bell-time route running.',
   },
 ];
 
 export default function InteractiveShowcase({ onOpenFullSchools }) {
-  // First book starts open by default; tapping any spine opens that book
+  const [phases, setPhases] = useState(() =>
+    PROGRAM_BOOKS.map((_, i) => (i === 0 ? 'open' : 'shelved'))
+  );
   const [activeIndex, setActiveIndex] = useState(0);
-  const bookRefs = useRef([]);
+  const timersRef = useRef([]);
 
-  const selectBook = (idx) => {
-    setActiveIndex(idx);
-    const el = bookRefs.current[idx];
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', inline: 'nearest', block: 'nearest' });
+  const clearTimers = () => {
+    timersRef.current.forEach((id) => clearTimeout(id));
+    timersRef.current = [];
+  };
+
+  useEffect(() => {
+    return () => clearTimers();
+  }, []);
+
+  const setBookPhase = (idx, nextPhase) => {
+    setPhases((prev) => prev.map((p, i) => (i === idx ? nextPhase : p)));
+  };
+
+  const resetAllExcept = (keepIdx, keepPhase) => {
+    setPhases(PROGRAM_BOOKS.map((_, i) => (i === keepIdx ? keepPhase : 'shelved')));
+  };
+
+  // Choreographed 3D sequence:
+  // Close current (show face) -> Return to shelf while new book pulls out & shows face -> Open new book
+  const selectBook = (targetIdx) => {
+    clearTimers();
+
+    const currentIdx = activeIndex;
+
+    if (targetIdx === null) {
+      if (currentIdx === null) return;
+      setActiveIndex(null);
+      resetAllExcept(currentIdx, 'facing');
+      timersRef.current.push(
+        setTimeout(() => {
+          setBookPhase(currentIdx, 'shelved');
+        }, 300)
+      );
+      return;
     }
+
+    if (targetIdx === currentIdx) return;
+
+    setActiveIndex(targetIdx);
+
+    if (currentIdx === null) {
+      resetAllExcept(targetIdx, 'facing');
+      timersRef.current.push(
+        setTimeout(() => {
+          setBookPhase(targetIdx, 'open');
+        }, 380)
+      );
+      return;
+    }
+
+    // Beat 1 (0ms): Close current cover so its front face shows
+    resetAllExcept(currentIdx, 'facing');
+
+    // Beat 2 (280ms): Return current to spine on shelf & pull out new book to show its front face
+    timersRef.current.push(
+      setTimeout(() => {
+        setPhases(
+          PROGRAM_BOOKS.map((_, i) => (i === targetIdx ? 'facing' : 'shelved'))
+        );
+      }, 280)
+    );
+
+    // Beat 3 (680ms): Swing the new book's front cover open
+    timersRef.current.push(
+      setTimeout(() => {
+        setBookPhase(targetIdx, 'open');
+      }, 680)
+    );
   };
 
   const handlePrev = () => {
-    selectBook(activeIndex === 0 ? programs.length - 1 : activeIndex - 1);
+    const nextIdx =
+      activeIndex === null
+        ? PROGRAM_BOOKS.length - 1
+        : activeIndex === 0
+          ? PROGRAM_BOOKS.length - 1
+          : activeIndex - 1;
+    selectBook(nextIdx);
   };
 
   const handleNext = () => {
-    selectBook(activeIndex === programs.length - 1 ? 0 : activeIndex + 1);
+    const nextIdx =
+      activeIndex === null
+        ? 0
+        : activeIndex === PROGRAM_BOOKS.length - 1
+          ? 0
+          : activeIndex + 1;
+    selectBook(nextIdx);
   };
+
+  const mobileActiveIndex = activeIndex !== null ? activeIndex : 0;
+  const activeBook = activeIndex !== null ? PROGRAM_BOOKS[activeIndex] : null;
 
   return (
     <section className="py-20 md:py-28 bg-white relative overflow-hidden">
       {/* Header Container */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-          {/* Left Title: 2-line big bold title */}
+          {/* Left Title */}
           <div>
             <h2
               style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
@@ -129,14 +289,23 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
             </h2>
           </div>
 
-          {/* Right side: Editorial text and book switcher arrows */}
-          <div className="flex items-end justify-between md:justify-end gap-6 max-w-xl">
+          {/* Right side: Editorial text, Shelf All button, and Prev/Next arrows */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between md:justify-end gap-5 max-w-2xl">
             <p className="text-sm sm:text-base text-slate-600 font-medium leading-relaxed">
-              Every student's path to learning is unique. We provide tailored transportation solutions designed around specialized needs, emotional comfort, and district requirements.
+              Every student&apos;s path to learning is unique. We provide tailored transportation solutions designed around specialized needs, emotional comfort, and district requirements.
             </p>
 
-            {/* Book navigation buttons */}
-            <div className="flex items-center space-x-2 shrink-0">
+            {/* Shelf All + Arrow Navigation Buttons */}
+            <div className="flex items-center gap-2 shrink-0">
+              {activeIndex !== null && (
+                <button
+                  type="button"
+                  onClick={() => selectBook(null)}
+                  className="hidden lg:inline-flex items-center px-3.5 h-10 rounded-full border border-slate-200 bg-white text-xs font-semibold text-slate-700 hover:bg-slate-100 shadow-xs transition-all cursor-pointer active:scale-95"
+                >
+                  Shelf All
+                </button>
+              )}
               <button
                 type="button"
                 onClick={handlePrev}
@@ -158,341 +327,78 @@ export default function InteractiveShowcase({ onOpenFullSchools }) {
         </div>
       </div>
 
-      {/* ── UNIFIED ILLUSTRATED BOOKSHELF (Open Directly on Section Background) ── */}
+      {/* ── BOOKSHELF CONTAINER ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Mobile & Tablet (< lg): Visible Standing Books Strip + Clean Active Book Spread Below */}
-        <div className="lg:hidden space-y-6 pt-4 pb-6">
-          {/* Standing Books Spine Selector (All Books Visible) */}
-          <div className="flex items-end justify-center gap-2 sm:gap-3 pt-4 pb-6 overflow-x-auto no-scrollbar">
-            {programs.map((item, idx) => {
-              const isOpen = idx === activeIndex;
-              const spec = BOOK_STYLES[idx % BOOK_STYLES.length];
-              const MotifIcon = spec.Icon;
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  onClick={() => selectBook(idx)}
-                  style={{
-                    backgroundColor: spec.bg,
-                    color: spec.text,
-                    transform: isOpen ? 'translateY(-8px) rotate(0deg)' : `rotate(${spec.tilt})`,
-                  }}
-                  className={`relative shrink-0 w-9 sm:w-11 ${
-                    idx % 2 === 0 ? 'h-32 sm:h-40' : 'h-28 sm:h-36'
-                  } rounded-[2px] flex flex-col items-center justify-between py-2.5 px-1 transition-all duration-300 cursor-pointer select-none ${
-                    isOpen ? 'ring-2 ring-[#0267CE] ring-offset-2 shadow-md' : 'opacity-85 hover:opacity-100'
-                  }`}
-                  aria-label={`Open ${item.title}`}
-                  aria-pressed={isOpen}
-                >
-                  <MotifIcon className="w-3.5 h-3.5 opacity-85 stroke-[1.75] shrink-0" />
-                  <span
-                    className="font-inktrap text-[10px] sm:text-[11px] font-medium tracking-tight whitespace-nowrap overflow-hidden max-h-[72px]"
-                    style={{
-                      fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif',
-                      writingMode: 'vertical-rl',
-                      transform: 'rotate(180deg)',
-                    }}
-                  >
-                    {item.shortTag}
-                  </span>
-                  <span className="text-[9px] font-bold opacity-75">
-                    {idx + 1}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Active Open Book Spread (Fitted to Small Screen) */}
-          {(() => {
-            const activeItem = programs[activeIndex];
-            const activeSpec = BOOK_STYLES[activeIndex % BOOK_STYLES.length];
-            const activeNum = String(activeIndex + 1).padStart(2, '0');
-            return (
-              <div className="relative rounded-[4px] border border-slate-200 bg-[#FCFBF7] shadow-[0_18px_40px_-14px_rgba(15,23,42,0.14)] overflow-hidden">
-                <div style={{ backgroundColor: activeSpec.bg }} className="h-1.5 w-full" />
-                <div className="grid grid-cols-1 sm:grid-cols-2">
-                  <div className="p-5 flex flex-col justify-between gap-4 border-b sm:border-b-0 sm:border-r border-slate-200/70">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">
-                        Ch. {activeNum}
-                      </span>
-                      <span className="text-[10px] text-brand-600 font-bold bg-brand-50 px-2 py-0.5 rounded-full">
-                        {activeItem.tag}
-                      </span>
-                    </div>
-                    <div className="text-center py-2">
-                      <h3
-                        style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                        className="font-inktrap text-lg font-medium text-black tracking-tight leading-snug mb-2"
-                      >
-                        {activeItem.title}
-                      </h3>
-                      <p className="text-xs text-slate-600 font-medium leading-relaxed">
-                        {activeItem.description}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between pt-3 border-t border-slate-200/70">
-                      <span className="text-[10px] text-slate-400">
-                        p. {activeIndex * 2 + 1}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          if (onOpenFullSchools) onOpenFullSchools();
-                        }}
-                        className="inline-flex items-center gap-1 text-xs font-bold text-black hover:text-brand-600 transition-colors cursor-pointer"
-                      >
-                        <span>Details</span>
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </div>
-                  <div className="p-4 flex flex-col justify-between gap-3">
-                    <div className="w-full h-48 sm:h-56 rounded-lg overflow-hidden bg-slate-100 border border-slate-200/80">
-                      <img
-                        src={activeItem.image}
-                        alt={activeItem.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="flex items-center justify-between pt-2 border-t border-slate-200/70">
-                      <span className="text-[10px] text-slate-400 truncate pr-2">
-                        FIG. {activeNum} — {activeItem.title}
-                      </span>
-                      <span className="text-[10px] text-slate-400 shrink-0">
-                        p. {activeIndex * 2 + 2}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })()}
+        {/* Mobile & Tablet (< lg): Single Interactive 3D Handbook */}
+        <div className="lg:hidden overflow-hidden">
+          <MobileHandbook3D
+            pages={PROGRAM_BOOKS}
+            activeIndex={mobileActiveIndex}
+            onActiveIndexChange={(idx) => setActiveIndex(idx)}
+          />
         </div>
 
-        {/* Desktop (lg+): Original Unified 3D Illustrated Bookshelf */}
-        <div className="hidden lg:block overflow-visible no-scrollbar pt-12 pb-10">
-          <div className="min-w-0">
-            <div className="flex items-end gap-2 sm:gap-2.5">
-              {programs.map((item, idx) => {
-                const isOpen = idx === activeIndex;
-                const bookNum = String(idx + 1).padStart(2, '0');
-                const spec = BOOK_STYLES[idx % BOOK_STYLES.length];
-                const MotifIcon = spec.Icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    ref={(el) => {
-                      bookRefs.current[idx] = el;
-                    }}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => selectBook(idx)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        selectBook(idx);
-                      }
-                    }}
-                    aria-expanded={isOpen}
-                    style={{
-                      flexGrow: isOpen ? 1 : 0,
-                      flexShrink: 0,
-                      backgroundColor: isOpen ? '#FCFBF7' : spec.bg,
-                      transformOrigin: 'bottom center',
-                      transform: isOpen ? 'rotate(0deg)' : `rotate(${spec.tilt})`,
-                      transition:
-                        'flex-grow 600ms cubic-bezier(0.22, 1, 0.36, 1), transform 400ms ease, box-shadow 450ms ease, background-color 400ms ease, filter 250ms ease',
-                    }}
-                    className={`relative ${spec.basisClass} ${
-                      isOpen ? 'h-[390px] sm:h-[450px]' : spec.heightClass
-                    } rounded-[2px] cursor-pointer select-none ${
-                      isOpen
-                        ? 'border border-slate-200 shadow-[0_18px_40px_-14px_rgba(15,23,42,0.14)] overflow-hidden'
-                        : 'hover:brightness-95 mx-0.5'
-                    }`}
-                  >
-                    {/* Floating Micro-Tag Outside Top or Bottom (When Closed) */}
-                    {!isOpen && (
-                      <span
-                        className={`pointer-events-none absolute left-1/2 -translate-x-1/2 text-[10px] font-medium text-slate-500 whitespace-nowrap ${
-                          spec.labelPos === 'top' ? '-top-6' : '-bottom-6'
-                        }`}
-                      >
-                        {item.shortTag}
-                      </span>
-                    )}
-
-                    {/* Top Bookmark Accent Band (Visible when open) */}
-                    <div
-                      style={{ backgroundColor: spec.bg }}
-                      className={`absolute top-0 inset-x-0 h-1.5 z-20 transition-opacity duration-300 ${
-                        isOpen ? 'opacity-100' : 'opacity-0'
-                      }`}
-                    />
-
-                    {/* ── Open Two-Page Textbook Spread (3D Hinge Opening) ── */}
-                    <div
-                      className={`absolute inset-0 min-w-[350px] sm:min-w-[460px] lg:min-w-[540px] grid grid-cols-2 bg-[#FCFBF7] transition-opacity duration-300 ${
-                        isOpen
-                          ? 'opacity-100 delay-100 pointer-events-auto'
-                          : 'opacity-0 pointer-events-none'
-                      }`}
-                    >
-                      {/* Center Textbook Spine Gutter Shadow */}
-                      <div
-                        className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 w-6 sm:w-8 z-10"
-                        style={{
-                          background:
-                            'linear-gradient(90deg, rgba(15,23,42,0) 0%, rgba(15,23,42,0.07) 48%, rgba(15,23,42,0.11) 50%, rgba(15,23,42,0.04) 55%, rgba(15,23,42,0) 100%)',
-                        }}
-                      />
-
-                      {/* Left Page: Centered Chapter Heading & Editorial Copy */}
-                      <div
-                        style={{
-                          transformOrigin: 'right center',
-                          transform: isOpen
-                            ? 'perspective(1100px) rotateY(0deg)'
-                            : 'perspective(1100px) rotateY(35deg)',
-                          transition: 'transform 800ms cubic-bezier(0.22, 1, 0.36, 1)',
-                        }}
-                        className="flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 pt-5 sm:pt-7 pr-4 sm:pr-6 lg:pr-7 border-r border-slate-200/70 bg-[#FCFBF7]"
-                      >
-                        <div className="flex items-center justify-between gap-1.5 sm:gap-2">
-                          <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                            Ch. {bookNum}
-                          </span>
-                          <span className="text-[9px] sm:text-[10px] text-brand-600 font-bold bg-brand-50 px-1.5 sm:px-2 py-0.5 rounded-full truncate">
-                            {item.tag}
-                          </span>
-                        </div>
-
-                        <div className="flex-1 flex flex-col items-center justify-center text-center px-0.5 sm:px-1 my-2 sm:my-3">
-                          <h3
-                            style={{ fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif' }}
-                            className="font-inktrap text-sm sm:text-lg lg:text-xl font-medium text-black tracking-tight leading-snug mb-2 sm:mb-3"
-                          >
-                            {item.title}
-                          </h3>
-                          <p className="text-[11px] sm:text-xs lg:text-[13px] text-slate-600 font-medium leading-relaxed">
-                            {item.description}
-                          </p>
-                        </div>
-
-                        <div className="flex items-center justify-between pt-2.5 sm:pt-3 border-t border-slate-200/70">
-                          <span className="text-[9px] sm:text-[10px] text-slate-400">
-                            p. {idx * 2 + 1}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (onOpenFullSchools) onOpenFullSchools();
-                            }}
-                            className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-bold text-black hover:text-brand-600 transition-colors cursor-pointer"
-                          >
-                            <span>Details</span>
-                            <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
-                          </button>
-                        </div>
-                      </div>
-
-                      {/* Right Page: Framed Photo Plate & Figure Caption */}
-                      <div
-                        style={{
-                          transformOrigin: 'left center',
-                          transform: isOpen
-                            ? 'perspective(1100px) rotateY(0deg)'
-                            : 'perspective(1100px) rotateY(-115deg)',
-                          transition: 'transform 850ms cubic-bezier(0.22, 1, 0.36, 1)',
-                          backfaceVisibility: 'hidden',
-                        }}
-                        className="relative flex flex-col justify-between p-3.5 sm:p-5 lg:p-6 pt-5 sm:pt-7 pl-4 sm:pl-6 lg:pl-7 bg-[#FCFBF7]"
-                      >
-                        <div
-                          className={`pointer-events-none absolute inset-0 z-20 transition-opacity duration-700 ${
-                            isOpen ? 'opacity-0' : 'opacity-100'
-                          }`}
-                          style={{
-                            background:
-                              'linear-gradient(90deg, rgba(15,23,42,0.22) 0%, rgba(15,23,42,0.08) 45%, rgba(15,23,42,0) 100%)',
-                          }}
-                        />
-
-                        <div className="w-full flex-1 min-h-0 rounded-lg sm:rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-xs">
-                          <img
-                            src={item.image}
-                            alt={item.title}
-                            loading="lazy"
-                            decoding="async"
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-[1.03]"
-                          />
-                        </div>
-
-                        <div className="flex items-center justify-between pt-2.5 sm:pt-3 mt-2.5 sm:mt-3 border-t border-slate-200/70">
-                          <span className="text-[9px] sm:text-[10px] text-slate-400 truncate pr-2">
-                            FIG. {bookNum} — {item.title}
-                          </span>
-                          <span className="text-[9px] sm:text-[10px] text-slate-400 shrink-0">
-                            p. {idx * 2 + 2}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* ── Closed Expressive Illustrated Spine ── */}
-                    <div
-                      style={{
-                        transformOrigin: 'left center',
-                        transform: isOpen
-                          ? 'perspective(1000px) rotateY(-110deg)'
-                          : 'perspective(1000px) rotateY(0deg)',
-                        backfaceVisibility: 'hidden',
-                        color: spec.text,
-                        transition:
-                          'transform 650ms cubic-bezier(0.22, 1, 0.36, 1), opacity 320ms ease',
-                      }}
-                      className={`absolute inset-0 z-20 flex flex-col items-center justify-between py-4 px-1 ${
-                        isOpen ? 'opacity-0 pointer-events-none' : 'opacity-100 delay-150'
-                      }`}
-                    >
-                      <span
-                        className="text-[9px] sm:text-[10px] font-medium opacity-75 whitespace-nowrap"
-                        style={{
-                          writingMode: 'vertical-rl',
-                          transform: 'rotate(180deg)',
-                        }}
-                      >
-                        BuckledIn
-                      </span>
-
-                      <div className="flex flex-col items-center justify-center gap-3 my-auto">
-                        <MotifIcon className="w-4 h-4 sm:w-5 sm:h-5 opacity-85 stroke-[1.75]" />
-                        <span
-                          className="font-inktrap text-[12px] sm:text-[13px] lg:text-[14px] font-medium tracking-tight whitespace-nowrap"
-                          style={{
-                            fontFamily: '"Whyte Inktrap", "Whyte Inktrap Medium", "ABC Whyte Inktrap", sans-serif',
-                            writingMode: 'vertical-rl',
-                            transform: 'rotate(180deg)',
-                          }}
-                        >
-                          {item.title}
-                        </span>
-                      </div>
-
-                      <span className="text-[10px] font-bold opacity-75">
-                        {idx + 1}
-                      </span>
-                    </div>
-                  </div>
-                );
-              })}
+        {/* Desktop (lg+): Single-Line True 3D Interactive Bookshelf */}
+        <div className="hidden lg:block relative">
+          <div className="overflow-x-auto pb-8 pt-10 px-2 no-scrollbar">
+            <div className="flex items-end justify-center gap-1.5 min-w-max mx-auto min-h-[400px]">
+              {PROGRAM_BOOKS.map((program, idx) => (
+                <ShelfBook3D
+                  key={program.title}
+                  index={idx}
+                  title={program.title}
+                  shortTitle={program.shortTitle}
+                  subtitle={program.subtitle}
+                  coverColor={program.coverColor}
+                  backCoverColor={program.backCoverColor}
+                  Icon={program.Icon}
+                  phase={phases[idx]}
+                  bookWidth={210}
+                  bookHeight={program.spineHeight}
+                  thickness={program.thickness}
+                  tilt={program.tilt}
+                  onSelect={() => selectBook(idx)}
+                  onClose={() => selectBook(null)}
+                  pages={[
+                    {
+                      title: program.title,
+                      content: program.description,
+                    },
+                    {
+                      image: program.image,
+                      caption: program.subtitle,
+                    },
+                    {
+                      quote: program.quote,
+                      author: 'BuckledIn Programs',
+                    },
+                  ]}
+                />
+              ))}
             </div>
+          </div>
+
+          {/* Minimalist Shelf Ledge */}
+          <div className="relative mx-auto max-w-6xl">
+            <div className="h-3 rounded-full bg-gradient-to-b from-slate-200 via-slate-300 to-slate-200 shadow-[0_14px_28px_-8px_rgba(15,23,42,0.22)]" />
+          </div>
+
+          {/* Subtle Helper Caption */}
+          <div className="mt-5 flex items-center justify-between gap-4 max-w-6xl mx-auto text-xs text-slate-500">
+            <div>
+              {activeBook ? (
+                <span>
+                  Viewing <strong className="text-slate-900">{activeBook.title}</strong> — click the right page to flip forward, flipped left pages to go back, or the inner left cover to return it to the shelf.
+                </span>
+              ) : (
+                <span>Click any book spine on the shelf to pull it out and open it in 3D.</span>
+              )}
+            </div>
+            <span className="font-mono text-[11px] text-slate-500 shrink-0">
+              {activeIndex !== null
+                ? `BOOK 0${activeIndex + 1} / 0${PROGRAM_BOOKS.length}`
+                : `${PROGRAM_BOOKS.length} BOOKS SHELVED`}
+            </span>
           </div>
         </div>
       </div>
